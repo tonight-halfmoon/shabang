@@ -1,0 +1,2 @@
+# shabang
+bash programming
