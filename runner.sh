@@ -20,7 +20,7 @@ p_bootproject=unknown
 if [ $# -eq 0 ]
 then
 	echo "Usage: `basename $0` <base directory>" >&2
-	echo "Incorrect usage" 2>>$log_errors
+	echo "Aborted due to incorrect usage" 1>>$log_errors
 	exit $e_noArgs
 fi
 
@@ -40,7 +40,6 @@ checkProvidedDir () {
 	if [ ! -d "$basedir" ]
 	then		
 		echo "$basedir not a directory" >&2
-		echo "$basedir not a directory" 2>>$log_errors
 		exit $e_notDirectory
 	fi	
 }
@@ -52,17 +51,14 @@ change2BaseDir () {
 	pushd $basedir
 	# Set basedire as absolute path
 	basedir=`pwd`
-	echo "Base directory = $basedir" 1>>$l_logfile
 	if [ ! "$basedir" == `pwd` ]
 	then
 		echo "Not in target Base directory" >&2
-		echo "Not in target Base directory" 2>>$l_logfile
 		exit $e_unable2Change2BaseDir
 	fi
 	echo "In target Base directory" >&2
 	echo "Current directory = `pwd`" >&2
 	echo "Base directory= $basedir" >&2
-	echo "Current directory = `pwd`" 1>>$l_logfile
 }
 
 assignBootProject () {
@@ -70,10 +66,8 @@ assignBootProject () {
 	then	
 		p_bootproject=$basedir/$1
 		echo "Boot project= $p_bootproject" >&2
-		echo "Boot project= $p_bootproject" 1>>$l_logfile
 	else
 		echo "Boot project is $p_bootproject" >&2
-		echo "Boot project is $p_bootproject" 1>>$l_logfile
 	fi
 }
 
@@ -81,7 +75,6 @@ shouldUpdateWC () {
 	if [ ! -z "$1" ] && [ "$1" -eq 1 ]
 	then
 		echo "Pull first is set to true" >&2
-		echo "Pull first is set to true" 1>>$l_logfile
 		c_pullFirst=$1
 	fi
 }
@@ -89,7 +82,7 @@ shouldUpdateWC () {
 initialiseVariables () {
 	numdirs=0
 	num_gradleProjects=0
-	echo "Variables initialised" 1>>$l_logfile
+	echo "Variables initialised" >&2
 }
 
 goinside () {
@@ -100,14 +93,12 @@ goinside () {
 		if [ -d "$dir" ]
 		then	
 			echo "+--$dir" >&2 #`ls -l $dir | sed 's/^.*'$dir' //'`
-			echo "+--$dir" 1>>$l_logfile
 			numdirs=`expr $numdirs + 1`
 			if can_cd 
 			then 
 				execute_gradle_tasks
 				cd ..
 				echo "Changed to Base directory" >&2
-				echo "Changed to Base directory" 1>>$l_logfile
 			fi
 		fi		
 	done
@@ -118,7 +109,6 @@ can_cd()
 	if ! cd "$dir"
 	then
 		echo "Not able to change into directory $dir" >&2
-		echo "Not able to change into directory $dir" 2>>$log_errors
 		return 1
 	else
 		return 0
@@ -130,7 +120,6 @@ is_gradleProject() {
 	if [ ! -f "build.gradle" ] 
 	then
 		echo "Not a Gradle project" >&2
-		echo "Not a Gradle project" 2>>$log_errors
 		return 1
 	else
 		#ls build.gradle 1>>$l_logfile
@@ -142,8 +131,7 @@ updateWC () {
 	if [ "$c_pullFirst" -eq 1 ]
 	then
 		echo "Let's update your working copy" >&2
-		echo "Let's update your working copy" 1>>$l_logfile
-		git pull 1>>$l_logfile 2>>$log_errors
+		git pull >>$l_logfile 2>&1
 	fi	
 }
 
@@ -154,19 +142,17 @@ execute_gradle_tasks () {
 	then
 		num_gradleProjects=`expr $num_gradleProjects + 1`
 		echo "Changed into project $dir" >&2
-		echo "Changed into project $dir" 1>>$l_logfile
 		updateWC
 		echo "Let's execute gradle $defaultGradleTasks" >&2
-		echo "Let's execute gradle $defaultGradleTasks" 1>>$l_logfile
 		#gradle -q check
-		gradle $defauleGradleTasks 1>>$l_logfile 2>>$log_errors
+		gradle $defauleGradleTasks >>$l_logfile 2>&1
 	fi	
 }
 
 stopGradleDaemons () {
-	echo "Stopping all Gradle's Daemon(s)" >&2 1>>$l_logfile
+	echo "Stopping all Gradle's Daemon(s)" >&2
 	#gradle -v --stop
-	gradle --stop 1>>$l_logfile
+	gradle --stop >>$l_logfile 2>&1
 }
 
 runProjects () {
@@ -179,31 +165,32 @@ runProjects () {
 	echo "Changing to boot project " >&2
 	cd $p_bootproject >&2
 	echo "Current directory= `pwd`" >&2
-	local log_registry=$PWD/registry.log
-	local log_cardesire=$PWD/cardesire.log
-	local log_payment=$PWD/payment.log
-	local log_dealer=$PWD/dealer.log
+	local log_registry=`pwd`/registry.log
+	local log_cardesire=`pwd`/cardesire.log
+	local log_payment=`pwd`/payment.log
+	local log_dealer=`pwd`/dealer.log
  	: > $log_registry
  	: > $log_cardesire
  	: > $log_payment
  	: > $log_dealer	
 
 	echo "Registry" >&2 
-	gradle -Pmsname=registry runMS & >&$log_registry #2>&$log_registry
+	gradle -Pmsname=registry runMS & >>$log_registry 2>&1
 	sleep 5
 	echo "Cardesire" >&2
-	gradle -Pmsname=cardesire runMS & >&$log_cardesire # 2>&$log_cardesire
+	gradle -Pmsname=cardesire runMS & >>$log_cardesire 2>&1
 	sleep 2
 	echo "Dealer" >&2
-	gradle -Pmsname=dealer runMS & >&$log_dealer # 2>&$log_dealer
+	gradle -Pmsname=dealer runMS & >>$log_dealer 2>&1
 	sleep 2
 	echo "Payment" >&2
-	gradle -Pmsname=payment runMS & >&$log_payment # 2>&$log_payment
+	gradle -Pmsname=payment runMS & >>$log_payment 2>&1
 	sleep 2	
 }
 
 startDockerContainers () {
-	exec $d_startedin/docker_daemon_start.sh & >&2
+	open -g -a Docker.app & 2>>$log_errors
+	#exec $d_startedin/docker_daemon_start.sh & >&2
 	while ! docker system info &>/dev/null
 	do
 		(( i++ == 0 )) && printf %s ' -- Docker Daemon is starting ....' || printf '.'
@@ -211,17 +198,18 @@ startDockerContainers () {
 	done
 	(( i )) && printf '\n'
 	echo "Docker is ready" >&2
-	docker start some-rabbit mongodb ecomgw-postgres & 1>>$l_logfile 2>>$log_errors
+	echo "Starting your containers...."
+	docker start some-rabbit mongodb ecomgw-postgres & >>$l_logfile 2>&1
  	#exec $d_startedin/docker_containers_start.sh & >&2	
 }
 
 startFrontEnd () {
 	echo "starting front end..." >&2
 	cd $basedir/$1
-	echo "pwd=`pwd`" >&2 
-	local log_npm_start=$PWD/npm_start.log
+	echo "Current directory=`pwd`" >&2 
+	local log_npm_start=`pwd`/npm_start.log
 	: > $log_npm_start
-	npm start & 1>>$log_npm_start 2>>$log_npm_start	
+	npm start & >>$log_npm_start 2>&1	
 	popd
 }
 
@@ -230,23 +218,21 @@ assurePWDisBaseDir () {
 	if [ `pwd` != "$basedir" ]
 	then
 		echo "Changing to Base directory" >&2
-		cd $basedir 1>>$l_logfile
+		cd $basedir >>$l_logfile 2>&1
 	fi
-	echo "After changed to Base directory..." >&2
 	if [ `pwd` != "$basedir"  ]
 	then
-		echo "Unable to change to Base directory" >&2
-		echo "Unable to change to Base directory" 2>>$log_errors
+		echo "Not in Base directory" >&2
+		echo "Attempted to change to Base directory but failed!" 1>>$log_errors
 		return 1
 	fi
 	echo "Current directory= `pwd`" >&2
-	echo "Current directory= `pwd`" 1>>$l_logfile
 	return 0
 }
 
 printStats () {
-	echo "Total projects visited = $numdirs" >&2 #1>>$l_logfile
-	echo "Total gradle projects visited = $num_gradleProjects" >&2 #1>>$l_logfile
+	echo "Total projects visited = $numdirs" >&2
+	echo "Total gradle projects visited = $num_gradleProjects" >&2
 }
   
 #checkArgs
@@ -264,7 +250,6 @@ startFrontEnd $4
 printStats 0
 
 echo 
-echo "Job done." >&2
-echo "Job done." 1>>$l_logfile
-
+printf "Job done."
+echo
 exit 0
