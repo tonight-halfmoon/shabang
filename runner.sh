@@ -198,7 +198,7 @@ startDockerContainers () {
 	done
 	(( i )) && printf '\n'
 	echo "Docker is ready" >&2
-	echo "Starting your containers...."
+	echo "Starting your containers...." >&2
 	docker start some-rabbit mongodb ecomgw-postgres & >>$l_logfile 2>&1
  	#exec $d_startedin/docker_containers_start.sh & >&2	
 }
