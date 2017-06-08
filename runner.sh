@@ -135,7 +135,9 @@ updateWC () {
 	then
 		echo "Let's update your working copy" >&2
 		#progresswatch 'git pull' &
+		#git checkout -- . >>$l_logfile 2>&1
 		git pull >>$l_logfile 2>&1
+		
 		#done=1
 		#local jobnum=`jobs %% |awk '{print $1}'`
         	#echo "job $jobnum" >&2
@@ -184,26 +186,38 @@ runProjects () {
 		mkdir $logsdir 
 	fi
 	local log_registry=`pwd`/logss/registry.log
+	local log_gateway=`pwd`/logss/gateway.log
 	local log_dashboard=`pwd`/logss/dashboard.log
 	local log_cardesire=`pwd`/logss/cardesire.log
 	local log_handover=`pwd`/logss/handover.log
+	local log_customer=`pwd`/logss/customer.log
 	local log_payment=`pwd`/logss/payment.log
 	local log_dealer=`pwd`/logss/dealer.log
- 	: > $log_registry
+ 	local log_status=`pwd`/logss/status.log
+	: > $log_registry
+	: > $log_gateway
 	: > $log_dashboard
 	: > $log_handover
  	: > $log_cardesire
+	: > $log_customer
  	: > $log_payment
  	: > $log_dealer	
+	: > $log_status
 
 	echo "Registry" >&2 
 	gradle -Pmsname=registry runMS >>$log_registry 2>&1 &
+	disown
+	sleep 10
+	echo "Gateway" >&2
+	gradle -Pmsname=gateway runMS >>$log_gateway 2>&1 &
+	disown
 	sleep 10
 	echo "Dashboard" >&2
         gradle -Pmsname=dashboard runMS >>$log_dashboard 2>&1 &
-        sleep 10
+        disown
+	sleep 10
 	echo "Handover" >&2
-        gradle -Pmsname=handover runMS >>$log_handover &
+        gradle -Pmsname=handover runMS >>$log_handover 2>&1 &
 	disown
         sleep 10
 	echo "Cardesire" >&2
@@ -214,9 +228,18 @@ runProjects () {
 	gradle -Pmsname=dealer runMS >>$log_dealer 2>&1 &
 	disown
 	sleep 10
+	echo "Customer" >&2
+	gradle -Pmsname=customer runMS >>$log_customer 2>&1 &
+	disown
+	sleep 10
 	echo "Payment" >&2
 	gradle -Pmsname=payment runMS >>$log_payment 2>&1 &
 	disown
+	sleep 10
+	echo "Status" >&2
+	gradle -Pmsname=status runMS >>$log_status 2>&1 &
+	disown
+	sleep 2
 }
 
 startDockerContainers () {
