@@ -13,20 +13,18 @@ c_pullFirst=0
 c_defaultGradleTasks="clean build"
 
 l_logfile=$d_startedin/script.log
-log_errors=$d_startedin/errors.log
 
 p_bootproject=unknown
 
 if [ $# -eq 0 ]
 then
 	echo "Usage: `basename $0` <base directory>" >&2
-	echo "Aborted due to incorrect usage" 1>>$log_errors
+	echo "Aborted due to incorrect usage" >>$l_logfile 2>&1
 	exit $e_noArgs
 fi
 
 cleanLogs () {
 	: > $l_logfile
-	: > $log_errors
 }
 
 checkProvidedDir () {
@@ -224,7 +222,7 @@ runProjects () {
 startDockerContainers () {
 	if ! docker system info &>/dev/null
 	then
-		open -g -a Docker.app & 2>>$log_errors
+		open -g -a Docker.app  >>$l_logfile 2>&1 & 
 		#exec $d_startedin/docker_daemon_start.sh & >&2
 		while ! docker system info &>/dev/null
 		do
@@ -236,7 +234,7 @@ startDockerContainers () {
 	echo "Docker is ready" >&2
 	
 	echo "Starting your containers...." >&2
-	docker start some-rabbit mongodb ecomgw-postgres & >>$l_logfile 2>&1
+	docker start some-rabbit mongodb ecomgw-postgres >>$l_logfile 2>&1 &
  	#exec $d_startedin/docker_containers_start.sh & >&2	
 	wait
 }
@@ -247,6 +245,8 @@ startFrontEnd () {
 	echo "pwd=`pwd`" >&2 
 	local log_npm_start=`pwd`/npm_start.log
 	: > $log_npm_start
+	#gradle checkout -- .
+	npm update >>$log_npm_start 2>&1
 	npm install >>$log_npm_start 2>&1
 	npm start >>$log_npm_start 2>&1	&
 	disown
@@ -263,7 +263,7 @@ assurePWDisBaseDir () {
 	if [ `pwd` != "$basedir"  ]
 	then
 		echo "Not in Base directory" >&2
-		echo "Attempted to change to Base directory but failed!" 1>>$log_errors
+		echo "Attempted to change to Base directory but failed!" >>$l_logfile 2>&1
 		return 1
 	fi
 	echo "In Base directory - pwd= `pwd`" >&2
