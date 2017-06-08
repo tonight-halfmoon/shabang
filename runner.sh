@@ -30,12 +30,6 @@ cleanLogs () {
 }
 
 checkProvidedDir () {
-	#if [ ! -f "$basedir" ]
-	#then
-	#	echo "Directory $basedir not found!" >&2
-	#	exit $e_notFound
-	#fi
-	
 	basedir=$1
 	if [ ! -d "$basedir" ]
 	then		
@@ -57,7 +51,7 @@ change2BaseDir () {
 		exit $e_unable2Change2BaseDir
 	fi
 	echo "In target Base directory" >&2
-	echo "Current directory = `pwd`" >&2
+	echo "pwd = `pwd`" >&2
 	echo "Base directory= $basedir" >&2
 }
 
@@ -126,13 +120,31 @@ is_gradleProject() {
 		return 0
 	fi	
 }
+
+done=1
+progresswatch () {
+	while [ "$done" -ne 1 ]
+	do
+              (( i++ == 0 )) && printf %s $1 ' ....' || printf '.'
+              sleep 1
+        done
+        (( i )) && printf '\n'
+        echo "$1 done." >&2
+}
 	
 updateWC () {
 	if [ "$c_pullFirst" -eq 1 ]
 	then
 		echo "Let's update your working copy" >&2
+		#progresswatch 'git pull' &
 		git pull >>$l_logfile 2>&1
+		#done=1
+		#local jobnum=`jobs %% |awk '{print $1}'`
+        	#echo "job $jobnum" >&2
+		#eval 'kill -9 $!' >&2 # &> /dev/null	
+		#eval 'kill ${jobnum:1:1}' >&2
 	fi	
+	#done=1
 }
 
 execute_gradle_tasks () {
@@ -145,8 +157,8 @@ execute_gradle_tasks () {
 		updateWC
 		echo "Let's execute gradle $defaultGradleTasks" >&2
 		#gradle -q check
-		gradle $defauleGradleTasks >>$l_logfile 2>&1
-	fi	
+		gradle $defauleGradleTasks --refresh-dependencies >>$l_logfile 2>&1
+	fi
 }
 
 stopGradleDaemons () {
@@ -164,57 +176,85 @@ runProjects () {
 	fi
 	echo "Changing to boot project " >&2
 	cd $p_bootproject >&2
-	echo "Current directory= `pwd`" >&2
-	local log_registry=`pwd`/registry.log
-	local log_cardesire=`pwd`/cardesire.log
-	local log_payment=`pwd`/payment.log
-	local log_dealer=`pwd`/dealer.log
+	echo "pwd= `pwd`" >&2
+	sleep 2
+	local logsdir=`pwd`/logss
+	if [ ! -d $logsdir ]
+	then
+		echo "let's mkdir logss" >&2
+		echo "logs dir: $logsdir" >&2
+		mkdir $logsdir 
+	fi
+	local log_registry=`pwd`/logss/registry.log
+	local log_dashboard=`pwd`/logss/dashboard.log
+	local log_cardesire=`pwd`/logss/cardesire.log
+	local log_handover=`pwd`/logss/handover.log
+	local log_payment=`pwd`/logss/payment.log
+	local log_dealer=`pwd`/logss/dealer.log
  	: > $log_registry
+	: > $log_dashboard
+	: > $log_handover
  	: > $log_cardesire
  	: > $log_payment
  	: > $log_dealer	
 
 	echo "Registry" >&2 
-	gradle -Pmsname=registry runMS & >>$log_registry 2>&1
-	sleep 5
+	gradle -Pmsname=registry runMS >>$log_registry 2>&1 &
+	sleep 10
+	echo "Dashboard" >&2
+        gradle -Pmsname=dashboard runMS >>$log_dashboard 2>&1 &
+        sleep 10
+	echo "Handover" >&2
+        gradle -Pmsname=handover runMS >>$log_handover &
+	disown
+        sleep 10
 	echo "Cardesire" >&2
-	gradle -Pmsname=cardesire runMS & >>$log_cardesire 2>&1
-	sleep 2
+	gradle -Pmsname=cardesire runMS >>$log_cardesire 2>&1 &
+	disown
+	sleep 10
 	echo "Dealer" >&2
-	gradle -Pmsname=dealer runMS & >>$log_dealer 2>&1
-	sleep 2
+	gradle -Pmsname=dealer runMS >>$log_dealer 2>&1 &
+	disown
+	sleep 10
 	echo "Payment" >&2
-	gradle -Pmsname=payment runMS & >>$log_payment 2>&1
-	sleep 2	
+	gradle -Pmsname=payment runMS >>$log_payment 2>&1 &
+	disown
 }
 
 startDockerContainers () {
-	open -g -a Docker.app & 2>>$log_errors
-	#exec $d_startedin/docker_daemon_start.sh & >&2
-	while ! docker system info &>/dev/null
-	do
-		(( i++ == 0 )) && printf %s ' -- Docker Daemon is starting ....' || printf '.'
-		sleep 1
-	done
-	(( i )) && printf '\n'
+	if ! docker system info &>/dev/null
+	then
+		open -g -a Docker.app & 2>>$log_errors
+		#exec $d_startedin/docker_daemon_start.sh & >&2
+		while ! docker system info &>/dev/null
+		do
+			(( i++ == 0 )) && printf %s ' -- Docker Daemon is starting ....' || printf '.'
+			sleep 1
+		done
+		(( i )) && printf '\n'
+	fi
 	echo "Docker is ready" >&2
+	
 	echo "Starting your containers...." >&2
 	docker start some-rabbit mongodb ecomgw-postgres & >>$l_logfile 2>&1
  	#exec $d_startedin/docker_containers_start.sh & >&2	
+	wait
 }
 
 startFrontEnd () {
 	echo "starting front end..." >&2
 	cd $basedir/$1
-	echo "Current directory=`pwd`" >&2 
+	echo "pwd=`pwd`" >&2 
 	local log_npm_start=`pwd`/npm_start.log
 	: > $log_npm_start
-	npm start & >>$log_npm_start 2>&1	
+	npm install >>$log_npm_start 2>&1
+	npm start >>$log_npm_start 2>&1	&
+	disown
 	popd
 }
 
 assurePWDisBaseDir () {
-	echo "Current directory= `pwd`" >&2
+	echo "pwd= `pwd`" >&2
 	if [ `pwd` != "$basedir" ]
 	then
 		echo "Changing to Base directory" >&2
@@ -226,7 +266,7 @@ assurePWDisBaseDir () {
 		echo "Attempted to change to Base directory but failed!" 1>>$log_errors
 		return 1
 	fi
-	echo "Current directory= `pwd`" >&2
+	echo "In Base directory - pwd= `pwd`" >&2
 	return 0
 }
 
