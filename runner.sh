@@ -82,16 +82,14 @@ goinside () {
 	
 	for dir in `echo *`
 	do	
-		if [ -d "$dir" ]
+		if [ -d "$dir" ] && can_cd
 		then	
 			echo "+--$dir" >&2 #`ls -l $dir | sed 's/^.*'$dir' //'`
 			numdirs=`expr $numdirs + 1`
-			if can_cd 
-			then 
+				updateWC
 				execute_gradle_tasks
 				cd ..
 				echo "Changed to Base directory" >&2
-			fi
 		fi		
 	done
 }
@@ -105,7 +103,6 @@ can_cd()
 	else
 		return 0
 	fi
-
 }
 
 is_gradleProject() {
@@ -119,32 +116,13 @@ is_gradleProject() {
 	fi	
 }
 
-done=1
-progresswatch () {
-	while [ "$done" -ne 1 ]
-	do
-              (( i++ == 0 )) && printf %s $1 ' ....' || printf '.'
-              sleep 1
-        done
-        (( i )) && printf '\n'
-        echo "$1 done." >&2
-}
-	
 updateWC () {
 	if [ "$c_pullFirst" -eq 1 ]
 	then
 		echo "Let's update your working copy" >&2
-		#progresswatch 'git pull' &
 		#git checkout -- . >>$l_logfile 2>&1
 		git pull >>$l_logfile 2>&1
-		
-		#done=1
-		#local jobnum=`jobs %% |awk '{print $1}'`
-        	#echo "job $jobnum" >&2
-		#eval 'kill -9 $!' >&2 # &> /dev/null	
-		#eval 'kill ${jobnum:1:1}' >&2
 	fi	
-	#done=1
 }
 
 execute_gradle_tasks () {
@@ -154,14 +132,13 @@ execute_gradle_tasks () {
 	then
 		num_gradleProjects=`expr $num_gradleProjects + 1`
 		echo "Changed into project $dir" >&2
-		updateWC
 		echo "Let's execute gradle $defaultGradleTasks" >&2
 		#gradle -q check
 		gradle $defauleGradleTasks --refresh-dependencies >>$l_logfile 2>&1
 	fi
 }
 
-stopGradleDaemons () {
+stop_gradle_Daemons () {
 	echo "Stopping all Gradle's Daemon(s)" >&2
 	#gradle -v --stop
 	gradle --stop >>$l_logfile 2>&1
@@ -216,30 +193,30 @@ runProjects () {
         gradle -Pmsname=dashboard runMS >>$log_dashboard 2>&1 &
         disown
 	sleep 10
-	echo "Handover" >&2
-        gradle -Pmsname=handover runMS >>$log_handover 2>&1 &
-	disown
-        sleep 10
-	echo "Cardesire" >&2
-	gradle -Pmsname=cardesire runMS >>$log_cardesire 2>&1 &
-	disown
-	sleep 10
-	echo "Dealer" >&2
-	gradle -Pmsname=dealer runMS >>$log_dealer 2>&1 &
-	disown
-	sleep 10
-	echo "Customer" >&2
-	gradle -Pmsname=customer runMS >>$log_customer 2>&1 &
-	disown
-	sleep 10
-	echo "Payment" >&2
-	gradle -Pmsname=payment runMS >>$log_payment 2>&1 &
-	disown
-	sleep 10
-	echo "Status" >&2
-	gradle -Pmsname=status runMS >>$log_status 2>&1 &
-	disown
-	sleep 2
+	#echo "Handover" >&2
+        #gradle -Pmsname=handover runMS >>$log_handover 2>&1 &
+	#disown
+        #sleep 10
+#	echo "Cardesire" >&2
+#	gradle -Pmsname=cardesire runMS >>$log_cardesire 2>&1 &
+#	disown
+#	sleep 10
+	#echo "Dealer" >&2
+	#gradle -Pmsname=dealer runMS >>$log_dealer 2>&1 &
+	#disown
+	#sleep 10
+	#echo "Customer" >&2
+	#gradle -Pmsname=customer runMS >>$log_customer 2>&1 &
+	#disown
+	#sleep 10
+	#echo "Payment" >&2
+	#gradle -Pmsname=payment runMS >>$log_payment 2>&1 &
+	#disown
+	#sleep 10
+	#echo "Status" >&2
+	#gradle -Pmsname=status runMS >>$log_status 2>&1 &
+	#disown
+	#sleep 2
 }
 
 startDockerContainers () {
@@ -305,7 +282,7 @@ change2BaseDir
 assignBootProject $3
 initialiseVariables
 shouldUpdateWC $2
-stopGradleDaemons
+stop_gradle_Daemons
 goinside 0
 startDockerContainers
 runProjects 0 
