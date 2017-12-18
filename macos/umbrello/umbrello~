@@ -1,0 +1,11 @@
+http://mark.aufflick.com/blog/2007/05/14/umbrello-on-mac-os-x
+
+after installing port
+and fix xcode, agreement, launch and everything
+sudo port install qt3
+sudo port search kdelibs
+sudo port search kdelibs4
+sudo port search umbrello
+sudo port install umbrello
+
+! NoteÖ: do not forget to run dbus before starting umbrello ()umbrello is a kde app)

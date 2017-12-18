@@ -1,0 +1,3 @@
+http://macappstore.org
+
+example: macappstore.org/vlc/

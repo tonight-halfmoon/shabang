@@ -1,0 +1,4 @@
+1. brew cask install emacs
+2. brew tap d12frosted/emacs-plus
+3. brew install emacs-plus
+4. brew linkapps emacs-plus
