@@ -1,0 +1,4 @@
+
+brew install p7zip
+
+$ 7z x archivename.7z
