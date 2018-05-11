@@ -1,0 +1,51 @@
+
+Check if the NTP synchronised on/off
+$ timedatectl
+
+See the entry: Network time on: Yes/No;
+See also the NTP synchronized: Yes/No 
+
+
+To set the Network Time on:
+# timdedatectl set-ntp 1
+provides 0 for no
+
+To set the time synchronised with the network time on/off:
+Tset set-ntp yes/no as follows:
+
+$ timedatectl set-ntp yes
+
+Now you cannot change the date/time manually
+
+To set it off back again: 
+
+$ timedatectl set-ntp no
+
+To set the date/time manually, execute the following command 
+
+# timedatectl set-time '2017-01-22 3:33:33'
+
+
+IF timedatectl set-ntp yes did not make Network time on Yes & NTP synchrnonizes Yes, then try to check thw following:
+
+- systemctl start/stop ntpd
+if it is on then makes it off by executing 
+$systemctl stop ntpd
+
+
+Now, to synchronize the hardware clock with the system date/time:
+# hwclock --systohc
+
+-> To set the timezone
+# timdedatectl set-timezone 'UTC'
+
+RTC: Real time clock: hardware clock
+locla TZ : local time zone
+
+to make RTC usees the system time zone 
+# timedatectl set-local-rtc 1
+Frankly speaking I have already set the local time zone to UTC and no need to set RTC to local timezone
+
+
+D
+to make RTC uses the system zone \

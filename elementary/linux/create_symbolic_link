@@ -1,0 +1,15 @@
+Example:
+locate yourself in /usr/bin directory 
+create 'ant' symbolic of /opt/..../ant in  in /usr/bin, as follows
+
+$ sudo ln -s /opt/apache-ant-1.9.7/bin/ant ant
+
+
+See man ln. To create symlink /opt/foo --> /usr/bin/bar, (i.e., create symlink at /opt/foo which references to file /usr/bin/bar) do:
+
+ln -s /usr/bin/bar /opt/foo
+
+
+to remove the symboli link
+
+$ sudo unlink <the link name>

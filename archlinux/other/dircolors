@@ -1,0 +1,5 @@
+rosemary@SCUBA $ dircolors -p > /etc/DIR_COLORS
+or 
+rosemary@SCUBA $ su
+# dircolors -p > /etc/DIR_COLORS
+

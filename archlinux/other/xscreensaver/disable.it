@@ -1,0 +1,1 @@
+systemctl disable --user xscreensaver.service

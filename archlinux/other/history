@@ -1,0 +1,500 @@
+   25  cat /proc/acpi/bbswitch 
+   26  reboot
+   27  su
+   28  optirun glxgears -info
+   29  optirun glxspheres64
+   30  optirun -vv glxgears
+   31  pacmna -S mesa-demos
+   32  su
+   33  cat /proc/acpi/bbswitch 
+   34  systemctl enable nvidia-enable.service
+   35  su
+   36  optirun -vv glxgears
+   37  cat /proc/acpi/bbswitch 
+   38  optirun glxspheres64
+   39  nvidia-xconfig 
+   40  su
+   41  optirun glxspheres64
+   42  optirun --status
+   43  su
+   44  optirun --status
+   45  cat /proc/acpi/bbswitch 
+   46  optirun  pwd
+   47  cat /proc/acpi/bbswitch 
+   48  optirun --status
+   49  cat /proc/acpi/bbswitch 
+   50  optirun --status
+   51  optirun --status
+   52  su
+   53  optirun --status
+   54  su
+   55  su 
+   56  startx
+   57  nano  ~/.local/share/xorg/Xorg.0.log 
+   58  su
+   59  startxfce
+   60  startx
+   61  xinit
+   62  cd /etc/X11/xinit/
+   63  ls
+   64  nano xinitrc
+   65  ls
+   66  cd ..
+   67  ls
+   68  cd ..
+   69  cd ..
+   70  cd ..
+   71  cp /etc/X11/xinit/xinitrc ~/.xinitrc
+   72  xinit
+   73  startx
+   74  startxfce
+   75  startxfce4
+   76  xinit
+   77  su
+   78  rm ~/.xinitrc 
+   79  cd /etc/X11/
+   80  ls
+   81  nano xorg.conf
+   82  ls
+   83  rm xorg.conf
+   84  su
+   85  pkill X
+   86  pkill X
+   87  java -version
+   88  exit
+   89  startx
+   90  startx
+   91  startxfe4
+   92  startxfe
+   93  startxfce4
+   94  pkill X
+   95  ping 8.8.8.8
+   96  startx
+   97  startxfce4
+   98  cd /etc/X11/x
+   99  cd /etc/X11/
+  100  ls
+  101  cd ..
+  102  cd ..
+  103  cd ..
+  104  su
+  105  ping 8.8.8.8
+  106  startxfce4
+  107  su
+  108  startxfe4
+  109  startxfce4
+  110  su
+  111  cp /etc/X11/xinit/xinitrc ~/.xinitrc
+  112  nano ~/.xinitrc 
+  113  reboot
+  114  startxfce4
+  115  su
+  116  startxfce4
+  117  optirun --status
+  118  su
+  119  optirun --status
+  120  rm ~/.xinitrc 
+  121  su
+  122  startxfce4
+  123  pacman -R bumblebee
+  124  su
+  125  startxfce4
+  126  su
+  127  startxfce4
+  128  startxfce4
+  129  su
+  130  startxfce4
+  131  ls -la
+  132  nano /etc/X11/xinit/xinitrc
+  133  su
+  134  cp /etc/X11/xinit/xinitrc ~/.xinitrc
+  135  nano .xinitrc 
+  136  chmod +x .xinitrc
+  137  su
+  138  pkill 
+  139  pkill X
+  140  startxfce4
+  141  startx
+  142  emacs .xinitrc 
+  143  nano .xinitrc 
+  144  startxfce4
+  145  rm .xinitrc 
+  146  startxfce4
+  147  su
+  148  lspci | grep -E VGA -e 3D
+  149  lspci | grep -e VGA -e 3D
+  150  su
+  151  startxfce4
+  152  su
+  153  fdisk -l
+  154  mount /dev/sdb3 /mnt/flash/
+  155  nano /mnt/flash/etc/tor/torrc 
+  156  nano /mnt/flash/etc/tor/torsocks.conf 
+  157  proxychains firefox
+  158  proxychains firefox
+  159  torify firefox
+  160  torify firefox
+  161  exit
+  162  exit
+  163  torify firefox
+  164  torsocks firefox
+  165  proxychains firefox
+  166  su
+  167  torify wget http://content8.erosberry.com/videos/fantasyhd.com/00050/movie.mp4
+  168  torify wget http://content8.erosberry.com/videos/fantasyhd.com/00050/movie.mp4
+  169  nan locs 
+  170  nano locs 
+  171  proxychains firefox
+  172  su
+  173  mkdir -p /mnt/flash
+  174  su
+  175  startxfce4
+  176  su
+  177  su
+  178  proxychains wget 
+  179  startxfce4
+  180  startxfce4
+  181  fdisk -l
+  182  su
+  183  exit
+  184  emacs
+  185  su
+  186  startxfce4
+  187  su
+  188  exit
+  189  echo "https://www.haskell.org/platform/#linux-generic" > web.source
+  190  mkdir lin
+  191  su
+  192  pwd
+  193  mkdir career
+  194  cd career/
+  195  mkdir German.Embassy.Beirut
+  196  cd German.Embassy.Beirut/
+  197  mkdir app.form
+  198  java -version
+  199  su
+  200  java -version
+  201  scala -version
+  202  latex
+  203  exit
+  204  latex c.tex
+  205  dvipdf sd
+  206  dvipdf
+  207  dvipdft
+  208  tar sad
+  209  tar -xcf
+  210  su
+  211  ks
+  212  ;ls
+  213  ls
+  214  mkdir programming
+  215  cd programming/
+  216  mkdir haskell
+  217  cd haskell/
+  218  wget https://haskell.org/platform/download/7.10.3/haskell-platform-7.10.3-unknown-posix-x86_64.tar.gz
+  219  su
+  220  startsfce4
+  221  startxfce4
+  222  su
+  223  wifi-menu 
+  224  su
+  225  startxfce4
+  226  su
+  227  su
+  228  startxfce4
+  229  lsblk
+  230  umount /dev/sdb1
+  231  startxfce4
+  232  su
+  233  exit
+  234  su
+  235  exit
+  236  su
+  237  startxfce4
+  238  su
+  239  startxfce4
+  240  su
+  241  exit
+  242  su
+  243  startxfce4
+  244  cd career/
+  245  ls
+  246  mkdir GE.Healthcare.SA
+  247  cd GE.Healthcare.SA/
+  248  mkdir KMCH
+  249  ls
+  250  cd KMCH/
+  251  ls
+  252  ls -ls new_RIS_WS_for_US.txt 
+  253  chmod rosemary=rwx new_RIS_WS_for_US.txt 
+  254  su
+  255  exit
+  256  su
+  257  cp /mnt/flash/GE.Healthcare.work/KMCH/
+  258  cd /mnt/flash/GE.Healthcare.work/KMCH/
+  259  ls
+  260  cd ws.list.allWS-2-3May16/
+  261  ls
+  262  cp new_RIS_WS_for_US.txt /home/rosemary/career/GE.Healthcare.SA/KMCH/
+  263  cp new_RIS_WS_for_US.txt /home/rosemary/career/GE.Healthcare.SA/KMCH/KMCH_RIS_WS_for_US.txt
+  264  ls
+  265  cd ..
+  266  cd ..
+  267  cd ..
+  268  cd ..
+  269  cd ..
+  270  cd ..
+  271  umount /dev/sdb1
+  272  su
+  273  exit
+  274  mkdir IDEs
+  275  cd IDEs/
+  276  mkdir IntelliJ_IDEA
+  277  cd IntelliJ_IDEA/
+  278  ls
+  279  tar -xvf ideaIC-2016.1.1.tar.gz 
+  280  cd idea-IC-145.597.3/
+  281  ls
+  282  cd bin/
+  283  ls
+  284  ./idea.sh 
+  285  ./idea.sh 
+  286  exit
+  287  su
+  288  exit
+  289  su
+  290  exit
+  291  cd /mnt/mtp/
+  292  ls
+  293  su
+  294  cd ..
+  295  cd ..
+  296  ls
+  297  cd home/
+  298  ls
+  299  ls
+  300  cd rosemary/
+  301  ls
+  302  mkdir archlinux
+  303  cd archlinux
+  304  mkdir builds
+  305  cd builds/
+  306  curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/jmtpfs.tar.gz
+  307  ls
+  308  curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/jmtpfs.tar.gz
+  309  tar -xvf jmtpfs.tar.gz 
+  310  su
+  311  exit
+  312  su
+  313  su
+  314  su
+  315  su
+  316  makepkg -sri
+  317  makepkg -sri
+  318  ls
+  319  cd ..
+  320  cd ..
+  321  cd ..
+  322  cd ..
+  323  cd ..
+  324  cd tmp/
+  325  ls
+  326  cd makepkg/
+  327  ls
+  328  cd jmtpfs/
+  329  ls
+  330  ls -ls
+  331  cd ..
+  332  cd ..
+  333  cd ..
+  334  cd mnt/mtp 
+  335  ls
+  336  lsblk 
+  337  su
+  338  cd /mnt/SSD/
+  339  ls
+  340  cd home/
+  341  cd rosemary/
+  342  cd media.static/
+  343  cd techno_/
+  344  ls
+  345  cd scatman_1y/
+  346  ls
+  347  cd Scatman\ John\ -\ 1995\ -\ Scatman\'s\ World/
+  348  ls
+  349  cd ..
+  350  ls
+  351  exit
+  352  exit
+  353  su
+  354  jmtpfs /mnt/mtp/
+  355  su
+  356  su'
+  357  too
+  358  su
+  359  pwd
+  360  su
+  361  exit
+  362  mkdir documents
+  363  cd documents/
+  364  mkdir cv
+  365  cd ..
+  366  ls
+  367  mkdir German.Embassy.Riyad
+  368  umount /dev/sdb1
+  369  su
+  370  exit
+  371  su
+  372  startxfce4
+  373  su
+  374  rxit
+  375  exit
+  376  se
+  377  toor
+  378  wifi-menu 
+  379  su
+  380  startxfce4
+  381  ./idea.sh 
+  382  ./idea.sh 
+  383  which otp
+  384  whereis otp
+  385  which erlang
+  386  whereis erlang
+  387  scala -version
+  388  groovy --version
+  389  exit
+  390  cd programming/
+  391  mkdir erlang
+  392  cd erlang/
+  393  mkdir graph
+  394  cd graph/
+  395  mkdir digraph
+  396  erl
+  397  emacs ~/.emacs
+  398  cd digraph/
+  399  ls
+  400  erl
+  401  emacs ~/.emacs
+  402  su
+  403  ls
+  404  emacs dag.erl
+  405  emacs ~/.emacs
+  406  su
+  407  emacs dag.erl
+  408  exit
+  409  su
+  410  startxfce4
+  411  cd programming/erlang/graph/digraph/
+  412  emacs dag.erl
+  413  exit
+  414  startxfce4
+  415  su
+  416  su
+  417  eix
+  418  texit
+  419  exit
+  420  startxfce4
+  421  su
+  422  su
+  423  su
+  424  su
+  425  su
+  426  su
+  427  su
+  428  su
+  429  su
+  430  su
+  431  su
+  432  su
+  433  su
+  434  su
+  435  su
+  436  su
+  437  su
+  438  su
+  439  su
+  440  startxfce4
+  441  su
+  442  xrandr --listproviders
+  443  su
+  444  startxfce4
+  445  su
+  446  startxfce4
+  447  su
+  448  startxfce4
+  449  cd /usr/share/X11/xorg.conf.d/
+  450  ls
+  451  emacs 10-quirks.conf 
+  452  ema
+  453  ls
+  454  emacs nvidia-drm-outputclass.conf 
+  455  cd ..
+  456  cd ..
+  457  cd ..
+  458  cd ..
+  459  cd ..
+  460  cd /etc/X11/
+  461  ;s
+  462  ls
+  463  cd xinit/
+  464  ls
+  465  emacs xinitrc
+  466  cd ..
+  467  cd ..
+  468  cd ..
+  469  cd ..
+  470  Xorg :0 -configure
+  471  Xorg :0 -configure
+  472  cd /etc/X11/
+  473  ls
+  474  su
+  475  startxfce4
+  476  pacman -S xorg-server
+  477  su
+  478  startxfce4
+  479  su
+  480  su
+  481  startxfce4
+  482  Xorg
+  483  su
+  484  startxfce4
+  485  reboot
+  486  startxfce4
+  487  modprobe nouveau
+  488  startxfce4
+  489  su
+  490  startxfce4
+  491  su
+  492  startxfce4
+  493  cd /etc/X11/
+  494  ls
+  495  cd xorg.conf.d
+  496  ls
+  497  cd ..
+  498  ls
+  499  su
+  500  ls
+  501  cd archlinux
+  502  ls
+  503  emacs nvidia.conf 
+  504  mkdir blacklisting_nouveau_when_nvidia
+  505  mv nvidia.conf blacklisting_nouveau_when_nvidia/
+  506  ;s
+  507  ls
+  508  cd builds/
+  509  ls
+  510  mkdir splashy
+  511  cd splashy/
+  512  curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/splashy-full.tar.gz
+  513  ls
+  514  echo "https://aur.archlinux.org/cgit/aur.git/snapshot/splashy-full.tar.gz" > how_to_install_AUR_pkg
+  515  tar -xvf splashy-full.tar.gz 
+  516  ls
+  517  cd splashy-full
+  518  ls
+  519  emacs PKGBUILD 
+  520  cd ..
+  521  ls
+  522  cd ..
+  523  ls
+  524  history > history

@@ -1,0 +1,26 @@
+
+All in all
+$ sudo pacman -Scc
+
+for fine-grain clean, check following:
+
+511  sudo ls /var/cache/pacman/pkg/|wc -l
+  512  du -sh /var/cache/pacman/pkg/
+  513  paccache -r
+  514  sudo paccache -r
+  515  du -sh /var/cache/pacman/pkg/
+  516  sudo ls /var/cache/pacman/pkg/|wc -l
+  517  sudo paccache -ruk0
+  518  du -sh /var/cache/pacman/pkg/
+  519  sudo pacman -Sc
+  520  du -sh /var/cache/pacman/pkg/
+  521  sudo pacman -Sc
+  522  sudo rm  /var/cache/pacman/pkg/mesa-17.1.7-2-x86_64.pkg.tar.xz.part 
+  523  sudo pacman -Sc
+  524  du -sh /var/cache/pacman/pkg/
+  525  sudo pacman -Scc
+  526  du -sh /var/cache/pacman/pkg/
+  527  sudo pacman -Syu
+  528  du -sh /var/cache/pacman/pkg/
+  529  history
+

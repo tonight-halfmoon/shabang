@@ -1,0 +1,69 @@
+
+(1) add resume=/dev/sda3 in APPEND after root=... in file: "/boot/syslinux/syslinux.cfg"
+(2) add resume hook to HOOKS secion after HOOKS="base udev resume ..."
+(3) re-generate   /... with  # mkinitcpio -p linux
+
+
+BOOT_IMAGE=../vmlinuz-linux root=/dev/sda4 rw quiet splash initrd=../initramfs-linux.img
+[rosemary@SCUBA src]$ lblsk
+bash: lblsk: command not found
+[rosemary@SCUBA src]$ lsblk dag.
+lsblk: dag.: not a block device
+[rosemary@SCUBA src]$ lsblk 
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sr0     11:0    1  1024M  0 rom  
+sda      8:0    0 238.5G  0 disk 
+├─sda4   8:4    0    20G  0 part /
+├─sda2   8:2    0   300M  0 part /boot
+├─sda5   8:5    0 185.2G  0 part /home
+├─sda3   8:3    0    33G  0 part [SWAP]
+└─sda1   8:1    0     1M  0 part 
+[rosemary@SCUBA src]$ su
+Password: 
+[root@SCUBA src]# emacs /boot/syslinux/syslinux.cfg
+3[root@SCUBA src]# emacs /etc/mkinitcpio.conf
+[root@SCUBA src]# mkinitcpio -p linux
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+==> Starting build: 4.8.13-1-ARCH
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [resume]
+  -> Running build hook: [autodetect]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux.img
+==> Image generation successful
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+==> Starting build: 4.8.13-1-ARCH
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [resume]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+==> WARNING: Possibly missing firmware for module: aic94xx
+==> WARNING: Possibly missing firmware for module: wd719x
+  -> Running build hook: [filesystems]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-fallback.img
+==> Image generation successful
+[root@SCUBA src]# mkinitcpio -L
+==> Available hooks
+autodetect	fw¹		memdisk		scsi¹		strip
+base		hostdata	mmc¹		sd-encrypt	systemd
+block		keyboard	modconf		sd-lvm2		udev
+consolefont	keymap		pata¹		sd-shutdown	usb¹
+encrypt		lvm2		pcmcia		sd-vconsole	usbinput²
+filesystems	mdadm		resume		shutdown	usr
+fsck		mdadm_udev	sata¹		sleep		virtio¹
+
+¹ This hook is deprecated in favor of 'block'
+² This hook is deprecated in favor of 'keyboard'
+[root@SCUBA src]# 

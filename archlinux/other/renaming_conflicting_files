@@ -1,0 +1,18 @@
+error: failed to commit transaction (conflicting files)
+ttf-dejavu: /etc/fonts/conf.d/20-unhint-small-dejavu-sans-mono.conf exists in filesystem
+ttf-dejavu: /etc/fonts/conf.d/20-unhint-small-dejavu-sans.conf exists in filesystem
+ttf-dejavu: /etc/fonts/conf.d/20-unhint-small-dejavu-serif.conf exists in filesystem
+ttf-dejavu: /etc/fonts/conf.d/57-dejavu-sans-mono.conf exists in filesystem
+ttf-dejavu: /etc/fonts/conf.d/57-dejavu-sans.conf exists in filesystem
+ttf-dejavu: /etc/fonts/conf.d/57-dejavu-serif.conf exists in filesystem
+Errors occurred, no packages were upgraded.
+[root@SCUBA src]# pacman -Qo /etc/fonts/conf.d/57-dejavu-sans-mono.conf 
+error: No package owns /etc/fonts/conf.d/57-dejavu-sans-mono.conf
+[root@SCUBA src]# 
+....
+error: failed to commit transaction (conflicting files)
+ttf-dejavu: /etc/fonts/conf.d/57-dejavu-sans.conf exists in filesystem
+Errors occurred, no packages were upgraded.
+[root@SCUBA src]# 
+
+--> renamed to **_renamed.conf

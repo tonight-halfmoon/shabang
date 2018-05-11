@@ -1,0 +1,32 @@
+rosemary@SCUBA:~$ sudo pacman -S pavucontrol
+[sudo] password for rosemary: 
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) pavucontrol-3.0-4
+
+Total Download Size:   0.10 MiB
+Total Installed Size:  0.65 MiB
+
+:: Proceed with installation? [Y/n] y
+:: Retrieving packages...
+ pavucontrol-3.0-4-x...   105.2 KiB  1169K/s 00:00 [######################] 100%
+(1/1) checking keys in keyring                     [######################] 100%
+(1/1) checking package integrity                   [######################] 100%
+(1/1) loading package files                        [######################] 100%
+(1/1) checking for file conflicts                  [######################] 100%
+(1/1) checking available disk space                [######################] 100%
+:: Processing package changes...
+(1/1) installing pavucontrol                       [######################] 100%
+Optional dependencies for pavucontrol
+    pulseaudio: Audio backend [installed]
+:: Running post-transaction hooks...
+(1/2) Arming ConditionNeedsUpdate...
+(2/2) Updating the desktop file MIME type cache...
+rosemary@SCUBA:~$ pavucontrol 
+^Z
+[1]+  Stopped                 pavucontrol
+rosemary@SCUBA:~$ bg
+[1]+ pavucontrol &
+rosemary@SCUBA:~$ sudo vi /etc/asound.conf 
+

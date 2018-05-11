@@ -1,0 +1,19 @@
+do not add GREP_OPTIONS ... in .bashrc .
+do not add GREP_OPTIONS ... in .exports
+
+add the following alias items to .aliases
+
+# Move export GREP_OPTIONS="--color=auto" (which is deprecated) from .exports to .alias
+# Always enable colored `grep` output`
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+
+-> this must solve thie issue
+
+grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+
+
+Ref: 
+https://github.com/mathiasbynens/dotfiles/issues/467

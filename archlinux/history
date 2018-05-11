@@ -1,0 +1,500 @@
+    2  emacs /boot/syslinux/syslinux.cfg
+    3  reboot
+    4  emacs /boot/syslinux/syslinux.cfg
+    5  reboot
+    6  emacs /boot/syslinux/syslinux.cfg
+    7  reboot
+    8  wifi-menu 
+    9  wifi-menu 
+   10  wifi-menu 
+   11  ping 8.8.8.8
+   12  reboot
+   13  emacs /boot/syslinux/syslinux.cfg
+   14  reboot
+   15  emacs /boot/syslinux/syslinux.cfg
+   16  reboot
+   17  emacs /boot/syslinux/syslinux.cfg
+   18  reboot
+   19  su
+   20  toor
+   21  emacs /boot/syslinux/syslinux.cfg
+   22  reboot
+   23  reboot
+   24  reboot
+   25  emacs /boot/syslinux/syslinux.cfg
+   26  emacs /boot/syslinux/syslinux.cfg
+   27  reboot
+   28  reboot
+   29  reboot
+   30  cd /etc/modprobe.d/
+   31  ls
+   32  ls
+   33  cd /usr/lib/modprobe.d/
+   34  ls
+   35  emacs nvidia.conf 
+   36  ls
+   37  ls
+   38  emacs usb-load-ehci-first.conf 
+   39  ls
+   40  emacs nvidia.conf 
+   41  ls
+   42  mv nvidia.conf /home/rosemary/archlinux/
+   43  ls
+   44  cat /proc/cmdline 
+   45  pacman -Syyu
+   46  wifi-menu 
+   47  pacman -Syyu
+   48  pacman -Syu
+   49  pacman -S xf86-video-nouveau
+   50  emacs /etc/mkinitcpio.conf
+   51  reboot
+   52  emacs /etc/X11/xinit/xinitrc
+   53  emacs /etc/X11/xinit/xinitrc.d/50-systemd-user.sh 
+   54  emacs /etc/X11/xinit/xserverrc 
+   55  dmesg
+   56  reboot
+   57  xrandr --listproviders
+   58  wifi-menu 
+   59  Xorg :0 -configure
+   60  exity
+   61  exit
+   62  reboot
+   63  Xorg :2 -configure
+   64  Xorg :1 -configure
+   65  lspci | grep -e VGA -e 3D
+   66  ping 8.8.8.8
+   67  wifi-menu 
+   68  pacman -Syyu
+   69  pacman -S xf86-video-intel
+   70  Xorg :2 -configure
+   71  reboot
+   72  Xorg :0 -configure
+   73  Xorg :2 -configure
+   74  Xorg :1 -configure
+   75  xinitrc
+   76  xinit
+   77  pacman -S xorg-server
+   78  nvidia-configure
+   79  nvidia-xconfig 
+   80  cd /etc/X11/
+   81  ls
+   82  cd xinit/
+   83  ls
+   84  cd xinitrc.d/
+   85  ls
+   86  cd ..
+   87  ls
+   88  cd ..
+   89  ls
+   90  emacs xorg.conf
+   91  modprobe nouveau
+   92  dmesg
+   93  reboot
+   94  cd /etc/X11/
+   95  ls
+   96  emacs xorg.conf
+   97  ls
+   98  cd xorg.conf.nvidia-xconfig-original 
+   99  emacs xorg.conf.nvidia-xconfig-original 
+  100  ls
+  101  cd ..
+  102  cd ..
+  103  cd /etc/modprobe.d/
+  104  ls
+  105  ks
+  106  ls
+  107  cd ..
+  108  cd /usr/lib/modprobe.d/
+  109  ls
+  110  emacs usb-load-ehci-first.conf 
+  111  emacs /etc/mkinitcpio.conf 
+  112  mkinitcpio -p linux
+  113  reboot
+  114  wifi-menu 
+  115  Xorg :0 -configure
+  116  Xorg :2 -configure
+  117  Xorg :1 -configure
+  118  Xorg :3 -configure
+  119  Xorg -configure
+  120  Xorg 
+  121  exit
+  122  emacs /etc/X11/xorg.conf
+  123  xorg
+  124  exit
+  125  Xorg :2 -configure
+  126  Xorg :1 -configure
+  127  Xorg :0 -configure
+  128  cd /etc/X11/
+  129  ls
+  130  cd xorg.conf.d/
+  131  ls
+  132  cd ..
+  133  cp xorg.conf xorg.conf_bu
+  134  rm xorg.conf
+  135  rm xorg.conf~ 
+  136  exit
+  137  emacs /etc/mkinitcpio.conf
+  138  reboot
+  139  emacs xorg.conf.nvidia-xconfig-original 
+  140  ls
+  141  rm xorg.conf.nvidia-xconfig-original 
+  142  rm xorg.conf.d/
+  143  rm -r xorg.conf.d/
+  144  ls
+  145  cd xinit/
+  146  ls
+  147  cd ..
+  148  ls
+  149  cd ..
+  150  cd ..
+  151  mkinitcpio -p linux
+  152  emas /etc/mkinitcpio.conf
+  153  emacs /etc/mkinitcpio.conf
+  154  reboot
+  155  eamcs /etc/modprobe.d/
+  156  cd /etc/modprobe.d/
+  157  ls
+  158  ls
+  159  cd /etc/modprobe.d/
+  160  ls
+  161  cd /usr/lib/modprobe.d/
+  162  ls
+  163  rm \#usb-load-ehci-first.conf# 
+  164  ls
+  165  wifi-menu 
+  166  pacman -Syyu
+  167  pacman -Syu
+  168  pacman -S directfb
+  169  pacman -S glib2
+  170  pacman -S mkinitcpio
+  171  pacman -S sysfsutils
+  172  pacman -S git
+  173  pacman -Syyu
+  174  pacman -Syu
+  175  exit
+  176  pacman -Syyu
+  177  reboot
+  178  wifi-menu 
+  179  pacman -Syyu
+  180  pacman -S xorg-xinit
+  181  xinit 
+  182  emacs /etc/X11/
+  183  cd /etc/X11/
+  184  ls
+  185  cd xinit/
+  186  ks
+  187  ls
+  188  exit
+  189  exit
+  190  rebiit
+  191  reboot
+  192  xinit
+  193  pkill -p 
+  194  ls
+  195  pwd
+  196  cd ..
+  197  cd ..
+  198  cdroot
+  199  cd root
+  200  ls
+  201  emacs xorg.conf.new 
+  202  history > history
+  203  emacs history 
+  204  reboot
+  205  wifi-menu 
+  206  exit
+  207  pacman -S openbox
+  208  emacs /etc/xdg/ls
+  209  ls
+  210  cd /etc/xdg
+  211  ;s
+  212  ls
+  213  emacs autostart/
+  214  exit
+  215  wifi-menu 
+  216  systemctl start NetworkManager
+  217  pacman -Syyu
+  218  systemctl --type=service
+  219  pacman -S NetworkManager
+  220  pacman -S networkmanager
+  221  pacman -Syyu
+  222  pacman -S network-manager-spplry
+  223  pacman -S network-manager-applet
+  224  reboot
+  225  NetworkManager
+  226  NetworkManager start
+  227  NetworkManager stop
+  228  pkill 580
+  229  NetworkManager stop
+  230  htop
+  231  wifi-menu 
+  232  NetworkManager
+  233  wifi-menu 
+  234  reboot
+  235  wifi-menu 
+  236  pacman -Syyu
+  237  pacman -S network-manager-applet 
+  238  pacman -Syyu
+  239  pacman -S wpa_supplicant
+  240  pacman -S gnome-keyring
+  241  systemctl enable NetworkManager.service
+  242  systemctl disable dhcpcd.service
+  243  systemctl disable dhcpcd@.service
+  244  systemctl dhcpcd.service
+  245  systemctl status dhcpcd.service
+  246  systemctl stop dhcpcd.service
+  247  systemctl stop dhcpcd@.service
+  248  systemctl enable wpa_supplicant.service
+  249  gpasswd -a rosemary network
+  250  ip link set down eth0
+  251  ip link set down wlan0
+  252  systemctl start wpa_supplicant.service
+  253  systemctl start NetowkManager.service
+  254  systemctl start NetworkManager.service
+  255  NetworkManager 
+  256  nm-applet 
+  257  pacman -Syyu
+  258  pacman -Syyu
+  259  pacman -Syyu
+  260  pacman -Syyu
+  261  exit
+  262  pacman -Syyu
+  263  pacman -S lxdm
+  264  pacman -Syyu
+  265  emacs /etc/lxdm/lxdm.conf 
+  266  reboot
+  267  emacs /etc/lxdm/lxdm.conf 
+  268  emacs /etc/lxdm/lxdm.conf 
+  269  systemctl status
+  270  systemctl list-units
+  271  systemctl start lxdm.service
+  272  systemctl enable lxdm.service
+  273  reboot
+  274  pacman -Syyu
+  275  emacs /etc/lxdm/lxdm.conf 
+  276  emacs /etc/lxdm/lxdm.conf 
+  277  emacs /etc/lxdm/lxdm.conf 
+  278  pacman -Syyu
+  279  shutdown
+  280  pacman -Syyu
+  281  pacman -Syyu
+  282  lspci -k | grep -A 2 -E "(VGA|3D)"
+  283  dmesg | grep -i chipset
+  284  reboot
+  285  pacman -Syyu
+  286  pacman -S nvidia-lts
+  287  pacman -S nvidia-libgl
+  288  exit
+  289  exit
+  290  emacs /etc/mkinitcpio.conf
+  291  reboot
+  292  emacs /etc/mkinitcpio.conf
+  293  reboot
+  294  mkinitcpio -p linux
+  295  emacs /etc/mkinitcpio.conf
+  296  reboot
+  297  filefrag -v swap_file
+  298  lsblk 
+  299  emcs /boot/syslinux/syslinux.cfg
+  300  emacs /boot/syslinux/syslinux.cfg
+  301  emacs /etc/mkinitcpio.conf
+  302  mkinitcpio -p linux
+  303  emacs /boot/syslinux/syslinux.cfg
+  304  mkinitcpio -p linux
+  305  reboot
+  306  emacs /boot/syslinux/syslinux.cfg
+  307  emacs /etc/mkinitcpio.conf
+  308  mkinitcpio -p linux
+  309  emacs /boot/syslinux/syslinux.cfg
+  310  reboot
+  311  emacs /boot/syslinux/syslinux.cfg
+  312  mkinitcpio -p linux
+  313  reboot
+  314  emacs /etc/mkinitcpio.conf
+  315  reboot
+  316  emacs /etc/mkinitcpio.conf
+  317  emacs /boot/syslinux/syslinux.cfg
+  318  mkinitcpio -p linux
+  319  reboot
+  320  pacman -Syyu
+  321  pacman -S ghc cabal-install happy alex haddock
+  322  pacman -Syyu
+  323  pacman -Syyu
+  324  pacman -Syyu
+  325  pacman -Syyu
+  326  pacman -Syyu
+  327  emacs /etc/iptables/iptables.rules 
+  328  pacsman -Syyu
+  329  pacman -Syyu
+  330  pacman -Syyu
+  331  pacman -Syu
+  332  pacman -S iptables
+  333  emacs /etc/iptables/simple_firewall.rules 
+  334  touch /etc/iptables/iptables.rules
+  335  ls -ls /etc/iptables/
+  336  emacs /etc/iptables/iptables.rules 
+  337  systemctl start iptables.service
+  338  systemctl enable iptables.service
+  339  emacs /etc/iptables/iptables.rules 
+  340  iptables -nvL
+  341  iptables -P FORWARD DROP
+  342  iptables -nvL
+  343  emacs /etc/iptables/iptables.rules 
+  344  emacs /etc/iptables/simple_firewall.rules 
+  345  iptables -A INPUT -j REJECT --reject-with icmp-proto-unreachable
+  346  emacs /etc/iptables/iptables.rules 
+  347  iptables -N TCP
+  348  iptables -N UDP
+  349  emacs /etc/iptables/iptables.rules 
+  350  cd /etc/iptables/
+  351  ls
+  352  touch /etc/iptables/iptables.rules 
+  353  emacs /etc/iptables/iptables.rules 
+  354  iptables-save > /etc/iptables/iptables.rules 
+  355  emacs /etc/iptables/iptables.rules 
+  356  emacs /etc/iptables/iptables.rules 
+  357  emacs /etc/iptables/iptables.rules 
+  358  iptables -P INPUT DROP
+  359  iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -i ACCEPT
+  360  emacs /etc/iptables/iptables.rules 
+  361  iptables-save > /etc/iptables/iptables.rules 
+  362  emacs /etc/iptables/iptables.rules 
+  363  iptables -A INPUT -i lo -j ACCEPT
+  364  iptables -A INPUT -m conntrack  --ctstate INVALID -j DROP
+  365  iptables -A INPUT -p icmp --icmp-type 8 -m conntrack ctstate NEW -j ACCEPT
+  366  iptables -A INPUT -p icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
+  367  iptbles -A INPUT -p udp -m conntrack --ctstate NEW -j UDP
+  368  iptables -A INPUT -p udp -m conntrack --ctstate NEW -j UDP
+  369  iptables -A INPUT -p tcp --syn -m conntrack --ctstate NEW -j TCP
+  370  iptables-save > /etc/iptables/iptables.rules 
+  371  emacs /etc/iptables/iptables.rules 
+  372  iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+  373  iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
+  374  iptables -A INPUT -j REKECT --reject-with icmp-proto-unreachable
+  375  iptables -A INPUT -j REJECT --reject-with icmp-proto-unreachable
+  376  iptables-save > /etc/iptables/iptables.rules 
+  377  emacs /etc/iptables/iptables.rules 
+  378  iptables -A TCP -p tcp --dport 8080 -j ACCEPT
+  379  iptables-save > /etc/iptables/iptables.rules 
+  380  iptables -A TCP -p tcp --dport 443 -j ACCEPT
+  381  iptables-save > /etc/iptables/iptables.rules 
+  382  iptables -A UDP -p udp --dport 53 -j ACCEPT
+  383  iptables-save > /etc/iptables/iptables.rules 
+  384  ping 8.8.8.8
+  385  systemctl stop iptables.service
+  386  systemctl status iptables.service
+  387  systemctl stop iptables.service
+  388  systemctl stop iptables.service
+  389  systemctl disable iptables.service
+  390  pacman -Syyu
+  391  pacman -Syyu
+  392  pacman -Syyu
+  393  pacman -Syyu
+  394  pacman -Syyu
+  395  pacman -S gcalculator
+  396  pacman -S gcalc
+  397  pacman -S calc
+  398  calc 
+  399  calc
+  400  pacman -S exactcalc
+  401  pacman -S extcalc
+  402  calc
+  403  pacman -Syyu
+  404  pacman -Syyu
+  405  pacman -Syyu
+  406  pacman -Syu
+  407  pacman -Syyu
+  408  pacman -Syyu
+  409  pacman -Syyu
+  410  iptables -nvL --line-numbers
+  411  emacs /etc/iptables/iptables.rules 
+  412  iptables -A TCP -p tcp --dport 80 -j ACCEPT
+  413  systemctl start iptables.service
+  414  iptables -A TCP -p tcp --dport 80 -j ACCEPT
+  415  iptables -A TCP -p tcp --dport 443 -j ACCEPT
+  416  systemctl restart iptables.service
+  417  iptables -A TCP -p tcp --dport 22 -j ACCEPT
+  418  systemctl restart iptables.service
+  419  iptables -A UDP -p udp --dport 53 -j ACCEPT
+  420  systemctl restart iptables.service
+  421  emacs /etc/iptables/iptables.rules 
+  422  iptables-save > /etc/iptables/iptables.rules 
+  423  emacs /etc/iptables/iptables.rules 
+  424  iptables -A TCP -p tcp --dport 22 -j ACCEPT
+  425  iptables-save > /etc/iptables/iptables.rules 
+  426  emacs /etc/iptables/iptables.rules 
+  427  iptables -A UDP -p udp --dport 53 -j ACCEPT
+  428  iptables -A TCP -p tcp --dport 443 -j ACCEPT
+  429  iptables -A TCP -p tcp --dport 80 -j ACCEPT
+  430  iptables-save > /etc/iptables/iptables.rules 
+  431  emacs /etc/iptables/iptables.rules 
+  432  emacs /etc/iptables/iptables.rules 
+  433  cp /etc/iptables/iptables.rules /etc/iptables/iptables.rules_bu
+  434  cd /etc/iptables
+  435  ls
+  436  iptables-save
+  437  ls
+  438  emacs empty.rules 
+  439  systemctl stop iptables.service
+  440  ls
+  441  emacs simple_firewall.rules 
+  442  cp simple_firewall.rules iptables.rules
+  443  emacs iptables.rules
+  444  systemctl start iptables.service
+  445  systemctl enable iptables.service
+  446  pacman -Syyu
+  447  pacman -Syyu
+  448  pacman -Syyu
+  449  pacman -Syyu
+  450  pacman -Syyu
+  451  pdf
+  452  pdfbook
+  453  exit
+  454  pacman -S xpdf
+  455  xpdf Jeddha-Riyadh_return_Elghafari_Booking\ confirmation.pdf 
+  456  xpdf Abha-Jeddah_Elghafari_Booking\ confirmation.pdf 
+  457  exit
+  458  lsblk 
+  459  mount /dev/sdb1 /mnt/SSD/
+  460  exit
+  461  umount /dev/sdb1
+  462  exit
+  463  pacman -Syyu
+  464  cd ..
+  465  cd ..
+  466  cd ..
+  467  cd home
+  468  cd rosemary/
+  469  exit
+  470  pacman -Syyu
+  471  pacman -Syyu
+  472  pacman -Syyu
+  473  pacman -S libqmi
+  474  pacman -S net-tools
+  475  ifconfig /all
+  476  exit
+  477  pacman -Syyu
+  478  exit
+  479  pacman -Syyu
+  480  systemctl stop iptables.service
+  481  systemctl start iptables.service
+  482  pacman -Syyu
+  483  pacman -S texmaker
+  484  pacman -S latexila
+  485  pacman -S l3afpad
+  486  pacman -S ppub
+  487  pacman -S epub
+  488  pacman -S pdfstudio
+  489  pacman -S util-linux
+  490  more 
+  491  pacman -S ted
+  492  pacman -S scribus
+  493  scribus
+  494  pacman -S tea
+  495  pacman -S ristretto
+  496  pacman -S mirage
+  497  pacman -S dia
+  498  pacman -S qmmp
+  499  pacman -Syyu
+  500  pacman -Syyu
+  501  history > history

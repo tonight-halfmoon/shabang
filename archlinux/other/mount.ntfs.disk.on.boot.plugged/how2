@@ -1,0 +1,10 @@
+add the following line to /etc/fstab
+
+/dev/sdb2               /mnt/diskntfs   ntfs-3g         uid=rosemary,gid=users,umask=0022               0 0
+
+the disk must be plugged at boot time.
+
+$ sudo mount -a
+
+$ sudo ntfs-3g /dev/sdb2 /mnt/diskntfs/
+
