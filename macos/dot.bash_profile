@@ -8,16 +8,13 @@ alias ls='ls -GFh'
 export JAVA_HOME=$(/usr/libexec/java_home)
 #export JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStore=/Users/amado/acon_intelliJ/sbe/config/keystores/truststore.jks"
 #export PATH=~/libs/apache-tomcat-7.0-81/bin:~/libs/apache-ant-1.9.7/bin:$PATH
-export DEV_TRANSLATIONS_FILE=../mbb-packages-translations/src/main/resources/audi-mib2plus/mib2plus_translations.xml
-#export VTP_API_PW=Audi4Test
 #export CASSANDRA_HOSTS=127.0.0.1:9042
-#export DEV_TRANSLATIONS_FILE=/Users/amado/D5/mbb-packages-translations/src/main/resources/audi-mib2plus/mib2plus_translations.xml
-export ZOOKEEPER_HOST='demdc-pr-aio-eval.de.valtech.com'
+export ZOOKEEPER_HOST='_address_'
 export cassandra_storagedir='/var/lib/cassandra'
-export CASSANDRA_HOSTS='demdc-pr-aio-eval.de.valtech.com:9043=172.17.0.4:9042,demdc-pr-aio-eval.de.valtech.com:9042=172.17.0.3:9042,demdc-pr-aio-eval.de.valtech.com:9041=172.17.0.2:9042'
 export JAVA_OPTS=$JAVA_OPTS:$CASSANDRA_HOSTS:$cassandra_storagedir:$ZOOKEEPER_HOST
 
-QTDIR=/opt/local/lib/qt3; export QTDIR
+QTDIR=/opt/local/lib/qt3; 
+export QTDIR
 
 ##
 # Your previous /Users/amado/.bash_profile file was backed up as /Users/amado/.bash_profile.macports-saved_2017-12-18_at_13:35:51
