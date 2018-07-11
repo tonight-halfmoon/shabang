@@ -1,8 +1,11 @@
 
-(setq load-path (cons "/usr/local/Cellar/erlang/19.3/lib/erlang/lib/tools-2.9.1/emacs" load-path))
-(setq erlang-root-dir "/usr/local/Cellar/erlang/19.3/lib/erlang")
-(setq exec-path (cons "/usr/local/Cellar/erlang/19.3/lib/erlang/bin" exec-path))
+(setq load-path (cons "/usr/local/Cellar/erlang/20.3.4/lib/erlang/lib/tools-2.11.2/emacs" load-path))
+(setq erlang-root-dir "/usr/local/Cellar/erlang/20.3.4/lib/erlang")
+(setq exec-path (cons "/usr/local/Cellar/erlang/20.3.4/lib/erlang/bin" exec-path))
 (require 'erlang-start)
+
+;;(add-to-list 'load-path "/usr/local/Cellar/erlang/20.3.4/lib/erlang/lib/wrangler-1.2.0/elisp")
+;;(require 'wrangler)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -24,3 +27,10 @@
 (set-cursor-color "#7F00FF")
 (setq-default x-stretch-cursor 1)
 (global-set-key (kbd "M-9") 'kill-whole-line)
+(setq inhibit-startup-screen t)
+(when window-system (set-frame-size (selected-frame) 64 51))
+
+; Permits Typing Curly- and Square Braces
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      x-select-enable-clipboard t)
