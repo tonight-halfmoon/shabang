@@ -1,0 +1,25 @@
+
+function stoppedjobs {
+ jobs -s | wc -l | sed -e "s/ //g"
+}
+
+### 'W' in capital to show only the current directory. The small 'w' for showing the complete path
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\W\[\033[m\]\$ "
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\$(~/compressedpath.sh)\[\033[m\][`runningjobs`]\$ "
+#export  PS1='\[\033[01;35;01m\]`. ~/compressedpath.sh` \[\033[01;36;01m\]\u@\h \$ '
+export PS1='\[\033[01;36;01m\]\u@\h \[\033[01;35;01m\]`. ~/compressedpath.sh` \[\033[01;36;01m\] \$ '
+
+
+## \[\033[m\] \$(~/nprocesses.sh)\[\033[32m\]
+
+alias ls='ls --color=force'
+#alias ls='ls --color'
+#alias dir='dir --color'
+
+eval `dircolors -b ~/.dir_colors`
+
+setxkbmap -option caps:none
+
+## in order to mv all but not: mv !(not_2_move) <target.dir>
+shopt -s extglob
+

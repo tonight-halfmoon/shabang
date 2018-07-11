@@ -1,0 +1,9 @@
+
+The old-fashion way
+(1) sudo /usr/bin/libvirtd
+
+Via systemctl
+
+(0) systemctl start virtlogd.socket
+(1) systemctl enable libvirtd.service
+(2) systemctl start libvirtd.service

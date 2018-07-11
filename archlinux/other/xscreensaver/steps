@@ -1,0 +1,5 @@
+add unit to ~/.config/systemd/usr/xscreenserver.service
+check man xscreensaver for the script content
+and enable it 
+$ systemctl --user enable xscreensaver
+

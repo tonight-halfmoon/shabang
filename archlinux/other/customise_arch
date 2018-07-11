@@ -1,0 +1,29 @@
+https://wiki.archlinux.org/index.php/Xfce
+
+
+(1) Make an Application menu item
+
+Add a file of type .desktop to ~/.local/share/applications
+
+as follows:
+
+Example let's saz I want ot add Eclipse 4 Scala
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Eclipse Kepler Scala
+Icon=/home/rosemary/programming/scala/eclipse/eclipse-standard-kepler-SR2_Scala/scala_logo.png
+Exec=/home/rosemary/programming/scala/eclipse/eclipse-standard-kepler-SR2_Scala/eclipse
+Comment=Develop with pleasure!
+Categories=Development;IDE;
+Terminal=false
+StartupNotify=true
+StartupWMClass=EclipseScala
+
+
+(2) color terminal
+
+https://wiki.archlinux.org/index.php/Terminal_as_a_Transparent_Wallpaper
+https://wiki.archlinux.org/index.php/Color_output_in_console
+http://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console

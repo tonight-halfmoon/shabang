@@ -1,0 +1,1 @@
+$ for channel in $(xfconf-query -l | grep -e '^\s'); do echo "Channel: $channel"; xfconf-query -c $channel -l; echo ''; done

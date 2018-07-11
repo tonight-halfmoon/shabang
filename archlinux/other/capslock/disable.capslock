@@ -1,0 +1,5 @@
+$ setxkbmap -option caps:none
+
+
+resource:
+https://bbs.archlinux.org/viewtopic.php?id=120444

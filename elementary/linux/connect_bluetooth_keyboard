@@ -1,0 +1,68 @@
+[rosemary@SCUBA /]$ bluetoothctl 
+[NEW] Controller 68:94:23:EF:AC:8F SCUBA [default]
+
+(!) if not started like above
+ run the commmand
+
+$ sudo systemctl start bluetooth
+
+
+-->power on 
+
+[bluetooth]# power on
+[CHG] Controller 68:94:23:EF:AC:8F Class: 0x00010c
+Changing power on succeeded
+[CHG] Controller 68:94:23:EF:AC:8F Powered: yes
+
+
+--> scan on
+
+[bluetooth]# scan on
+Discovery started
+[CHG] Controller 68:94:23:EF:AC:8F Discovering: yes
+[CHG] Device A0:18:28:ED:6D:BF RSSI: -81
+[CHG] Device 27:C5:B2:F1:31:16 RSSI: -71
+[NEW] Device 34:88:5D:5A:AF:6F 34-88-5D-5A-AF-6F
+[CHG] Device 34:88:5D:5A:AF:6F LegacyPairing: no
+[CHG] Device 34:88:5D:5A:AF:6F Name: Keyboard K380
+[CHG] Device 34:88:5D:5A:AF:6F Alias: Keyboard K380
+[NEW] Device 5C:F9:38:DB:CD:6F 5C-F9-38-DB-CD-6F
+[CHG] Device 27:C5:B2:F1:31:16 RSSI: -61
+[CHG] Device 34:88:5D:5A:AF:6F LegacyPairing: yes
+
+-->> pair your bluetooth device
+
+[bluetooth]# pair 34:88:5D:5A:AF:6F 
+Attempting to pair with 34:88:5D:5A:AF:6F
+[CHG] Device 34:88:5D:5A:AF:6F Connected: yes
+[CHG] Device 34:88:5D:5A:AF:6F Modalias: usb:v046DpB342d4200
+[CHG] Device 34:88:5D:5A:AF:6F UUIDs: 00001000-0000-1000-8000-00805f9b34fb
+[CHG] Device 34:88:5D:5A:AF:6F UUIDs: 00001124-0000-1000-8000-00805f9b34fb
+[CHG] Device 34:88:5D:5A:AF:6F UUIDs: 00001200-0000-1000-8000-00805f9b34fb
+[CHG] Device 34:88:5D:5A:AF:6F ServicesResolved: yes
+[CHG] Device 34:88:5D:5A:AF:6F Paired: yes
+Pairing successful
+[CHG] Device 34:88:5D:5A:AF:6F ServicesResolved: no
+[CHG] Device 34:88:5D:5A:AF:6F Connected: no
+[CHG] Device 27:C5:B2:F1:31:16 RSSI: -69
+[CHG] Device 27:C5:B2:F1:31:16 RSSI: -61
+[NEW] Device 46:44:68:B2:0A:67 46-44-68-B2-0A-67
+
+
+--> now connect to the paired device
+
+[bluetooth]# connect 34:88:5D:5A:AF:6F 
+Attempting to connect to 34:88:5D:5A:AF:6F
+[CHG] Device 34:88:5D:5A:AF:6F Connected: yes
+Connection successful
+[CHG] Device 34:88:5D:5A:AF:6F ServicesResolved: yes
+[CHG] Device 5C:F9:38:DB:CD:6F RSSI: -82
+[CHG] Device 27:C5:B2:F1:31:16 RSSI: -59
+[Keyboard K380]# exit
+[DEL] Controller 68:94:23:EF:AC:8F SCUBA [default]
+[rosemary@SCUBA /]$ exit
+exit
+There are stopped jobs.
+
+
+Congrats!

@@ -1,0 +1,41 @@
+
+Fandom uses cookies to give you the best experience on our websites. By continuing to use Fandom, we assume that you accept our use of cookies. Read more about cookies
+Vim Tips Wiki
+
+    Community portal
+    To do
+    On the Wiki
+        Wiki Activity
+        Random page
+        Videos
+        Images
+        Chat
+
+Contribute
+Copy, cut and paste
+1,624pages on
+this wiki
+Add New Page
+Edit Talk0 Share
+Tip 312 Printable Monobook Previous Next
+
+created August 13, 2002 · complexity intermediate · version 6.0
+
+Here is how to cut-and-paste or copy-and-paste text using a visual selection in Vim. See Cut/copy and paste using visual selection for the main article.
+
+Cut and paste:
+
+    Position the cursor where you want to begin cutting.
+    Press v to select characters (or uppercase V to select whole lines, or Ctrl-v to select rectangular blocks).
+    Move the cursor to the end of what you want to cut.
+    Press d to cut (or y to copy).
+    Move to where you would like to paste.
+    Press P to paste before the cursor, or p to paste after. 
+
+Copy and paste is performed with the same steps except for step 4 where you would press y instead of d:
+
+    d stands for delete in Vim, which in other editors is usually called cut
+    y stands for yank in Vim, which in other editors is usually called copy 
+
+Ref: 
+http://vim.wikia.com/wiki/Copy,_cut_and_paste

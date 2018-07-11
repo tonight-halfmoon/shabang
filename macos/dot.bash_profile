@@ -6,11 +6,14 @@ export LSCOLORS=cxbxgxgxfxxxxxfhfghfhx
 alias ls='ls -GFh'
 
 export JAVA_HOME=$(/usr/libexec/java_home)
-#export JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStore=/Users/amado/acon_intelliJ/sbe/config/keystores/truststore.jks"
+#export JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStore=/Users/amado/config/keystores/truststore.jks"
 #export PATH=~/libs/apache-tomcat-7.0-81/bin:~/libs/apache-ant-1.9.7/bin:$PATH
 #export CASSANDRA_HOSTS=127.0.0.1:9042
 export ZOOKEEPER_HOST='_address_'
 export cassandra_storagedir='/var/lib/cassandra'
+export ZOOKEEPER_HOST='somewhere.com'
+export cassandra_storagedir='/var/lib/cassandra'
+export CASSANDRA_HOSTS='somewhere.com:IN-PORT=xxx.xxx.xxx.xxx:OUT-PORT9042,somewhere.com:IN-PORT=IP-ADDRESS:OUT-PORT,< etc>'
 export JAVA_OPTS=$JAVA_OPTS:$CASSANDRA_HOSTS:$cassandra_storagedir:$ZOOKEEPER_HOST
 
 QTDIR=/opt/local/lib/qt3; 

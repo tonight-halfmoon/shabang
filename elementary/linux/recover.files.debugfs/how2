@@ -1,0 +1,5 @@
+$ sudo debugfs /dev/sda5
+
+lsdel
+
+logdump -i <Inode>

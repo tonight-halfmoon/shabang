@@ -1,0 +1,4 @@
+mount /dev/sda4 /mnt
+mount /dev/sda5 /mnt/home
+arch-chroot /mnt
+su rosemary

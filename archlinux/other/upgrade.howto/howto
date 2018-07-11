@@ -1,0 +1,23 @@
+
+
+upgrade all
+
+# pacman -Syu
+
+ref: https://wiki.archlinux.org/index.php/System_maintenance
+
+-upgrade ignore -ghc
+
+#pacman -Syu --ignore=ghc
+https://www.reddit.com/r/archlinux/comments/4nkqux/unable_to_upgrade_because_ghc_8011_breaks/
+
+***
+(!) Fix corrupted or invalid package
+
+(1) [root@SCUBA rosemary]# pacman-key --init
+(2) [root@SCUBA archlinux]# pacman-key --populate archlinux
+
+Fixed.
+
+Resources: https://bbs.archlinux.org/viewtopic.php?id=149229
+___

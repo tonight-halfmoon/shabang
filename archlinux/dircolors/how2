@@ -1,0 +1,19 @@
+-> make a fresh copy of dircolors configuration file with the folowing generator
+
+$ sudo dircolors -p > /etc/DIR_COLORS
+$ cp /etc/DIR_COLORS ~/.dir_colors
+
+or immediatly
+
+$ dircolors -p > ~/.dir_colors
+
+
+Then, 
+
+in ~/.bashrc , add the following lines
+
+alias ls='ls --color=force'
+eval `dircolors -b ~/.dir_colors`
+
+then customise the ~/.dir_colors
+

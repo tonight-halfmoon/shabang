@@ -1,0 +1,29 @@
+warning: /etc/libvirt/qemu/networks/default.xml installed as /etc/libvirt/qemu/networks/default.xml.pacnew
+>>> You may need to run 'rm -rf ~/.libvirt'
+
+
+warning: could not get file information for etc/profile.d/locale.sh
+:: Running pre-transaction hooks...
+(1/1) Remove DKMS modules
+
+
+warning: directory permissions differ on /mnt/
+filesystem: 775  package: 755
+
+
+(35/88) installing python2-werkzeug                [#####################] 100%
+(36/88) upgrading ceph                             [#####################] 100%
+warning: directory permissions differ on /etc/ceph/
+filesystem: 755  package: 750
+warning: directory permissions differ on /var/lib/ceph/
+filesystem: 755  package: 750
+warning: directory permissions differ on /var/log/ceph/
+filesystem: 755  package: 750
+(37/88) upgrading re2
+
+
+==> WARNING: Possibly missing firmware for module: aic94xx
+==> WARNING: Possibly missing firmware for module: wd719x
+  -> Running build hook: [filesystems
+
+

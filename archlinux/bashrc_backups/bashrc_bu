@@ -1,0 +1,24 @@
+
+function stoppedjobs {
+ jobs -s | wc -l | sed -e "s/ //g"
+}
+
+#GREEN="\[$(tput setaf 2)\]"
+#RESET="\[$(tput sgr0)\]"
+#export PS1="${GREEN}"'\@ [\u@\h \W]\$'"${RESET}"
+#export PS1="${GREEN}amado\$${RESET} "
+### 'W' in capital to show only the current directory. The small 'w' for showing the complete path
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\W\[\033[m\]\$ "
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\$(~/compressedpath.sh)\[\033[m\][`runningjobs`]\$ "
+export  PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[32m\]\[\033[37m\][\$(~/nprocesses.sh)]\[\033[33;1m\]\$(~/compressedpath.sh)_\$ "
+## \[\033[m\] \$(~/nprocesses.sh)\[\033[32m\]
+
+alias ls='ls --color=auto'
+alias ls='ls --color'
+alias dir='dir --color'
+eval `dircolors -b ~/.dir_colors`
+setxkbmap -option caps:none
+
+## in order to mv all but not: mv !(not_2_move) <target.dir>
+shopt -s extglob
+
