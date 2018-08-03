@@ -1,8 +1,16 @@
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
+# Colors!
+#set red = "\[\033[34m\]"
+
+#export PS1="${red}\[\033[36m\]\u\[\033[m\]@\[\033[3;36m\]\h:\[\033[0;36;1m\]\w\[\033[m\]\$ "
+
+#unset red
+
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[36;1m\]\w\[\033[m\]\$ "
 export CLICOLOR=1
-export LSCOLORS=cxbxgxgxfxxxxxfhfghfhx
+#export LSCOLORS=cxbxgxgxfxxxxxfhfghfhx
+export LSCOLORS=FabxgxgxHxfxxxfhfghfhx
 alias ls='ls -GFh'
 
 export JAVA_HOME=$(/usr/libexec/java_home)
