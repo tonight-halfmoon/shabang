@@ -1,3 +1,3 @@
 #!/bin/bash
-ssh -L 9222:127.0.0.1:9222 root@10.33.5.92
+ssh -L <from-this-port>:127.0.0.1:<target-port> <User>@<IP>
 

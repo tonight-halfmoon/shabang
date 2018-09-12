@@ -1,0 +1,1 @@
+$(which sshd) -Ddp 10222
