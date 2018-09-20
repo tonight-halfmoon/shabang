@@ -6,9 +6,9 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(setq load-path (cons "/usr/local/Cellar/erlang/20.3.4/lib/erlang/lib/tools-2.11.2/emacs" load-path))
-(setq erlang-root-dir "/usr/local/Cellar/erlang/20.3.4/lib/erlang")
-(setq exec-path (cons "/usr/local/Cellar/erlang/20.3.4/lib/erlang/bin" exec-path))
+(setq load-path (cons "/usr/local/Cellar/erlang/21.0.8/lib/erlang/lib/tools-3.0/emacs" load-path))
+(setq erlang-root-dir "/usr/local/Cellar/erlang/21.0.8/lib/erlang")
+(setq exec-path (cons "/usr/local/Cellar/erlang/21.0.8/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
 ;;(add-to-list 'load-path "/usr/local/Cellar/erlang/20.3.4/lib/erlang/lib/wrangler-1.2.0/elisp")
@@ -62,3 +62,6 @@
 ;;; format-all.el --- Auto-format C, C++, JS, Python, Ruby and 25 other languages -*- lexical-binding: t -*-
 
 (load "~/.emacs.d/format-all/format-all.el")
+
+(add-to-list 'custom-theme-load-path "/Users/amado/.emacs.d/themes")
+(load-theme 'spolsky t)
