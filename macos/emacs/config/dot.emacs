@@ -14,6 +14,7 @@
 ;;(add-to-list 'load-path "/usr/local/Cellar/erlang/20.3.4/lib/erlang/lib/wrangler-1.2.0/elisp")
 ;;(require 'wrangler)
 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -23,8 +24,10 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
- '(custom-enabled-themes (quote (tsdh-dark)))
+ '(custom-enabled-themes (quote (deeper-blue)))
+ '(linum-format " %7i ")
  '(package-selected-packages (quote (company))))
+ 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -32,7 +35,7 @@
  ;; If there is more than one, they won't work right.
  )
 (setq-default cursor-type 'hbar)
-(set-cursor-color "#7F00FF")
+;;(set-cursor-color "#7F00FF")
 (setq-default x-stretch-cursor 1)
 (global-set-key (kbd "M-9") 'kill-whole-line)
 (setq inhibit-startup-screen t)
@@ -63,5 +66,8 @@
 
 (load "~/.emacs.d/format-all/format-all.el")
 
+
 (add-to-list 'custom-theme-load-path "/Users/amado/.emacs.d/themes")
 (load-theme 'spolsky t)
+
+(set-cursor-color "#00ff00")
