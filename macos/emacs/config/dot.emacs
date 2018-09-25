@@ -24,7 +24,10 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
- '(custom-enabled-themes (quote (deeper-blue)))
+ '(custom-enabled-themes (quote (odersky)))
+ '(custom-safe-themes
+   (quote
+    ("e0d42a58c84161a0744ceab595370cbe290949968ab62273aed6212df0ea94b4" default)))
  '(linum-format " %7i ")
  '(package-selected-packages (quote (company))))
  
@@ -71,3 +74,8 @@
 (load-theme 'spolsky t)
 
 (set-cursor-color "#00ff00")
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (face-remap-add-relative
+	     'mode-line '((:foreground "cyan" :background "black") mode-line))))
