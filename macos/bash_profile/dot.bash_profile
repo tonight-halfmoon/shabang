@@ -7,8 +7,12 @@ if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
 #unset red
 
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[36;1m\]\w\[\033[m\]\$ "
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[36;1m\]\w\[\033[m\]\$ "
+
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[3;36m\]\h:\[\033[0;36;1m\]\w\[\033[m\]\$ "
+
 export CLICOLOR=1
+
 #export LSCOLORS=cxbxgxgxfxxxxxfhfghfhx
 export LSCOLORS=FabxgxgxHxfxxxfhfghfhx
 alias ls='ls -GFh'
