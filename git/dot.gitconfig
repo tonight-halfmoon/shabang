@@ -1,0 +1,13 @@
+[user]
+	email = <myemail>
+	name = Ahmad Elghafari
+[color "status"]
+	untracked = yellow black bold
+	updated = cyan black bold
+	modified = cyan black bold
+	changed = magenta black bold
+	added = yellow black bold
+[color "diff"]
+	old = white black bold
+	meta = yellow black bold
+	new = cyan black bold
