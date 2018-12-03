@@ -1,0 +1,1 @@
+/Users/amado/Pictures/Photos Library.photoslibrary/Masters
