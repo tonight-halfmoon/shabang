@@ -95,17 +95,24 @@
      'mode-line '((:foreground "cyan" :background "black") mode-line))))
 
 ;; Kotlin Mode
+;; clone or copy https://github.com/Emacs-Kotlin-Mode-Maintainers/kotlin-mode/blob/master/kotlin-mode.el into ~/.emacs.d/
 (load "~/.emacs.d/kotlin/kotlin-mode.el")
 
 ;; Scala Mode
+;; clone https://github.com/ensime/emacs-scala-mode.git into ~/.emacs.d/
 (add-to-list 'load-path "~/.emacs.d/emacs-scala-mode/")
 (require 'scala-mode)
 
 ;; MELPA
+;;(add-to-list 'package-archives
+;;             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 
 
+;; M-x
+;; package-refresh-list
+;; pacakge-install flycheck-kotlin
 (require 'flycheck-kotlin)
 (add-hook 'kotlin-mode-hook 'flycheck-mode)
 
