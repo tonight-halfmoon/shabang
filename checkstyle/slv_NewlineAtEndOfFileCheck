@@ -1,21 +1,43 @@
 #!/bin/sh
 
-## Usage example
-#find . -maxdepth 30 -name main.xml | xargs awk -Fname= '{print $2}' | sed 's/>//g' | sed 's/"//g'| sed '/^\s*$/d' | xargs -I {} sh -c "echo "" >> {}"
+
+#;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Automate Addressing Checkstyle Check ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ## The problem
-## Suppose there is a Checkstyle report
-## And we want to list the files where only a particular error occurs 
+## Suppose there are many Checkstyle reports in a complex project having a couple of sub-projects
+## Each subproject has its own build and reports
+## After the Checkstyle task has been run with Gradle for example
+## And in the root project directory we want to read all the XML reports and
+## extract a list of all the files where only a particular error occurs
 ## The Checkstyle report structure snippet as follows
-<checkstyle>
-  <file name="/abs/path/to/file">
-    <error source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck">
-  </file>
-</checkstyle>
+#;;; <checkstyle>
+#;;;  <file name="/abs/path/to/file">
+#;;;   <error source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck">
+#;;;  </file>
+#;;; </checkstyle>
 
 
 ## Simple steps
-## Read exact XML Checkstyle report
+## Find and read all XML Checkstyle reports
 ## List file names only if the error of a particular source
-## Append all files with a new line
-find . -maxdepth 30 -name main.xml | xargs -I {} xmllint {} --xpath "checkstyle/file[error/@source ='com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck']/@name" |xargs -n1 | xargs awk -Fname '{print $2}' | xargs -I {} sh -c "echo "">> {}"
+## For showing an example here, let's hunt for the Checkstyle check
+## `NewlineAtEndOfFileCheck`
+## We are interested only in this error and we want to automate the fix to address this check instances in our source code files
+## Append all affected source code files with a new line
+
+## List file names only if the error of a particular source
+find . -maxdepth 30 -name main.xml \
+      | xargs -I {} xmllint {} --xpath "checkstyle/file[error/@source ='com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck']/@name" 2>/dev/null \
+      | xargs -n1 \
+      | awk -Fname= '{print $2}' \
+      | xargs -I {} sh -c "echo "">> {}"
+
+
+
+## Lessons Learned
+## Using `xargs -n1` does shorten the steps would be needed otherwise, including the following two commands
+      #| sed 's/>//g'
+      #| sed 's/"//g'
+
+## In this script was possible to redirect stderr to /dev/null and keep stdout to be used for next command in pipe
+

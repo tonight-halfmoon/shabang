@@ -1,11 +1,11 @@
 #!/bin/sh
 
 ## Suppose you have the followin XML structure in a file named `main.xml`
-<checkstyle>
-  <file name="/abs/path/to/file">
-    <error source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck">
-  </file>
-</checkstyle>
+# <checkstyle>
+#  <file name="/abs/path/to/file">
+#   <error source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck">
+#  </file>
+# </checkstyle>
 
 ## the problem is to list file name only when certain cource value occurs
 ## Usage example
