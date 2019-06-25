@@ -1,0 +1,6 @@
+#!/bin/sh
+
+$keyword=NPath
+$file=<path/to/file>
+find . -maxdepth 30 -name file | xargs -I {} sh -c "grep -Hr $keyword {}" | sort
+

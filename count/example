@@ -1,0 +1,31 @@
+#!/bin/sh
+
+## We are interested to count the number of files resulted of the find and grep command
+
+find . -maxdepth 30 -name main.xml | xargs -I {} sh -c "grep -Hr NewlineAtEndOfFileCheck {}" | sort | wc -l
+
+## we can also simply reuse a bash script output as input for `wc -l` as follows
+
+./count_files_failing_NewlineAtEndOfFileCheck| wc -l
+
+## we get the same count value from both ways, that makes us more confident
+
+## Applying the slv_NewlineAtEnfoFileCheck
+
+## Now let's count the files changed by the automated fix
+
+git status|grep modified| wc -l
+
+## the output is the same count value as before
+
+## Moreover, having a look at git diff shows us that exactly these files have been missing newline at end of file. The following is part of the diff
+
+#@@ -10,4 +10,5 @@ public class BCELMethodInstrumentor extends BCELMethodAnalyser
+#     {
+#         super(benchamrk, targetedInstrumentation);
+#     }
+#-}
+#\ No newline at end of file
+#+}
+#+
+
