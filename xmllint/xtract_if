@@ -1,0 +1,19 @@
+#!/bin/sh
+
+## Suppose you have the followin XML structure in a file named `main.xml`
+<checkstyle>
+  <file name="/abs/path/to/file">
+    <error source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck">
+  </file>
+</checkstyle>
+
+## the problem is to list file name only when certain cource value occurs
+## Usage example
+## xmllint main.xml --xpath "/checkstyle/file[error/@source ='com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck']/@name"
+
+## filename=$1
+## path_to_node=$2
+## key_node_name=$3
+## key_node_val_constraint=$4
+## node_property_val_to_return=$5
+xmllint $1 --xpath "$2/@$3 ='{$4}']/@$5"

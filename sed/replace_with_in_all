@@ -1,0 +1,9 @@
+#!/bin/sh
+
+oldstring=$1
+newstring=$2
+## incase certain characters need to be escaped, the quotes with doulbes quotes are used to nail it down as follows
+
+## Use example:  find . -maxdepth 3 -name MANIFEST.MF | xargs -I {} sh -c "grep -l 'org.jpat.scuba.external.slf4j' {}" | sort | xargs sed -i 's/'"$oldstring"'/'"$newstring"'/g'
+
+find . -maxpath $3 -name $4 | xarfs -I {} sh -c "grep -l $5 {}" | sort| xargs sed -i 's/'"$oldstring"'/'"$newstring"'/g'

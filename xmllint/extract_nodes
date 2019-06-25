@@ -1,0 +1,7 @@
+#!/bin/sh
+
+## Use example
+## xmllint asd.xml --xpath '/checkstyle/file/@name'
+xmllint $filename --xpath '/path/to/node/@$target-key-name'
+
+

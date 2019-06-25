@@ -1,0 +1,9 @@
+#!/bin/sh
+## Read XML file
+## For every node takes its property `name` value
+## Remove angle brackets
+## Remove Quotations
+## Remove empty lines
+## Suppose each entry is an absolute path of a file
+## Add a new line at the end of each file
+find . -maxdepth 30 -name main.xml | xargs awk -Fname= '{print $2}' | sed 's/>//g' | sed 's/"//g'| sed '/^\s*$/d' | xargs -I {} sh -c "echo "" >> {}"

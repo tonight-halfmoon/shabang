@@ -1,0 +1,21 @@
+#!/bin/sh
+
+## Usage example
+#find . -maxdepth 30 -name main.xml | xargs awk -Fname= '{print $2}' | sed 's/>//g' | sed 's/"//g'| sed '/^\s*$/d' | xargs -I {} sh -c "echo "" >> {}"
+
+## The problem
+## Suppose there is a Checkstyle report
+## And we want to list the files where only a particular error occurs 
+## The Checkstyle report structure snippet as follows
+<checkstyle>
+  <file name="/abs/path/to/file">
+    <error source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck">
+  </file>
+</checkstyle>
+
+
+## Simple steps
+## Read exact XML Checkstyle report
+## List file names only if the error of a particular source
+## Append all files with a new line
+find . -maxdepth 30 -name main.xml | xargs -I {} xmllint {} --xpath "checkstyle/file[error/@source ='com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck']/@name" |xargs -n1 | xargs awk -Fname '{print $2}' | xargs -I {} sh -c "echo "">> {}"

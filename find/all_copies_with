@@ -1,0 +1,3 @@
+#!/bin/sh
+## Use example: find . -maxdepth 3 -name MANIFEST.MF | xargs -I {} sh -c "grep -Hr 'BCEL-based' {}" | sort
+find . -maxdepth $1 -name $2 | xargs -I {} sh -c "grep -Hr $3 {}" | sort
