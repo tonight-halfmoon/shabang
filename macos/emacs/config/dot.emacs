@@ -21,14 +21,8 @@
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
-(setq load-path (cons "/usr/local/Cellar/erlang/21.0.8/lib/erlang/lib/tools-3.0/emacs" load-path))
-(setq erlang-root-dir "/usr/local/Cellar/erlang/21.0.8/lib/erlang")
-(setq exec-path (cons "/usr/local/Cellar/erlang/21.0.8/lib/erlang/bin" exec-path))
-(require 'erlang-start)
-
 ;;(add-to-list 'load-path "/usr/local/Cellar/erlang/20.3.4/lib/erlang/lib/wrangler-1.2.0/elisp")
 ;;(require 'wrangler)
-
 
 (add-to-list 'custom-theme-load-path "/Users/amado/.emacs.d/themes")
 ;;(load-theme 'odersky t)
@@ -43,10 +37,10 @@
  '(ansi-color-names-vector
    (vector "#515151" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc" "#66cccc" "#cccccc"))
  '(beacon-color "#f2777a")
- '(custom-enabled-themes (quote (sanityinc-tomorrow-blue)))
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
  '(custom-safe-themes
    (quote
-    ("82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "58c6711a3b568437bab07a30385d34aacf64156cc5137ea20e799984f4227265" "72a81c54c97b9e5efcc3ea214382615649ebb539cb4f2fe3a46cd12af72c7607" "e9776d12e4ccb722a2a732c6e80423331bcb93f02e089ba2a4b02e85de1cf00e" "3cc2385c39257fed66238921602d8104d8fd6266ad88a006d0a4325336f5ee02" default)))
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
  '(fci-rule-color "#515151")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(frame-background-mode (quote dark))
@@ -54,7 +48,7 @@
  '(linum-format " %7i ")
  '(package-selected-packages
    (quote
-    (color-theme-sanityinc-tomorrow flycheck-kotlin company)))
+    (format-all docker-compose-mode docker dockerfile-mode dictionary latex-extra latex-preview-pane color-theme-sanityinc-tomorrow flycheck-kotlin company)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -77,61 +71,13 @@
      (340 . "#ffcc66")
      (360 . "#99cc99"))))
  '(vc-annotate-very-old-color nil))
- 
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(setq-default cursor-type 'hbar)
-;;(set-cursor-color "#7F00FF")
-(setq-default x-stretch-cursor 1)
-(global-set-key (kbd "M-9") 'kill-whole-line)
-(setq inhibit-startup-screen t)
-(when window-system (set-frame-size (selected-frame) 64 51))
-
-;; Note: With the following entry Meta becomes key 'cmd'
-(setq mac-option-modifier nil
-      mac-command-modifier 'meta
-      x-select-enable-clipboard t)
-
-(add-hook 'after-init-hook 'global-company-mode)
-
-;; Image dimensions
-;; Reference: https://www.emacswiki.org/emacs/image-dimensions-minor-mode.el
-;; Display the image dimensions in the mode line, when viewing an image.
-
-(load "~/.emacs.d/image-dimensions/image-dimentsions-minor-mode.el")
-(eval-after-load 'image-mode '(require 'image-dimensions-minor-mode))
-
- (setq frame-title-format
-       '(buffer-file-name
-         ("%b (Emacs) %f" image-dimensions-minor-mode-dimensions)
-         (dired-directory
-          (:eval (concat (buffer-name) " (Emacs) " dired-directory))
-          ("%b (Emacs)"))))
-
-;;; format-all.el --- Auto-format C, C++, JS, Python, Ruby and 25 other languages -*- lexical-binding: t -*-
-
-(load "~/.emacs.d/format-all/format-all.el")
-
-
-(set-cursor-color "#00ff00")
-
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (face-remap-add-relative
-     'mode-line '((:foreground "cyan" :background "black") mode-line))))
-
-;; Kotlin Mode
-;; clone or copy https://github.com/Emacs-Kotlin-Mode-Maintainers/kotlin-mode/blob/master/kotlin-mode.el into ~/.emacs.d/
-(load "~/.emacs.d/kotlin/kotlin-mode.el")
-
-;; Scala Mode
-;; clone https://github.com/ensime/emacs-scala-mode.git into ~/.emacs.d/
-(add-to-list 'load-path "~/.emacs.d/emacs-scala-mode/")
-(require 'scala-mode)
 
 ;; MELPA
 ;;(add-to-list 'package-archives
@@ -139,6 +85,111 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
+(setq-default cursor-type 'hbar)
+;;(set-cursor-color "#7F00FF")
+;;(set-cursor-color "#00ff00")
+(set-cursor-color "#6f75ff")
+(setq-default x-stretch-cursor 1)
+
+(global-set-key (kbd "M-9") 'kill-whole-line)
+
+(setq inhibit-startup-screen t)
+
+(when window-system (set-frame-size (selected-frame) 64 51))
+
+;; Note: With the following entry Meta becomes key 'cmd'
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      select-enable-clipboard t)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(require 'whitespace)
+
+;; Formatting according to the file's programming langauge
+
+(add-hook 'before-save-hook (lambda() (format-all-mode)))
+
+;;; Whitespace Cleanup on/before Save Hook
+;;(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook (lambda() (whitespace-cleanup)))
+
+;; Delete Trailing Whitespace on/before Save Hook
+(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+
+;; Indent according to current Major Mode on/before Save Hook
+(add-hook 'before-save-hook (lambda() (indent-according-to-mode)))
+
+;; Erlang Mode
+(setq load-path (cons "/usr/local/Cellar/erlang/22.0.2/lib/erlang/lib/tools-3.2/emacs" load-path))
+(setq erlang-root-dir "/usr/local/Cellar/erlang/22.0.2/lib/erlang")
+(setq exec-path (cons "/usr/local/Cellar/erlang/22.0.2/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+
+(add-to-list 'auto-mode-alist '("\\.config?$" . erlang-mode))
+
+;; See method #2 follows
+;;(add-hook 'before-save-hook 'erlang-indent-current-buffer)
+
+(setq-default erlang-indent-level 2)
+(setq-default allout-auto-activation t)
+(setq-default erlang-indent-paranthesis 2)
+
+;; Method #2
+(defun esl-erlang-mode-before-save-hook()
+  "When Major Mode is Erlang then apply the following on/before save."
+  (when (eq major-mode 'erlang-mode)
+    (whitespace-cleanup)
+    (delete-trailing-whitespace)
+    (erlang-indent-current-buffer)
+    )
+  )
+(add-hook 'before-save-hook #'esl-erlang-mode-before-save-hook)
+
+
+;; Format in erlang mode
+;;(defun emacs-indent-function ()
+;;  "Format the whole buffer."
+;;   (erlang-mode)
+;;   (indent-region (point-min) (point-max) nil)
+;;   (untabify (point-min) (point-max))
+;;   (delete-trailing-whitespace)
+;;   (save-buffer)
+;;	 )
+
+;; Image dimensions
+;; Reference: https://www.emacswiki.org/emacs/image-dimensions-minor-mode.el
+;; Display the image dimensions in the mode line, when viewing an image.
+
+(load "$HOME/.emacs.d/image-dimensions/image-dimensions-minor-mode.el")
+(eval-after-load 'image-mode '(require 'image-dimensions-minor-mode))
+
+(setq frame-title-format
+      '(buffer-file-name
+        ("%b (Emacs) %f" image-dimensions-minor-mode-dimensions)
+        (dired-directory
+         (:eval (concat (buffer-name) " (Emacs) " dired-directory))
+         ("%b (Emacs)"))))
+
+
+;; Format All buffer installed via package manager MELPA
+;;; format-all.el --- Auto-format C, C++, JS, Python, Ruby and 25 other languages -*- lexical-binding: t -*-
+
+;;(load "$HOME/.emacs.d/format-all/format-all.el")
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (face-remap-add-relative
+             'mode-line '((:foreground "cyan" :background "black") mode-line))))
+
+;; Kotlin Mode
+;; clone or copy https://github.com/Emacs-Kotlin-Mode-Maintainers/kotlin-mode/blob/master/kotlin-mode.el into $HOME/.emacs.d/
+(load "$HOME/.emacs.d/kotlin/kotlin-mode.el")
+
+;; Scala Mode
+;; clone https://github.com/ensime/emacs-scala-mode.git into $HOME/.emacs.d/
+;;(add-to-list 'load-path "$HOME/.emacs.d/emacs-scala-mode/")
+;;(require 'scala-mode)
 
 ;; M-x
 ;; package-refresh-list
@@ -146,16 +197,41 @@
 (require 'flycheck-kotlin)
 (add-hook 'kotlin-mode-hook 'flycheck-mode)
 
-
 ;; Color-theme Sanityinc
 ;; Ref: https://github.com/purcell/color-theme-sanityinc-tomorrow
 ;; M-x package-install RET color-theme-sanityinc-tomorrow RET
 (require 'color-theme-sanityinc-tomorrow)
 ;; then M-x color-theme-sanityinc-tomorrow-... /-night /-eighties -etc
 
+;; Spell check
+(add-hook 'text-mode-hook 'flyspell-mode)
 
-;(provide .emacs)
+;; show closing bracket
+(show-paren-mode 1)
+(global-set-key "%" 'match-paren)
+
+(defun match-paren (arg)
+  "Go to the matching paren if on a paren ${ARG}; otherwise insert."
+  (interactive "p")
+  (cond ((looking-at "\\s(") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s)") (forward-char 1) (backward-list 1))
+        (t (self-insert-command (or arg 1)))))
+
+;; Default tab width is 2
+(setq-default tab-width 2)
+
+;;; Indent
+(setq-default indent-tabs-mode nil)
+
+
+;; Dockerfile formatting
+;; format-all installed via MELPA
+(load "$HOME/.emacs.d/dockerfile-mode/dockerfile-mode.el")
+
+;; Shell script formatting
+;; format-all installed via MELPA
+;; brew install shfmt
+
+
+                                        ;(provide .emacs)
 ;;; .emacs ends here
-
-
-

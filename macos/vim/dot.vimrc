@@ -1,5 +1,7 @@
 sy enable
-set nu
-set tabstop=4
-set shiftwidth=4
+set number
+set tabstop=2
+set shiftwidth=2
 colorscheme koehler
+set list
+set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
