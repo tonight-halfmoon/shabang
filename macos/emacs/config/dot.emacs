@@ -48,7 +48,8 @@
  '(linum-format " %7i ")
  '(package-selected-packages
    (quote
-    (format-all docker-compose-mode docker dockerfile-mode dictionary latex-extra latex-preview-pane color-theme-sanityinc-tomorrow flycheck-kotlin company)))
+    (babel format-all docker-compose-mode docker dockerfile-mode dictionary latex-extra latex-preview-pane color-theme-sanityinc-tomorrow flycheck-kotlin company)))
+ '(safe-local-variable-values (quote ((sh-indent-comment . t) (allout-layout . t))))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
