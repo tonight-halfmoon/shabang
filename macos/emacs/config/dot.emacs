@@ -154,11 +154,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(mode-line-buffer-id ((t (:background "black" :foregorund "magenta" :weight bold :height 0.9)))))
+ '(mode-line-buffer-id ((t (:background "black" :foregorund "magenta" :weight bold :height 0.9))))
+ )
 
 ;;==========================================================
 ;; Mode-line
 ;;==========================================================
+(set-face-foreground 'mode-line "green")
+(set-face-background 'mode-line "purple")
+
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (face-remap-add-relative
