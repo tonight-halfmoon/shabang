@@ -1,15 +1,13 @@
 ;;; package --- Summary:
-
 ;;; Commentary:
-
 ;;; Code:
 
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos)) 
+                    (not (gnutls-available-p)))) 
+       (proto (if no-ssl "http" "https"))) 
   (add-to-list 'package-archives (cons "melpa-stable" (concat proto
-                                                              "://stable.melpa.org/packages/")) t)
+                                                              "://stable.melpa.org/packages/")) t) 
   (add-to-list 'package-pinned-packages '(elixir-mode . "melpa-stable")))
 (package-initialize)
 
@@ -25,31 +23,33 @@
 ;; In addition, add-to-list package remote source could be necessary
 ;; to tell MELPA where to look for the source. See above, the section before package-initialize.
 ;; Reference: [](https://stackoverflow.com/a/10095853)
-(defun pkg-install
-    (&rest
+(defun pkg-install 
+    (&rest 
      tail)
   "Prompt for each package in TAIL install with y/n."
-  (mapcar (lambda (next)
-            (if (package-installed-p next) nil (if (y-or-n-p(format "Install packge '%s'?" next))
+  (mapcar (lambda (next) 
+            (if (package-installed-p next) nil (if (y-or-n-p(format "Install packge '%s'?" next)) 
                                                    (package-install next) next))) tail))
 
-(or (file-exists-p package-user-dir)
+(or (file-exists-p package-user-dir) 
     (package-refresh-contents))
 
 (pkg-install 'travis 'yaml-mode 'docker 'docker-compose-mode 'dockerfile-mode
              ;; 'es-mode ;; elastic seach; Dependency: `brew install apache-spark`
-             'auto-complete 'company 'whitespace-cleanup-mode 'flycheck 'flycheck-mix
-             'flycheck-rebar3 'flycheck-color-mode-line 'flycheck-checkbashisms 'flycheck-pos-tip
-             'flycheck-title 'flycheck-yamllint
+             'auto-complete 'company 'whitespace-cleanup-mode
              ;; 'dictionary
+             'flycheck 'flycheck-mix 'flycheck-rebar3 'flycheck-color-mode-line
+             'flycheck-checkbashisms 'flycheck-pos-tip 'flycheck-title 'flycheck-yamllint
              'elixir-mode 'ac-alchemist
              ;; 'erlang 'erlstack-mode
              'web-mode 'js-auto-format-mode 'exec-path-from-shell 'gradle-mode 'groovy-mode
-             'python-mode 'elpy 'markdown-mode
+             ;; 'python-mode ;;'elpy
+             'markdown-mode
              ;; 'color-theme-sanityinc-tomorrow
              ;; 'pdf-tools
              ;; 'latex-extra
              ;; 'elisp-lint
+             'nlinum ;; Emacs's buffer line number column display
              )
 
 (custom-set-variables
@@ -57,48 +57,52 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector [default default default italic underline success warning error])
+ '(ansi-color-faces-vector [default default default italic underline success warning error]) 
  '(ansi-color-names-vector (vector "#515151" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc"
-                                   "#66cccc" "#cccccc"))
- '(beacon-color "#f2777a")
+                                   "#66cccc" "#cccccc")) 
+ '(beacon-color "#f2777a") 
+ '(custom-enabled-themes (quote (wombat))) 
  '(custom-safe-themes (quote ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a"
-                              default)))
- '(fci-rule-color "#515151")
- '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
- '(flycheck-highlighting-mode (quote symbols))
- '(frame-background-mode (quote dark))
- '(global-flycheck-mode t)
- '(linum-format " %7i ")
- '(package-selected-packages (quote (js-auto-format-mode markdown-mode elpy python-mode groovy-mode
-                                                         gradle-mode exec-path-from-shell
-                                                         whitespace-cleanup-mode web-mode travis
-                                                         flycheck-yamllint flycheck-title
-                                                         flycheck-rebar3 flycheck-pos-tip
-                                                         flycheck-mix flycheck-color-mode-line
-                                                         flycheck-checkbashisms dockerfile-mode
-                                                         docker-compose-mode docker elixir-mode
-                                                         ac-alchemist auto-complete)))
- '(safe-local-variable-values (quote ((sh-indent-comment . t)
-                                      (allout-layout . t))))
- '(vc-annotate-background nil)
- '(vc-annotate-color-map (quote ((20 . "#f2777a")
-                                 (40 . "#f99157")
-                                 (60 . "#ffcc66")
-                                 (80 . "#99cc99")
-                                 (100 . "#66cccc")
-                                 (120 . "#6699cc")
-                                 (140 . "#cc99cc")
-                                 (160 . "#f2777a")
-                                 (180 . "#f99157")
-                                 (200 . "#ffcc66")
-                                 (220 . "#99cc99")
-                                 (240 . "#66cccc")
-                                 (260 . "#6699cc")
-                                 (280 . "#cc99cc")
-                                 (300 . "#f2777a")
-                                 (320 . "#f99157")
-                                 (340 . "#ffcc66")
-                                 (360 . "#99cc99"))))
+                              default))) 
+ '(fci-rule-color "#515151") 
+ '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id)) 
+ '(flycheck-highlighting-mode (quote symbols)) 
+ '(frame-background-mode (quote dark)) 
+ '(global-flycheck-mode t) 
+ '(js-auto-format-command "prettier") 
+ '(js-auto-format-command-args "--write --single-quote --no-semi") 
+ '(nlinum-format " %3i ") 
+ '(nlinum-highlight-current-line t) 
+ '(nlinum-use-right-margin t) 
+ '(nlinum-widen t) 
+ '(package-selected-packages (quote (nlinum js-auto-format-mode markdown-mode groovy-mode
+                                            gradle-mode exec-path-from-shell whitespace-cleanup-mode
+                                            web-mode travis flycheck-yamllint flycheck-title
+                                            flycheck-rebar3 flycheck-pos-tip flycheck-mix
+                                            flycheck-color-mode-line flycheck-checkbashisms
+                                            dockerfile-mode docker-compose-mode docker elixir-mode
+                                            ac-alchemist auto-complete))) 
+ '(safe-local-variable-values (quote ((sh-indent-comment . t) 
+                                      (allout-layout . t)))) 
+ '(vc-annotate-background nil) 
+ '(vc-annotate-color-map (quote ((20 . "#f2777a") 
+                                 (40 . "#f99157") 
+                                 (60 . "#ffcc66") 
+                                 (80 . "#99cc99") 
+                                 (100 . "#66cccc") 
+                                 (120 . "#6699cc") 
+                                 (140 . "#cc99cc") 
+                                 (160 . "#f2777a") 
+                                 (180 . "#f99157") 
+                                 (200 . "#ffcc66") 
+                                 (220 . "#99cc99") 
+                                 (240 . "#66cccc") 
+                                 (260 . "#6699cc") 
+                                 (280 . "#cc99cc") 
+                                 (300 . "#f2777a") 
+                                 (320 . "#f99157") 
+                                 (340 . "#ffcc66") 
+                                 (360 . "#99cc99")))) 
  '(vc-annotate-very-old-color nil))
 
 (custom-set-faces
@@ -106,11 +110,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(mode-line-buffer-id ((t
-                         (:background "black"
-                                      :foregorund "magenta"
-                                      :weight bold
-                                      :height 0.9)))))
+ '(mode-line-buffer-id ((t 
+                         (:background "black" 
+                                      :foregorund "color-63" 
+                                      :weight extra-bold 
+                                      :height 0.9)))) 
+ '(nlinum-current-line ((t 
+                         (:inherit linum 
+                                   :background "magenta" 
+                                   :foreground "green" 
+                                   :weight ultra-light)))))
 
 ;; =============================================================================================
 ;; Erlang Mode
@@ -125,31 +134,23 @@
 
 (add-to-list 'auto-mode-alist '("\\.config?$" . erlang-mode))
 
-(setq-default erlang-indent-level 2)
-(setq-default allout-auto-activation t)
-(setq-default erlang-indent-paranthesis 2)
+(defun seriott-erlang-mode-hooks () 
+  "Hooks for Erlang mode." 
+  (setq erlang-indent-level 2) 
+  (setq allout-auto-activation t) 
+  (setq erlang-indent-paranthesis 2))
+(add-hook 'erlang-mode-hook 'seriott-erlang-mode-hooks)
 
-;; See method #2 follows
-;; (add-hook 'before-save-hook 'erlang-indent-current-buffer)
-
-;; Method #2
-(defun esl-erlang-mode-before-save-hook()
-  "When Major Mode is Erlang then apply the following on/before save."
-  (when (eq major-mode 'erlang-mode)
-    ;;(whitespace-cleanup)
-    (delete-trailing-whitespace)
-    (erlang-indent-current-buffer)))
-(add-hook 'before-save-hook #'esl-erlang-mode-before-save-hook)
-
-;; Format in erlang mode
-;; (defun emacs-indent-function ()
-;;  "Format the whole buffer."
-;;   (erlang-mode)
-;;   (indent-region (point-min) (point-max) nil)
-;;   (untabify (point-min) (point-max))
-;;   (delete-trailing-whitespace)
-;;   (save-buffer)
-;;   )
+(defun seriott-erlang-mode-save-hooks () 
+  "Save hooks for Erlang mode."
+  ;; Either compare with `when` if majore-mode is 'erlang-mode
+  ;; or, use double add-hook as follows
+  ;;(when (eq major-mode 'erlang-mode)
+  (whitespace-cleanup) 
+  (delete-trailing-whitespace) 
+  (erlang-indent-current-buffer)) ;;)
+(add-hook 'erlang-mode-hook (lambda() 
+                              (add-hook 'before-save-hook 'seriott-erlang-mode-save-hooks t t)))
 
 ;; ==============================================================================================
 ;; Wrangler
@@ -172,8 +173,8 @@
 ;; repo/file `elixir-format.el` cloned into...
 (add-to-list 'load-path "~/.emacs.d/elixir-format")
 (require 'elixir-format)
-;; Format upon Save when Elixir Mode is enabled
-(add-hook 'elixir-mode-hook (lambda()
+;; Save hook `formatting` for Elixir Mode.
+(add-hook 'elixir-mode-hook (lambda() 
                               (add-hook 'before-save-hook 'elixir-format nil t)))
 
 ;; ==================================================================
@@ -187,16 +188,16 @@
 ;; ==================================================================
 (require 'auto-complete)
 ;; Reference [](https://github.com/auto-complete/auto-complete/issues/191)
-(defun plg-ac-config()
-  "Configure auto-complete AC Mode."
-  (setq ac-auto-start 1)
-  (setq ac-dwim t)
-  (setq ac-quick-help-display 0.5)
-  (setq ac-override-local-map nil)
-  (setq ac-ignore-case t)
+(defun plg-ac-config() 
+  "Configure auto-complete AC Mode." 
+  (setq ac-auto-start 1) 
+  (setq ac-dwim t) 
+  (setq ac-quick-help-display 0.5) 
+  (setq ac-override-local-map nil) 
+  (setq ac-ignore-case t) 
   (global-auto-complete-mode t))
-(mapc (lambda(mode)
-        (add-to-list 'ac-modes mode))
+(mapc (lambda(mode) 
+        (add-to-list 'ac-modes mode)) 
       '(erlang-mode latex-mode text-mode graphiz-dot-mode html-mode eshell-mode))
 (plg-ac-config)
 
@@ -207,24 +208,28 @@
 (set-face-background 'mode-line "purple")
 
 (add-hook 'emacs-lisp-mode-hook ;; Customise Mode Line color in emacs-lisp mode
-          (lambda ()
-            (face-remap-add-relative 'mode-line
-                                     '((:foreground "black"
-                                                    :background "yellow") mode-line))))
+          (lambda () 
+            (face-remap-add-relative 'mode-line 
+                                     '((:foreground "black" 
+                                                    :background "green") ))))
 
 ;; ==========================================================
 ;; Cursor
 ;; ==========================================================
 (setq-default cursor-type 'hbar)
 ;; (set-cursor-color "#7F00FF")
-;; (set-cursor-color "#00ff00")
 (set-cursor-color "#6f75ff")
-(setq-default x-stretch-cursor 1)
+(setq-default x-stretch-cursor t)
 
 ;; ==========================================================
 ;; Font lock mode
 ;; ==========================================================
 (font-lock-mode t)
+
+;; =============================================================================================
+;; Nlinum - Buffer Line Numbers Column
+;; =============================================================================================
+(global-nlinum-mode t)
 
 ;; ==========================================================
 ;; Color Theme Sanityinc Tomorrow
@@ -248,14 +253,14 @@
 ;; Key binding
 ;; ==========================================================
 (global-set-key (kbd "M-9") 'kill-whole-line)
-(global-set-key (kbd "C-x p")
-                (lambda()
-                  (interactive)
+(global-set-key (kbd "C-x p") 
+                (lambda() 
+                  (interactive) 
                   (other-window -1)))
 ;; Macos bind Meta with key 'cmd'
-(setq-default mac-option-modifier 'alt)
-(setq-default mac-command-modifier 'meta)
-(setq select-enable-clipboard t)
+;; (setq-default mac-option-modifier 'alt)
+;; (setq-default mac-command-modifier 'meta)
+;; (setq select-enable-clipboard t)
 
 ;; ==========================================================
 ;; Indentation
@@ -266,8 +271,9 @@
 ;; Default tab width `indent size` is 2
 (setq-default tab-width 2)
 ;; Indent according to current Major Mode on/before Save Hook
-(add-hook 'before-save-hook (lambda()
-                              (indent-according-to-mode)))
+;; (add-hook 'before-save-hook (lambda()
+;;                              (indent-according-to-mode)))
+
 ;; Enable auto indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -284,12 +290,12 @@
 (require 'whitespace-cleanup-mode)
 (require 'whitespace)
 ;; Whitespace Cleanup on/before Save Hook
-(add-hook 'before-save-hook (lambda()
-                              (whitespace-cleanup)))
+;; (add-hook 'before-save-hook (lambda()
+;;                              (whitespace-cleanup)))
 
 ;; Delete Trailing Whitespace on/before Save Hook
-(add-hook 'before-save-hook (lambda()
-                              (delete-trailing-whitespace)))
+;; (add-hook 'before-save-hook (lambda()
+;;                              (delete-trailing-whitespace)))
 
 ;; ==========================================================
 ;; Company Mode
@@ -299,15 +305,15 @@
 ;; ==========================================================
 ;; Image dimensions
 ;; ==========================================================
-;; Reference: https://www.emacswiki.org/emacs/image-dimensions-minor-mode.el
+;; Reference: [](https://www.emacswiki.org/emacs/image-dimensions-minor-mode.el)
 ;; Display the image dimensions in the mode line, when viewing an image.
-(load "$HOME/.emacs.d/image-dimensions/image-dimensions-minor-mode.el")
-(eval-after-load 'image-mode
+(add-to-list 'load-path  "~/.emacs.d/image-dimensions")
+(eval-after-load 'image-mode 
   '(require 'image-dimensions-minor-mode))
-(setq frame-title-format '(buffer-file-name ("%b (Emacs) %f" image-dimensions-minor-mode-dimensions)
-                                            (dired-directory
+(setq frame-title-format '(buffer-file-name ("%b (Emacs) %f" image-dimensions-minor-mode-dimensions) 
+                                            (dired-directory 
                                              (:eval (concat (buffer-name) " (Emacs) "
-                                                            dired-directory))
+                                                            dired-directory)) 
                                              ("%b (Emacs)"))))
 
 ;; ==========================================================
@@ -326,6 +332,11 @@
 ;; ==========================================================
 ;; Flycheck
 ;; ==========================================================
+;; See at the top: therefore the following two entries are not
+;; necessary
+;; (global-flycheck-mode t)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; Flycheck extension for Elixir support
 ;; Reference [](https://github.com/tomekowal/flycheck-mix)
 (require 'flycheck-mix)
@@ -345,7 +356,7 @@
 ;; ==========================================================
 ;; Python Mode
 ;; ==========================================================
-(require 'python-mode)
+;; (require 'python-mode)
 ;; Elpy
 ;; Reference [](https://elpy.readthedocs.io/en/latest/introduction.html\#installation)
 ;; (elpy-enable)
@@ -356,26 +367,84 @@
 ;; Dependency: ;; npm install --global eslint ;; add ~/.eslintrc with contents, e.g., { "extends": "eslint:recommended" }
 ;;             | prettier ;; npm install --global prettier
 ;; Reference [](https://github.com/ybiquitous/js-auto-format-mode)
+;; Configure formatting engine (either eslint or prettier), as follows
+;; Configure with `prettier` (which already evaluated at the top - see above):
+;; (custom-set-variables
+;;  '(js-auto-format-command "prettier")
+;;  '(js-auto-format-command-args "--write --single-quote --no-semi"))
+
 (setq-default js-indent-level 2)
-(add-hook 'js-mood-hook #'js-auto-format-mode)
-(custom-set-variables '(js-auto-format-command "prettier")
-                      '(js-auto-format-command-args "--write --single-quote --no-semi"))
+;; The following line is conflicting with the save hook
+;; (add-hook 'js-mood-hook #'js-auto-format-mode)
 
 ;; Run upon Save
-(defun js-auto-format-mode-before-save-hook()
-  "When Major Mode is js then apply the following on/before save."
-  (when (eq major-mode 'js-mode)
-    (whitespace-cleanup)
-    (delete-trailing-whitespace)
+(defun seriott-js-mode-save-hook() 
+  "Save hooks for js mode."
+  (when (eq major-mode 'js-mode) 
+    (whitespace-cleanup) 
+    (delete-trailing-whitespace) 
     (js-auto-format-execute)))
-(add-hook 'before-save-hook #'js-auto-format-mode-before-save-hook)
+(add-hook 'before-save-hook #'seriott-js-mode-save-hook)
 
 ;; ==========================================================
 ;; Web Mode
 ;; ==========================================================
-(setq-default web-mode-indent-style 2)
+;; Reference: [](http://web-mode.org/)
+;; Download it as follows
+;; $ wget https://raw.githubusercontent.com/fxbois/web-mode/master/web-mode.el
+(add-to-list 'load-path "~/.emacs.d/web-mode")
+(require 'web-mode)
+
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
+
+;; Configure engine(s) when file extension is too general or unknown
+(setq web-mode-engines-alist '(("php"    . "\\.phtml\\'") 
+                               ("blade"  . "\\.blade\\.")))
+
+;; Configure
+(add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
+
+;; associate a file path with content type
+(setq web-mode-content-types-alist '(("json" . "/some/path/.*\\.api\\'") 
+                                     ("xml"  . "/other/path/.*\\.api\\'") 
+                                     ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
+
+;; (setq-default web-mode-indent-style 2)
+
+(defun seriott-web-mode-hooks () 
+  "Hooks for Web mode." 
+  (setq web-mode-markup-indent-offset 2) 
+  (setq web-mode-code-indent-offset 2) 
+  (setq web-mode-attr-indent-offset 2) 
+  (setq web-mode-css-indent-offset 2) 
+  (setq web-mode-script-padding 2) 
+  (setq web-mode-style-padding 2) 
+  (setq web-mode-block-padding 4) 
+  (setq web-mode-enable-current-column-highlight t) 
+  (setq web-mode-enable-current-element-highlight t) 
+  (add-hook 'local-write-file-hooks (lambda() 
+                                      (whitespace-cleanup) 
+                                      (indent-according-to-mode) 
+                                      (indent-region (point-min) 
+                                                     (point-max) nil) 
+                                      (delete-trailing-whitespace) nil)))
+(add-hook 'web-mode-hook 'seriott-web-mode-hooks)
+
+;; =============================================================================================
+;; web-beautify formatter when web mode
+;; =============================================================================================
+;; (add-to-list 'load-path "~/.emacs.d/web-format")
+;; (require 'web-beautify) ;; Dependency: $ npm -g install js-beautify;; add file `~/.jsbeautifyrc` with contents {"indent-size": 2, "end_with_newline": true}
+;; Reference: [](https://github.com/yasuyk/web-beautify)
+
+;; (defun seriott-web-beautify-save-hooks ()
+;; "Save hooks with web-beautify for web mode."
+;;  ;; (!) Becarefull! Add one and only one for the same major mode.
+;; (web-beautify-html-buffer))
+;; (add-hook 'web-mode-hook (lambda()
+;;                            (add-hook 'before-save-hook 'seriott-web-beautify-save-hooks t t)))
 
 ;; ==========================================================
 ;; Dockerfile linter
@@ -388,23 +457,30 @@
 ;; Reference [](https://github.com/Yuki-Inoue/elisp-format/blob/master/elisp-format.el)
 (add-to-list 'load-path "~/.emacs.d/elisp-format")
 (require 'elisp-format)
-(defun emacs-lisp-mode-before-save-hook()
-  "When Major Mode is emacs-lisp then apply the following on/before save."
-  (when (eq major-mode 'emacs-lisp-mode)
-    (elisp-format-buffer)
-    (whitespace-cleanup)
-    (delete-trailing-whitespace)))
-(add-hook 'before-save-hook #'emacs-lisp-mode-before-save-hook)
+(defun ear-emacs-lisp-mode-save-hooks () 
+  "Save hooks for emacs-lisp mode."
+  (when (eq major-mode 'emacs-lisp-mode) 
+    (whitespace-cleanup) 
+    (delete-trailing-whitespace) 
+    (elisp-format-buffer)))
+(add-hook 'before-save-hook #'ear-emacs-lisp-mode-save-hooks)
 
 ;; ==========================================================
 ;; markdown Mode
 ;; ==========================================================
-(defun markdown-mode-before-save-hook()
-  "When Major Mode is markdown then apply the following on/before save."
-  (when (eq major-mode 'markdown-mode)
-    (whitespace-cleanup)
+(defun markdown-mode-save-hooks () 
+  "Save hooks for markdown mode."
+  (when (eq major-mode 'markdown-mode) 
+    (whitespace-cleanup) 
     (delete-trailing-whitespace)))
-(add-hook 'before-save-hook #'markdown-mode-before-save-hook)
+(add-hook 'before-save-hook #'markdown-mode-save-hooks)
+
+;; =============================================================================================
+;; =============================================================================================
+;;   (indent-region (point-min) (point-max) nil)
+;;   (untabify (point-min) (point-max))
+;;   (delete-trailing-whitespace)
+;;   (save-buffer)
 
 (provide '.emacs)
 ;;; .emacs ends here
