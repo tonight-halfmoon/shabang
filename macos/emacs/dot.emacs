@@ -47,8 +47,8 @@ When IS-PKG-RFS is nil refresh package list"
              ;; 'es-mode ;; elastic seach; Dependency: `brew install apache-spark`
              'auto-complete 'company 'whitespace-cleanup-mode
              ;; 'dictionary
-             'flycheck 'flycheck-rebar3 'flycheck-color-mode-line 'flycheck-checkbashisms
-             'flycheck-pos-tip ;; shows Flycheck error message in a graphical popup
+             'flycheck 'flycheck-rebar3 'flycheck-color-mode-line ;; colourise the mode line according to the Flycheck status
+             'flycheck-checkbashisms 'flycheck-pos-tip ;; shows Flycheck error message in a graphical popup
              'flycheck-title ;; shows Flycheck error messge in the frame title
              'flycheck-yamllint
              ;; 'flycheck-inline ;; shows Flycheck error message in the bugger, directly below their origin
@@ -89,12 +89,7 @@ When IS-PKG-RFS is nil refresh package list"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector [default default default italic underline success warning error])
- '(ansi-color-names-vector (vector "#515151" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc"
-                                   "#66cccc" "#cccccc"))
- '(beacon-color "#f2777a")
  '(custom-enabled-themes (quote (wombat)))
- '(custom-safe-themes (quote ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a"
-                              default)))
  '(fci-rule-color "#515151")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(flycheck-highlighting-mode (quote symbols))
@@ -104,6 +99,7 @@ When IS-PKG-RFS is nil refresh package list"
  '(js-auto-format-command-args "--write --single-quote --no-semi")
  '(mode-require-final-newline t)
  '(nlinum-format " %3i ")
+ '(nlinum-hightlight-current-line t)
  '(nlinum-widen t)
  '(package-selected-packages (quote (diredful projectile nlinum color-theme-modern elisp-lint
                                               markdown-mode groovy-mode gradle-mode
@@ -135,7 +131,8 @@ When IS-PKG-RFS is nil refresh package list"
                                  (320 . "#f99157")
                                  (340 . "#ffcc66")
                                  (360 . "#99cc99"))))
- '(vc-annotate-very-old-color nil))
+ '(vc-annotate-very-old-color nil)
+ '(window-divider-mode nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -170,17 +167,11 @@ When IS-PKG-RFS is nil refresh package list"
 
 (global-subword-mode t)
 
-;; ===================================================================================
+;; =============================================================================
 ;; Mode-line
-;; ===================================================================================
+;; =============================================================================
 (set-face-foreground 'mode-line "green")
 (set-face-background 'mode-line "purple")
-
-(add-hook 'emacs-lisp-mode-hook ;; Customise Mode Line color in emacs-lisp mode
-          (lambda ()
-            (face-remap-add-relative 'mode-line
-                                     '((:foreground "black"
-                                                    :background "green") ))))
 
 ;; ==========================================================
 ;; `Cursor'
@@ -205,6 +196,28 @@ When IS-PKG-RFS is nil refresh package list"
 ;; ==========================================================
 ;; Reference [](https://github.com/purcell/color-theme-sanityinc-tomorrow)
 ;; (require 'color-theme-sanityinc-tomorrow)
+;; Check `color-theme-modern' or `Color-Theme'
+
+;; ==================================================================
+;; `Color-Theme'
+;; ==================================================================
+;; Reference [](http://nongnu.org/color-theme)
+;; wget http://download.savannah.nongnu.org/release/color-theme/color-theme-6.6.0.tar.gz
+;; `7z x color-themr-6.6.0.tar.gz` into  '~/.emacs.d/color-theme' directory
+;; (add-to-list 'load-path "~/.emacs.d/color-theme/color-theme-6.6.0")
+;; (require 'color-theme)
+;; ;; customised theeme source "~/.emacs.d/color-theme/themes/color-theme-amado.el"
+;; (eval-after-load "color-theme" '(progn (color-theme-initialize)
+;;                                        (color-theme-arneson)
+;;                                       (color-theme-amado)))
+
+;; ==================================================================
+;; `Color-Theme-Modern'
+;; ==================================================================
+;; Referene: [](https://github.com/emacs-jp/replace-colorthemes)
+;; (load-theme 'railscast t t) ;; 'hober ;; 'ld-dark ;; 'oswald ;; 'matrix
+;; ;; 'railscast 'julie 'dark-font-lock
+;; (enable-theme 'railscast)
 
 ;; ==========================================================
 ;; `paren' Matching pairs - Show `paren` mode
@@ -250,6 +263,8 @@ When IS-PKG-RFS is nil refresh package list"
 ;; ==================================
 ;; `final-newline' Final New Line EOF
 ;; ==================================
+;; `mode-require-final-newline' is defined above. Check
+;; `custome-set-variables'
 (setq require-final-newline (quote mode-require-final-newline))
 
 ;; Either Indent according to Major Mode
@@ -282,6 +297,39 @@ When IS-PKG-RFS is nil refresh package list"
 ;; """
 ;; (require 'company)
 ;; (add-hook 'after-init-hook 'global-company-mode)
+
+;; ==========================================================
+;; `Flycheck'
+;; ==========================================================
+;; See at the top: therefore the following two entries are not
+;; necessary
+(global-flycheck-mode t)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; ==================================================================
+;; `auto-complete' AC mode
+;; ==================================================================
+;; Loading AC mode but enable it only for particular/selective
+;; major-mode list
+;; If a target major-mode prefers company, then do not that
+;; major-mode to the list of AC mode. Instead, configure company mode
+;; for that mojore-mode
+(require 'auto-complete)
+;; Reference [](https://github.com/auto-complete/auto-complete/issues/191)
+(defun plg-ac-config()
+  "Configure auto-complete AC Mode."
+  (setq ac-auto-start 1)
+  (setq ac-dwim t)
+  ;; (setq ac-quick-help-display 0.5)
+  ;; (setq ac-override-local-map nil)
+  (setq ac-ignore-case t)
+  (global-auto-complete-mode t))
+;; ad auto-complete for particular major mode
+(mapc (lambda(mode)
+        (add-to-list 'ac-modes mode))
+      '(latex-mode text-mode graphiz-dot-mode html-mode))
+;; eshell-mode
+(plg-ac-config)
 
 ;; ==============
 ;; `diredful' customise dired mode
@@ -318,7 +366,13 @@ When IS-PKG-RFS is nil refresh package list"
   "Hooks for Erlang mode."
   (setq erlang-indent-level 2)
   (setq allout-auto-activation t)
-  (setq erlang-indent-paranthesis 2))
+  ;;(setq erlang-indent-paranthesis 2)
+  (global-company-mode t)
+  (setq company-idle-delay 0.1)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-flip-when-above t)
+  (local-set-key (kbd "RET") 'newline-and-indent))
 (add-hook 'erlang-mode-hook 'seriott-erlang-mode-hooks)
 
 (defun seriott-erlang-mode-save-hooks ()
@@ -328,7 +382,7 @@ When IS-PKG-RFS is nil refresh package list"
   ;;(when (eq major-mode 'erlang-mode)
   (whitespace-cleanup)
   (delete-trailing-whitespace)
-  (erlang-indent-current-buffer)) ;;)
+  (erlang-indent-current-buffer))
 (add-hook 'erlang-mode-hook (lambda()
                               (add-hook 'before-save-hook 'seriott-erlang-mode-save-hooks t t)))
 
@@ -399,30 +453,12 @@ When IS-PKG-RFS is nil refresh package list"
 (require 'flycheck-mix)
 (flycheck-mix-setup)
 
-;; ==================================================================
+;; ====================================================================
 ;; `ac-alchemist' // native alchemist does not support aut-complete AC
-;; ==================================================================
+;; ====================================================================
 ;; Reference [](https://github.com/syohex/emacs-ac-alchemist)
 ;; (add-hook 'elixir-mode-hook 'ac-alchemist-setup)
-
-;; ==================================================================
-;; `auto-complete' AC mode
-;; ==================================================================
-(require 'auto-complete)
-;; Reference [](https://github.com/auto-complete/auto-complete/issues/191)
-(defun plg-ac-config()
-  "Configure auto-complete AC Mode."
-  (setq ac-auto-start 1)
-  (setq ac-dwim t)
-  (setq ac-quick-help-display 0.5)
-  (setq ac-override-local-map nil)
-  (setq ac-ignore-case t)
-  (global-auto-complete-mode t))
-;; ad auto-complete for particular major mode
-(mapc (lambda(mode)
-        (add-to-list 'ac-modes mode))
-      '(emacs-lisp-mode latex-mode text-mode graphiz-dot-mode html-mode eshell-mode))
-(plg-ac-config)
+;; Check Elixir mode above configured with alchemist to utilise company
 
 ;; ==========================================================
 ;; `Image' dimensions
@@ -450,14 +486,6 @@ When IS-PKG-RFS is nil refresh package list"
 ;; clone https://github.com/ensime/emacs-scala-mode.git into ~/.emacs.d/
 ;; (add-to-list 'load-path "~/.emacs.d/emacs-scala-mode/")
 ;; (require 'scala-mode)
-
-;; ==========================================================
-;; `Flycheck'
-;; ==========================================================
-;; See at the top: therefore the following two entries are not
-;; necessary
-;; (global-flycheck-mode t)
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Flycheck extension for Kotlin support
 ;; (require 'flycheck-kotlin)
@@ -576,20 +604,24 @@ When IS-PKG-RFS is nil refresh package list"
 (require 'elisp-format)
 (defun ear-emacs-lisp-mode-hooks ()
   "Hooks for emacs-lisp mode."
-  (when (eq major-mode 'emacs-lisp-mode)
-    (setq indent-tabs-mode nil)
-    (setq tab-width 2)
-    (setq allout-auto-activation t)))
-(add-hook 'after-init-hook (lambda ()
-                             (ear-emacs-lisp-mode-hooks)))
-(defun ear-emacs-lisp-mode-save-hooks ()
-  "Save hooks for emacs-lisp mode."
-  (when (eq major-mode 'emacs-lisp-mode)
-    (elisp-format-buffer)
-    (whitespace-cleanup)
-    (delete-trailing-whitespace)))
-(add-hook 'before-save-hook (lambda()
-                              (ear-emacs-lisp-mode-save-hooks)))
+  (setq indent-tabs-mode nil)
+  (setq tab-width 2)
+  (setq allout-auto-activation t)
+  (global-company-mode t)
+  (setq company-idle-delay 0.1)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-flip-when-above t)
+  ;; Customise Mode Line color in emacs-lisp mode
+  (face-remap-add-relative 'mode-line
+                           '((:foreground "black"
+                                          :background "green"))) ;;)
+  (add-hook 'before-save-hook (lambda()
+                                (elisp-format-buffer)
+                                (whitespace-cleanup)
+                                (delete-trailing-whitespace))))
+
+(add-hook 'emacs-lisp-mode-hook 'ear-emacs-lisp-mode-hooks)
 
 ;; ==========================================================
 ;; `Markdown'
