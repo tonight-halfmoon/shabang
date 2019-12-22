@@ -373,6 +373,7 @@
   ;; (setq company-minimum-prefix-length 2)
   ;; (setq company-tooltip-flip-when-above t)
   (local-set-key (kbd "RET") 'newline-and-indent)
+  (global-company-mode t)
   (add-hook 'after-init-hook 'global-company-mode)
   (add-hook 'before-save-hook (lambda()
                                 (whitespace-cleanup)
@@ -398,7 +399,7 @@
 ;; `Elixir' elixir mode
 ;;=============================================================================
 ;; Reference [](https://github.com/elixir-editors/emacs-elixir)
-;; (require 'elixir-mode)
+(require 'elixir-mode)
 
 ;; ===
 ;; Format
