@@ -6,9 +6,11 @@
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  (add-to-list 'package-pinned-packages '(alchemist . "melpa") t))
+  ;;(add-to-list 'package-pinned-packages '(alchemist . "melpa") t)
+  ;;(add-to-list 'package-pinned-packages '(elixir-mode . "melpa") t)
+  )
 (package-initialize)
 
 ;; ==============================================================================================
@@ -24,18 +26,11 @@
 ;; to tell MELPA where to look for the source. See above, the section before package-initialize.
 ;; Reference: [](https://stackoverflow.com/a/10095853)
 
-(defvar is-pkg-rfs? nil
-  "Is Package-refresh-contents has been evaluated? `IS-PKG-RFS?`.")
-
 (defun pkg-install
     (&rest
      tail)
-  "Prompt for each package in TAIL install with y/n.
-When IS-PKG-RFS is nil refresh package list"
-  (cond ((eq is-pkg-rfs? 'nil)
-         (package-refresh-contents
-          (setq is-pkg-rfs? t)))
-        (t "default"))
+  "Prompt for each package in TAIL install with y/n."
+  (unless package-archive-contents (package-refresh-contents))
   (mapcar (lambda (next)
             (if (package-installed-p next) nil (if (y-or-n-p (format "Install packge '%s'? " next))
                                                    (package-install next) next))) tail))
@@ -101,15 +96,15 @@ When IS-PKG-RFS is nil refresh package list"
  '(nlinum-format " %3i ")
  '(nlinum-hightlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (diredful projectile nlinum color-theme-modern elisp-lint
-                                              markdown-mode groovy-mode gradle-mode
-                                              js-auto-format-mode web-beautify elixir-mode
-                                              exec-path-from-shell flycheck-yamllint flycheck-title
-                                              flycheck-pos-tip flycheck-checkbashisms
-                                              flycheck-color-mode-line flycheck-rebar3 flycheck-mix
-                                              flycheck whitespace-cleanup-mode company auto-complete
-                                              dockerfile-mode docker-compose-mode docker yaml-mode
-                                              travis)))
+ '(package-selected-packages (quote (projectile diredful nlinum color-theme-modern elisp-lint
+                                                markdown-mode groovy-mode gradle-mode
+                                                js-auto-format-mode web-beautify flycheck-mix
+                                                alchemist elixir-mode exec-path-from-shell
+                                                flycheck-yamllint flycheck-title flycheck-pos-tip
+                                                flycheck-checkbashisms flycheck-color-mode-line
+                                                flycheck-rebar3 flycheck whitespace-cleanup-mode
+                                                company auto-complete dockerfile-mode
+                                                docker-compose-mode docker yaml-mode travis)))
  '(safe-local-variable-values (quote ((sh-indent-comment . t)
                                       (allout-layout . t))))
  '(vc-annotate-background nil)
@@ -288,12 +283,15 @@ When IS-PKG-RFS is nil refresh package list"
 ;;                              (delete-trailing-whitespace)))
 
 ;; ==========================================================
-;; `Company-mode'
+;; `Company-mode' COMPlete ANYthing !
 ;; ==========================================================
+;; Reference: [](http://company-mode.github.io/)
 ;; Either utilise `company-mode' or `auto-complete-mode'
 ;; """ To turn on for a particular major-mode, set dedicated variable as
 ;;     follows, in user-defined hooks,
-;;     (global-company-mode t)
+;;     (global-company-mode t) ;; with melpa
+;;      or
+;;     (add-hook 'after-init-hook 'global-company-mode) ;; with stable-melpa
 ;; """
 ;; (require 'company)
 ;; (add-hook 'after-init-hook 'global-company-mode)
@@ -323,13 +321,16 @@ When IS-PKG-RFS is nil refresh package list"
   ;; (setq ac-quick-help-display 0.5)
   ;; (setq ac-override-local-map nil)
   (setq ac-ignore-case t)
-  (global-auto-complete-mode t))
+  ;;(global-auto-complete-mode t)
+  )
 ;; ad auto-complete for particular major mode
 (mapc (lambda(mode)
         (add-to-list 'ac-modes mode))
       '(latex-mode text-mode graphiz-dot-mode html-mode))
 ;; eshell-mode
-(plg-ac-config)
+;; add the following evaluation to the defined hook in
+;; target major-mode hooks
+;; (plg-ac-config)
 
 ;; ==============
 ;; `diredful' customise dired mode
@@ -367,24 +368,17 @@ When IS-PKG-RFS is nil refresh package list"
   (setq erlang-indent-level 2)
   (setq allout-auto-activation t)
   ;;(setq erlang-indent-paranthesis 2)
-  (global-company-mode t)
-  (setq company-idle-delay 0.1)
-  (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
-  (setq company-tooltip-flip-when-above t)
-  (local-set-key (kbd "RET") 'newline-and-indent))
+  ;; (setq company-idle-delay 0.1)
+  ;; (setq company-tooltip-limit 10)
+  ;; (setq company-minimum-prefix-length 2)
+  ;; (setq company-tooltip-flip-when-above t)
+  (local-set-key (kbd "RET") 'newline-and-indent)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'before-save-hook (lambda()
+                                (whitespace-cleanup)
+                                (delete-trailing-whitespace)
+                                (erlang-indent-current-buffer))))
 (add-hook 'erlang-mode-hook 'seriott-erlang-mode-hooks)
-
-(defun seriott-erlang-mode-save-hooks ()
-  "Save hooks for Erlang mode."
-  ;; Either compare with `when` if majore-mode is 'erlang-mode
-  ;; or, use double add-hook as follows
-  ;;(when (eq major-mode 'erlang-mode)
-  (whitespace-cleanup)
-  (delete-trailing-whitespace)
-  (erlang-indent-current-buffer))
-(add-hook 'erlang-mode-hook (lambda()
-                              (add-hook 'before-save-hook 'seriott-erlang-mode-save-hooks t t)))
 
 ;; ==============================================================================================
 ;; `Wrangler'
@@ -404,7 +398,7 @@ When IS-PKG-RFS is nil refresh package list"
 ;; `Elixir' elixir mode
 ;;=============================================================================
 ;; Reference [](https://github.com/elixir-editors/emacs-elixir)
-(require 'elixir-mode)
+;; (require 'elixir-mode)
 
 ;; ===
 ;; Format
@@ -429,22 +423,24 @@ When IS-PKG-RFS is nil refresh package list"
 ;; ===
 ;; Config completiong with company and alchemist
 ;; ===
+;; Reference: [](https://github.com/tonini/alchemist.el)
+;; TODO: Check status of alchemist-server and start it
+(require 'company)
 (require 'alchemist)
 (defun che-elixir-mode-hooks ()
   "Hooks for Elixir mode."
+  (global-company-mode t)
+  (add-hook 'after-init-hook 'global-company-mode 'alchemist-mode)
   (setq company-idle-delay 0.1)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
   (setq company-tooltip-flip-when-above t)
-  (global-company-mode t)
-  (add-hook 'before-save-hook 'elixir-format nil t)
-  (add-hook 'after-init-hook 'alchemist-mode))
+  (add-hook 'before-save-hook 'elixir-format nil t))
 (add-hook 'elixir-mode-hook 'che-elixir-mode-hooks)
+(add-hook 'alchemist-iex-mode-hook (lambda()
+                                     (local-set-key (kbd "<tab>") 'company-complete)))
 
-(add-hook 'alchemist-iex-mode-hook '(lambda()
-                                      (local-set-key (kbd "<tab>") 'company-complete)))
-
-;; The following add-hook is a simpler but missing alchemist and company
+;; The following add-hook is simpler but missing alchemist and company
 ;; (add-hook 'elixir-mode-hook (lambda()
 ;;                              (add-hook 'before-save-hook 'elixir-format nil t)))
 
@@ -608,6 +604,7 @@ When IS-PKG-RFS is nil refresh package list"
   (setq tab-width 2)
   (setq allout-auto-activation t)
   (global-company-mode t)
+  (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0.1)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
