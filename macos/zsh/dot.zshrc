@@ -12,7 +12,7 @@
 # to run this:
 # chmod go-w "$(brew --prefix)/share"
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
@@ -30,7 +30,7 @@ ZSH_THEME="gentoo_cyan" # "aussiegeek" # "kphoen" "robbyrussell"
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=("robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -97,6 +97,11 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/sqlite/lib"
 export CPPFLAGS="-I/usr/local/opt/sqlite/include"
 
+
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/libpq/lib"
+export CPPFLAGS="-I/usr/local/opt/libpq/include"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -126,6 +131,11 @@ alias bu="cd && amado/ && ./mybrew && cd"
 alias fw="grep -rHn ${1} ."
 
 source <(kubectl completion zsh)
+
+## Key bindings and auto-completion
+## after evaluting `/usr/local/opt/fzf/install` the following
+## is automatically generated
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval $(gdircolors ~/.dircolors-solarized/dircolors.256dark)
 
