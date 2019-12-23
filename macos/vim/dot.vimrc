@@ -5,3 +5,4 @@ set shiftwidth=2
 colorscheme koehler
 set list
 set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
+set rtp+=/usr/local/opt/fzf

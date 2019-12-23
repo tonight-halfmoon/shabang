@@ -137,6 +137,8 @@ source <(kubectl completion zsh)
 ## is automatically generated
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+## Dir Color Solarized
+## git clone https://github.com/seebi/dircolors-solarized.git
 eval $(gdircolors ~/.dircolors-solarized/dircolors.256dark)
 
 . /usr/local/opt/asdf/asdf.sh
