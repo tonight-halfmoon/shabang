@@ -266,8 +266,13 @@
 ;; ====================================================================
 ;; `Flycheck'
 ;; ====================================================================
-(global-flycheck-mode t)
+(global-flycheck-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(cond ((string-equal system-type "darwin")
+       (progn (unless (package-installed-p 'exec-path-from-shell)
+                (package-install 'exec-path-from-shell))
+              (exec-path-from-shell-initialize))))
 
 ;; ==================
 ;; `Font-Lock' mode
@@ -341,6 +346,7 @@
 ;; ===================================================================================
 ;; Reference [](https://github.com/bbatsov/projectile)
 (projectile-mode +1)
+(defvar projectile-mode-map) ;; unless defined emacs complains on undefined `projectile-mode-map'
 (define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 
 ;; ==========================================================
@@ -430,9 +436,9 @@
                                                                                        ".formatter.exs")))
                                 (setq elixir-format-arguments nil)))
 
-;; ===
+;; ============================================
 ;; config completion with company on alchemist
-;; ===
+;; ============================================
 (require 'alchemist)
 ;; TODO: Check status of alchemist-server and start it
 (add-hook 'elixir-mode-hook 'company-mode t)
@@ -451,6 +457,12 @@
 
 ;; (add-hook 'alchemist-iex-mode-hook (lambda()
 ;;                                      (local-set-key (kbd "<tab>") 'company-complete)))
+
+;; Start Alchemist Server
+(unless (alchemist-server-process-p) "Connected" (alchemist-server-start "dev"))
+
+;; More on Usage:
+;; https://alchemist.readthedocs.io/en/latest/basic_usage/
 
 ;; Flycheck extension for Elixir support
 ;; Reference [](https://github.com/tomekowal/flycheck-mix)
@@ -804,6 +816,9 @@
 (add-hook 'before-save-hook 'ear-emacs-lisp-mode-save-hooks)
 
 
+;; It seems like so far not required.
+;; Just in case this is the remedy.
+;; Check global-flycheck above
 ;; (exec-path-from-shell-initialize)
 
 ;; emacs!
