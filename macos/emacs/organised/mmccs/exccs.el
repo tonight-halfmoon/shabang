@@ -39,11 +39,13 @@
 (require 'company)
 (require 'whitespace-cleanup-mode)
 (require 'whitespace)
+(require 'projectile)
+
 (global-flycheck-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (show-paren-mode 1)
 (projectile-mode +1)
-(defvar projectile-mode-map)
+
 (define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 (require 'elixir-mode)
 (add-to-list 'load-path "~/.emacs.d/web-mode")
@@ -78,7 +80,6 @@
 (add-hook 'elixir-mode-hook 'company-mode t)
 (defun che-elixir-mode-hooks ()
   "Hooks for Elixir mode."
-  (add-hook 'company-mode t)
   (setq company-idle-delay 0.1 company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2 company-tooltip-flip-when-above t)
   (add-hook 'after-init-hook 'alchemist-mode)
@@ -86,7 +87,7 @@
   ;; Start Alchemist Server
   (unless (alchemist-server-process-p) "Connected" (alchemist-server-start "dev")))
 (add-hook 'elixir-mode-hook 'che-elixir-mode-hooks)
-(add-hook 'elixir-mode-hook 'flyspell-mode)
+(add-hook 'elixir-mode-hook 'flyspell-prog-mode)
 
 ;; More on Usage:
 ;; https://alchemist.readthedocs.io/en/latest/basic_usage/

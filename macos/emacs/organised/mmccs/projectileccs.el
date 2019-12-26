@@ -8,8 +8,8 @@
 ;; Reference [](https://github.com/bbatsov/projectile)
 (unless (package-installed-p 'projectile)
   (package-install 'projectile))
+(require 'projectile)
 (projectile-mode +1)
-(defvar projectile-mode-map) ;; unless defined emacs complains on undefined `projectile-mode-map'
 (define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 
 

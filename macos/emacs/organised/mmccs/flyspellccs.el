@@ -6,21 +6,16 @@
 
 (unless (package-installed-p 'flyspell)
   (package-install 'flyspell))
+
+(require 'flyspell) ;; anyway, this is not necessary!
+
 (autoload 'flyspell-mode "flyspell" "on-the-fly check spelling." t)
-(add-hook 'LaTex-mode-hook 'flyspell-mode)
+;; For all text-derived modes, checke the following reference:
+;; [](https://github.com/emacs-mirror/emacs/tree/master/lisp/textmodes)
 (add-hook 'text-mode-hook 'flyspell-mode)
+;; Enable flyspell-prog-mode for all programming-derived modes
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-(declare-function ispell-init-process (ispell-init-process &optional args))
-(defun message-off-advice (oldfun &rest args)
-  "Quiet down messages in adviced OLDFUN ARGS."
-  (let ((message-off (make-symbol "message-off")))
-    (unwind-protect (progn (advice-add #'message
-                                       :around #'ignore (list 'name message-off))
-                           (apply oldfun args))
-      (advice-remove #'message message-off))))
-
-(advice-add #'ispell-init-process
-            :around #'message-off-advice)
 
 ;; flyspellccs!
 (provide 'flyspellccs)

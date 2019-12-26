@@ -31,7 +31,6 @@
 (require 'whitespace)
 (global-flycheck-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'emacs-lisp-mode-hook 'flyspell-mode)
 (show-paren-mode 1)
 (projectile-mode +1)
 (defvar projectile-mode-map)
@@ -67,6 +66,7 @@
                                 (delete-trailing-whitespace))))
 (add-hook 'erlang-mode-hook 'seriott-erlang-mode-save-hook)
 ;;(add-hook 'before-save-hook 'seriott-erlang-mode-save-hook t t)
+(add-hook 'erlang-mode-hook 'flyspell-prog-mode)
 
 
 (provide 'erlccs)

@@ -12,15 +12,20 @@
   (package-install 'flycheck-pos-tip))
 (unless (package-installed-p 'flycheck-title)
   (package-install 'flycheck-title))
+(unless (package-installed-p 'flycheck-inline)
+  (package-install 'flycheck-inline))
+(unless (package-installed-p 'exec-path-from-shell)
+  (package-install 'exec-path-from-shell))
+
 (global-flycheck-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+(require 'exec-path-from-shell)
 (cond ((string-equal system-type "darwin")
        (progn (unless (package-installed-p 'exec-path-from-shell)
-		(package-install 'exec-path-from-shell)
-		(exec-path-from-shell-initialize)
-		(defvar exec-path-from-shell-check-startup-files)
-		(setq exec-path-from-shell-check-startup-files nil)))))
+                (package-install 'exec-path-from-shell)
+                (exec-path-from-shell-initialize)
+                (setq exec-path-from-shell-check-startup-files nil)))))
 
 ;; flycheckccs!
 (provide 'flycheckccs)

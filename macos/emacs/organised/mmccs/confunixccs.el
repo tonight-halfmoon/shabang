@@ -1,5 +1,5 @@
 ;;; package --- Summary:
-;;; Customise `sh' / `Shell-script' mode
+;;; Customise `conf-unix' mode
 ;; Package-Requires:
 ;;; Commentary:
 ;;; Code:
@@ -9,18 +9,20 @@
   (package-install 'auto-complete))
 (unless (package-installed-p 'whitespace-cleanup-mode)
   (package-install 'whitespace-cleanup-mode))
+(unless (package-installed-p 'flyspell)
+  (package-install 'flyspell))
 
 (require 'auto-complete)
-(add-hook 'sh-mode-hook 'auto-complete-mode t)
-(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
 
-(defvar sh-basic-offset)
+(add-hook 'conf-unix-mode-hook 'auto-complete-mode t)
+(add-hook 'conf-unix-mode-hook 'flyspell-prog-mode)
+
 (defvar ac-override-local-map)
 
-(defun ni-sh-mode-hooks ()
-  "Hooks for sh mode."
-  (setq indent-tabs-mode nil)
-  (setq sh-basic-offset 2)
+(defun ni-config-unix-mode-hooks ()
+  "Hooks for conf-unix mode."
+  (setq require-final-newline (quote mode-require-final-newline))
+  (setq indent-tabs-mode nil tab-width 2)
   (setq ac-auto-start 1 ac-dwim t ac-quick-help-delay 0.1)
   (setq ac-override-local-map nil ac-ignore-case t)
   (add-hook 'before-save-hook (lambda()
@@ -28,13 +30,14 @@
                                                (point-max))
                                 (whitespace-cleanup)
                                 (delete-trailing-whitespace))))
-(add-hook 'sh-mode-hook 'ni-sh-mode-hooks)
+(add-hook 'conf-unix-mode-hook 'ni-config-unix-mode-hooks)
 
-;; shccs!
-(provide 'shccs)
+
+;; confunixccs!
+(provide 'confunixccs)
 
 ;; Local Variables:
 ;; coding: utf-8
 ;; indent-tabs-mode: nil
 ;; End:
-;;; shccs ends here
+;;; confunixccs ends here

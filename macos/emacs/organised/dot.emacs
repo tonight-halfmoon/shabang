@@ -33,6 +33,9 @@
 (require 'exccs)
 (require 'erlccs)
 (require 'shccs)
+(require 'mdccs)
+(require 'confunixccs)
+(require 'groovyccs)
 
 ;; ------
 ;; Nlinum
@@ -65,21 +68,11 @@
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (flycheck-color-mode-line-mode load-dir alchemist projectile
-                                                                   nlinum elisp-lint markdown-mode
-                                                                   diredful color-theme-modern
-                                                                   groovy-mode js-auto-format-mode
-                                                                   web-beautify flycheck-mix
-                                                                   elixir-mode exec-path-from-shell
-                                                                   flycheck-title flycheck-pos-tip
-                                                                   flycheck-color-mode-line
-                                                                   flycheck-checkbashisms
-                                                                   flycheck-yamllint flycheck-rebar3
-                                                                   flycheck whitespace-cleanup-mode
-                                                                   company auto-complete
-                                                                   dockerfile-mode
-                                                                   docker-compose-mode docker
-                                                                   travis)))
+ '(package-selected-packages (quote (diredful auto-complete nlinum exec-path-from-shell
+                                              flycheck-inline flycheck-title flycheck-pos-tip
+                                              flycheck-color-mode-line flycheck
+                                              whitespace-cleanup-mode company projectile
+                                              color-theme-modern load-dir)))
  '(safe-local-variable-values (quote ((sh-indent-comment . t)
                                       (allout-layout . t))))
  '(vc-annotate-background nil)
