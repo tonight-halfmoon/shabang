@@ -21,7 +21,6 @@
 (require 'company)
 (require 'whitespace-cleanup-mode)
 (require 'whitespace)
-(show-paren-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/elisp-format")
 (require 'elisp-format)

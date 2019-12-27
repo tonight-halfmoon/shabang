@@ -10,12 +10,8 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 (package-initialize)
 
-(unless package-archive-contents (package-refresh-contents))
 
-(unless (package-installed-p 'load-dir)
-  (package-install 'load-dir))
-(require 'load-dir)
-;; (load-dir-one "~/.emacs.d/mmccs")
+(unless package-archive-contents (package-refresh-contents))
 (add-to-list 'load-path "~/.emacs.d/mmccs")
 
 (require 'clipboardccs)
@@ -26,10 +22,12 @@
 (require 'flyspellccs)
 (require 'highlightchangesccs)
 (require 'indentationccs)
+(require 'highlightparenthesesccs)
+(require 'cursorccs)
 
-;; ----------------------------------------
-;; `Major-Mode-Specific-Configurations' ...
-;; ----------------------------------------
+;; ------------------------------------
+;; `Major-Mode-Specific-Configurations'
+;; ------------------------------------
 
 (require 'emacslispccs)
 (require 'exccs)
@@ -62,11 +60,6 @@
  '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector (vector "#2d2d2d" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc"
                                    "#66cccc" "#cccccc"))
- '(beacon-color "#f2777a")
- '(custom-enabled-themes (quote (tango-dark)))
- '(custom-safe-themes (quote ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a"
-                              "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d"
-                              default)))
  '(fci-rule-color "#515151")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(flycheck-highlighting-mode (quote symbols))
@@ -78,11 +71,12 @@
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (diredful auto-complete nlinum exec-path-from-shell
-                                              flycheck-inline flycheck-title flycheck-pos-tip
-                                              flycheck-color-mode-line flycheck
-                                              whitespace-cleanup-mode company projectile
-                                              color-theme-modern load-dir)))
+ '(package-selected-packages (quote (highlight-parentheses beacon diredful auto-complete nlinum
+                                                           exec-path-from-shell flycheck-inline
+                                                           flycheck-title flycheck-pos-tip
+                                                           flycheck-color-mode-line flycheck
+                                                           whitespace-cleanup-mode company
+                                                           projectile color-theme-modern load-dir)))
  '(safe-local-variable-values (quote ((sh-indent-comment . t)
                                       (allout-layout . t))))
  '(vc-annotate-background nil)
@@ -147,9 +141,9 @@
 ;; -----------
 (global-subword-mode t)
 
-;; ------------------------
+;; -----------------------
 ;; `Screen-Configurations'
-;; -------------------------
+;; -----------------------
 (setq inhibit-startup-screen t)
 (when window-system (set-frame-size (selected-frame) 64 51))
 
@@ -195,19 +189,16 @@
   (package-install 'diredful))
 (diredful-mode 1)
 
-;; ---------
-;; `Cursor'
-;; ---------
-(setq-default cursor-type 'hbar)
-;; (set-cursor-color "#7F00FF")
-(set-cursor-color "#6f75ff")
-(setq-default x-stretch-cursor t)
+;; ---------------
+;; `Edit-in-place'
+;; ---------------
+(delete-selection-mode t)
 
-;; ------------------------------------------
-;; `paren' Matching pairs - Show `paren` mode
-;; ------------------------------------------
-(show-paren-mode 1)
-;; (global-set-key "%" 'match-paren)
+;; ---------------
+;; `Debug' support
+;; ---------------
+(setq debug-on-error t)
+
 
 ;; emacs!
 (provide '.emacs)

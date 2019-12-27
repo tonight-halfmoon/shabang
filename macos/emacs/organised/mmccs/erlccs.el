@@ -31,7 +31,7 @@
 (require 'whitespace)
 (global-flycheck-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(show-paren-mode 1)
+
 (projectile-mode +1)
 (defvar projectile-mode-map)
 (define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
