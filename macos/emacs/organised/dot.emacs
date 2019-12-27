@@ -12,12 +12,6 @@
 
 (unless package-archive-contents (package-refresh-contents))
 
-;; ------------------------
-;; `Highlight-changes' mode
-;; ------------------------
-(add-hook 'text-mode-hook 'highlight-changes-mode)
-(add-hook 'prog-mode-hook 'highlight-changes-mode)
-
 (unless (package-installed-p 'load-dir)
   (package-install 'load-dir))
 (require 'load-dir)
@@ -172,6 +166,13 @@
 (add-hook 'text-mode-hook 'highlight-indentation-current-column-mode)
 (add-hook 'prog-mode-hook 'highlight-indentation-mode)
 (add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
+
+;; ------------------------
+;; `Highlight-changes' mode
+;; ------------------------
+(add-hook 'text-mode-hook 'highlight-changes-mode)
+;; Turn on for specific prog-derived major modes
+;; (add-hook 'prog-mode-hook 'highlight-changes-mode)
 
 ;; ----------------------------------
 ;; `final-newline' Final New Line EOF

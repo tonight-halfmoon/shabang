@@ -44,8 +44,6 @@
     (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'ear-emacs-lisp-mode-save-hooks)
 
-(remove-hook 'prog-mode-hook 'highlight-changes-mode)
-
 ;; emacslispccs!
 (provide 'emacslispccs)
 
