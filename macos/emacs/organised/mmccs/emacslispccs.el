@@ -17,14 +17,10 @@
   (package-install 'company))
 (unless (package-installed-p 'whitespace-cleanup-mode)
   (package-install 'whitespace-cleanup-mode))
-;;(unless (package-installed-p 'flycheck)
-;;   (package-install 'flycheck))
 
 (require 'company)
 (require 'whitespace-cleanup-mode)
 (require 'whitespace)
-;;(global-flycheck-mode)
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
 (show-paren-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/elisp-format")
@@ -47,6 +43,8 @@
     (whitespace-cleanup)
     (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'ear-emacs-lisp-mode-save-hooks)
+
+(remove-hook 'prog-mode-hook 'highlight-changes-mode)
 
 ;; emacslispccs!
 (provide 'emacslispccs)

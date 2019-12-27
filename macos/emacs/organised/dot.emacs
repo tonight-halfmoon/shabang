@@ -12,6 +12,12 @@
 
 (unless package-archive-contents (package-refresh-contents))
 
+;; ------------------------
+;; `Highlight-changes' mode
+;; ------------------------
+(add-hook 'text-mode-hook 'highlight-changes-mode)
+(add-hook 'prog-mode-hook 'highlight-changes-mode)
+
 (unless (package-installed-p 'load-dir)
   (package-install 'load-dir))
 (require 'load-dir)
@@ -36,6 +42,11 @@
 (require 'mdccs)
 (require 'confunixccs)
 (require 'groovyccs)
+(require 'fundamentalccs)
+(require 'eshellccs)
+(require 'dockerfileccs)
+(require 'jenkinsfileccs)
+(require 'yamlccs)
 
 ;; ------
 ;; Nlinum
@@ -148,29 +159,19 @@
 (require 'company)
 ;; (add-hook 'after-init-hook 'global-company-mode)
 
-;; ------------------------
-;; `auto-complete' AC mode
-;; ------------------------
-(unless (package-installed-p 'auto-complete)
-  (package-install 'auto-complete))
-(require 'auto-complete)
-;; Reference [](https://github.com/auto-complete/auto-complete/issues/191)
-(defun plug-ac ()
-  "Configure auto-complete AC Mode."
-  (defvar ac-override-local-map nil)
-  (setq ac-auto-start 1 ac-dwim t ac-quick-help-delay 0.1)
-  (setq ac-ignore-case t)
-  ;;(global-auto-complete-mode t)
-  )
-;; (mapc (lambda(mode)
-;;         (add-to-list 'ac-modes mode))
-;;       '(web-mode js-mode markdown-mode latex-mode text-mode eshell-mode yaml-mode fundamental-mode))
-;; (plug-ac)
-
 ;; -------------
 ;; `Indentation'
 ;; -------------
 ;; Major-mode-specific configurations
+;; highlight-indentation
+;; Reference:
+;; [](https://github.com/antonj/Highlight-Indentation-for-Emacs)
+(add-to-list 'load-path "~/.emacs.d/indent")
+(require 'highlight-indentation)
+(add-hook 'text-mode-hook 'highlight-indentation-mode)
+(add-hook 'text-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'prog-mode-hook 'highlight-indentation-mode)
+(add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
 
 ;; ----------------------------------
 ;; `final-newline' Final New Line EOF

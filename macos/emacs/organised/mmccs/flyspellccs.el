@@ -16,7 +16,6 @@
 ;; Enable flyspell-prog-mode for all programming-derived modes
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-
 ;; flyspellccs!
 (provide 'flyspellccs)
 
