@@ -10,7 +10,6 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 (package-initialize)
 
-
 (unless package-archive-contents (package-refresh-contents))
 (add-to-list 'load-path "~/.emacs.d/mmccs")
 
@@ -25,6 +24,7 @@
 (require 'highlightparenthesesccs)
 (require 'cursorccs)
 (require 'aggressiveindentccs)
+(require 'swiperccs)
 
 ;; ------------------------------------
 ;; `Major-Mode-Specific-Configurations'
