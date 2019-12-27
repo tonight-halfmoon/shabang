@@ -45,6 +45,7 @@
 (require 'yamlccs)
 (require 'changelogccs)
 (require 'javascriptccs)
+(require 'webfccs)
 
 ;; ------
 ;; Nlinum
