@@ -43,6 +43,8 @@
 (require 'dockerfileccs)
 (require 'jenkinsfileccs)
 (require 'yamlccs)
+(require 'changelogccs)
+(require 'javascriptccs)
 
 ;; ------
 ;; Nlinum
