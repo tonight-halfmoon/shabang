@@ -24,6 +24,7 @@
 (require 'indentationccs)
 (require 'highlightparenthesesccs)
 (require 'cursorccs)
+(require 'aggressiveindentccs)
 
 ;; ------------------------------------
 ;; `Major-Mode-Specific-Configurations'
@@ -198,7 +199,6 @@
 ;; `Debug' support
 ;; ---------------
 (setq debug-on-error t)
-
 
 ;; emacs!
 (provide '.emacs)
