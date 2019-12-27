@@ -44,7 +44,7 @@
 (defun customise-mode-line-hook ()
   "Customise Mode Line hook."
   (set-face-foreground 'mode-line "green")
-  (set-face-background 'mode-line "purple"))
+  (set-face-background 'mode-line "yellow"))
 (add-hook 'erlang-mode-hook #'customise-mode-line-hook)
 
 ;; colorthemeccs!

@@ -25,6 +25,7 @@
 (require 'cursorccs)
 (require 'aggressiveindentccs)
 (require 'swiperccs)
+(require 'smartmodelineccs)
 
 ;; ------------------------------------
 ;; `Major-Mode-Specific-Configurations'
@@ -61,6 +62,8 @@
  '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector (vector "#2d2d2d" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc"
                                    "#66cccc" "#cccccc"))
+ '(custom-safe-themes (quote ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
+                              default)))
  '(fci-rule-color "#515151")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(flycheck-highlighting-mode (quote symbols))
