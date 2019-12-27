@@ -36,6 +36,15 @@
 ;;                                       (color-theme-arneson)
 ;;                                       (color-theme-amado)))
 
+;; -----------
+;; `Mode-line'
+;; -----------
+
+(defun customise-mode-line-hook ()
+  "Customise Mode Line hook."
+  (set-face-foreground 'mode-line "green")
+  (set-face-background 'mode-line "purple"))
+(add-hook 'erlang-mode-hook #'customise-mode-line-hook)
 
 ;; colorthemeccs!
 (provide 'colorthemeccs)

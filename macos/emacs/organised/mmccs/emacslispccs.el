@@ -44,6 +44,18 @@
     (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'ear-emacs-lisp-mode-save-hooks)
 
+(defun highlight-changes-remove-after-save-hook()
+  "Remove recent change after save."
+  (add-hook 'after-save-hook (lambda())))
+
+(defun ear-emacs-lisp-mode-after-save-hooks ()
+  "After-Save hooks for emacs-lisp mode."
+  (when (eq major-mode 'emacs-lisp-mode)
+    (highlight-changes-remove-highlight (point-min)
+                                        (point-max))))
+;; Example on how to remove highlight-change after-save in emacs-lisp mode
+;;(add-hook 'after-save-hook 'ear-emacs-lisp-mode-after-save-hooks)
+
 ;; emacslispccs!
 (provide 'emacslispccs)
 

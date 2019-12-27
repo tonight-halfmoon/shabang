@@ -24,6 +24,8 @@
 (require 'keybindingsccs)
 (require 'flycheckccs)
 (require 'flyspellccs)
+(require 'highlightchangesccs)
+(require 'indentationccs)
 
 ;; ----------------------------------------
 ;; `Major-Mode-Specific-Configurations' ...
@@ -115,6 +117,11 @@
  '(company-tooltip-selection ((t
                                (:background "cyan"
                                             :weight bold))))
+ '(highlight-changes ((t
+                       (:foreground "yellow"))))
+ '(highlight-changes-delete ((t
+                              (:foreground "yellow"
+                                           :underline nil))))
  '(mode-line-buffer-id ((t
                          (:background "black"
                                       :foreground "cyan"
@@ -151,28 +158,6 @@
 (unless (package-installed-p 'company)
   (package-install 'company))
 (require 'company)
-;; (add-hook 'after-init-hook 'global-company-mode)
-
-;; -------------
-;; `Indentation'
-;; -------------
-;; Major-mode-specific configurations
-;; highlight-indentation
-;; Reference:
-;; [](https://github.com/antonj/Highlight-Indentation-for-Emacs)
-(add-to-list 'load-path "~/.emacs.d/indent")
-(require 'highlight-indentation)
-(add-hook 'text-mode-hook 'highlight-indentation-mode)
-(add-hook 'text-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'prog-mode-hook 'highlight-indentation-mode)
-(add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
-
-;; ------------------------
-;; `Highlight-changes' mode
-;; ------------------------
-(add-hook 'text-mode-hook 'highlight-changes-mode)
-;; Turn on for specific prog-derived major modes
-;; (add-hook 'prog-mode-hook 'highlight-changes-mode)
 
 ;; ----------------------------------
 ;; `final-newline' Final New Line EOF
@@ -193,12 +178,6 @@
 ;; `Font-Lock' mode
 ;; ----------------
 (font-lock-mode t)
-
-;; -----------
-;; `Mode-line'
-;; -----------
-(set-face-foreground 'mode-line "green")
-(set-face-background 'mode-line "purple")
 
 ;; ----------------------------------
 ;; `diredful'  - customise dired mode
