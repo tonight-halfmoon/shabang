@@ -15,7 +15,6 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/sunrise/.oh-my-zsh"
@@ -24,7 +23,7 @@ export ZSH="/Users/sunrise/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="gentoo_cyan" # "aussiegeek" # "kphoen" "robbyrussell"
+ZSH_THEME="gentoo_cyan" #"blinks-customised" #"aussiegeek" #"kphoen" #"robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -90,18 +89,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/usr/local/opt/erlang/lib/erlang/man:$MANPATH"
-
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/sqlite/lib"
-export CPPFLAGS="-I/usr/local/opt/sqlite/include"
-
-
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/libpq/lib"
-export CPPFLAGS="-I/usr/local/opt/libpq/include"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -111,6 +98,21 @@ export CPPFLAGS="-I/usr/local/opt/libpq/include"
 # else
 #   export EDITOR='mvim'
 # fi
+
+export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+
+# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/opt/erlang/lib/erlang/man:$MANPATH"
+
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/libpq/lib"
+export CPPFLAGS="-I/usr/local/opt/libpq/include"
+
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -130,8 +132,6 @@ alias ff="find . -print | grep -i ${1}"
 alias bu="cd && amado/ && ./mybrew && cd"
 alias fw="grep -rHn ${1} ."
 
-source <(kubectl completion zsh)
-
 ## Key bindings and auto-completion
 ## after evaluting `/usr/local/opt/fzf/install` the following
 ## is automatically generated
@@ -140,5 +140,7 @@ source <(kubectl completion zsh)
 ## Dir Color Solarized
 ## git clone https://github.com/seebi/dircolors-solarized.git
 eval $(gdircolors ~/.dircolors-solarized/dircolors.256dark)
+
+source <(kubectl completion zsh)
 
 . /usr/local/opt/asdf/asdf.sh
