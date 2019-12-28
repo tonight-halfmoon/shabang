@@ -46,6 +46,7 @@
 (require 'changelogccs)
 (require 'javascriptccs)
 (require 'webfccs)
+(require 'latexextraccs)
 
 ;; ------
 ;; Nlinum
