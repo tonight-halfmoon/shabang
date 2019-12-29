@@ -10,6 +10,11 @@
 (require 'flyspell) ;; anyway, this is not necessary!
 
 (autoload 'flyspell-mode "flyspell" "on-the-fly check spelling." t)
+
+(set-face-attribute 'flyspell-incorrect nil
+                    :underline t
+                    :foreground "green")
+
 ;; For all text-derived modes, checke the following reference:
 ;; [](https://github.com/emacs-mirror/emacs/tree/master/lisp/textmodes)
 (add-hook 'text-mode-hook 'flyspell-mode)

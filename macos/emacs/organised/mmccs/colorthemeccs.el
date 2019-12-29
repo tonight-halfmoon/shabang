@@ -21,6 +21,7 @@
 
 (load-theme 'julie t t) ;; hober ;; ld-dark ;; oswald ;; matrix ;; 'railscast 'dark-font-lock
 (enable-theme 'julie)
+
 ;; (load-theme 'dark-font-lock t t)
 ;; (enable-theme 'dark-font-lock)
 
@@ -40,7 +41,6 @@
 ;; -----------
 ;; `Mode-line'
 ;; -----------
-
 (defun customise-mode-line-hook ()
   "Customise Mode Line hook."
   (set-face-foreground 'mode-line "green")

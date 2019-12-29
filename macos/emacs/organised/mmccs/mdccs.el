@@ -4,35 +4,45 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
+;; --------------------------
+;; Underlying Configurations
+;; --------------------------
+;; `brew install markdown`
+;; but at least this does not support rendering a table.
+;; Use `pandoc':
+;; `brew install pandoc`
+;; Check variable `markdown-command' in emacs
+;; M-x describe-variable RET markdown-command RET
+;; By default, its value is `markdown`.
+;; Now, choose to customising it!
+;; Customise it in a way to utilising a target markdown converter.
+;; I'd like to utilise`pandoc'.
+;; See the configuration of the variable follows.
+;;
+;; References:
+;; [](https://github.com/jrblevin/markdown-mode/)
+;; [](https://pandoc.org/installing.html#macos)
+;; [](https://pandoc.org/MANUAL.html)
+;; [](http://endwan.com/blog/2013/10/06/about-emacs-calling-shell-command/)
+;; [](https://ronn-bundgaard.dk/blog/convert-docx-to-markdown-with-pandoc/)
+
 (unless (package-installed-p 'markdown-mode)
   (package-install 'markdown-mode))
-(unless (package-installed-p 'auto-complete)
-  (package-install 'auto-complete))
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
-(unless (package-installed-p 'flyspell)
-  (package-install 'flyspell))
 
-(require 'auto-complete)
+(require 'markdown-mode)
 
 ;;(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 ;;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-(add-hook 'markdown-mode-hook 'auto-complete-mode t)
-(add-hook 'markdown-mode-hook 'flyspell-mode)
-
-(defvar markdown-indent-on-enter)
-(defvar ac-override-local-map)
+(add-hook 'markdown-mode-hook 'company-mode t)
 
 (defun ser-markdown-mode-hooks ()
   "Hooks for Markdown mode."
+  (setq markdown-command "pandoc --from markdown --to html --ascii")
+  (setq markdown-indent-on-enter t)
   (setq indent-tabs-mode nil tab-width 2)
   (setq allout-auto-activation t)
-  (setq markdown-indent-on-enter t)
-  (setq ac-auto-start 1 ac-dwim t ac-quick-help-delay 0.1)
-  (setq ac-override-local-map nil ac-ignore-case t)
   (add-hook 'local-write-file-hooks (lambda()
                                       (indent-according-to-mode)
                                       (whitespace-cleanup)

@@ -12,7 +12,6 @@
 
 (require 'auto-complete)
 (add-hook 'sh-mode-hook 'auto-complete-mode t)
-(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
 
 (defvar sh-basic-offset)
 (defvar ac-override-local-map)

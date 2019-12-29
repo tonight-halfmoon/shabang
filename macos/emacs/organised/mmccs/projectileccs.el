@@ -2,6 +2,8 @@
 ;;; Customise `Projectile' mode
 ;; Package-Requires:
 ;;; Commentary:
+;; Reference:
+;; [Projectile](https://www.projectile.mx/en/latest/)
 ;;; Code:
 
 (unless package-archive-contents (package-refresh-contents))
