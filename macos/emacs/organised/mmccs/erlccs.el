@@ -36,11 +36,22 @@
 (defvar projectile-mode-map)
 (define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 
-(add-to-list 'load-path (car (file-expand-wildcards
-                              "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs")))
-(setq erlang-root-dir (car (file-expand-wildcards "/usr/local/Cellar/erlang/*/lib/erlang")))
-(setq exec-path (cons (car (file-expand-wildcards "/usr/local/Cellar/erlang/*/lib/erlang/bin"))
-                      exec-path))
+(cond ((string-equal system-type "berkeley-unix")
+       (progn (add-to-list 'load-path (car (file-expand-wildcards
+                                            "/usr/local/lib/erlang/lib/tools-*/emacs")))
+              (setq erlang-root-dir (car (file-expand-wildcards "/usr/local/lib/erlang")))
+              (setq exec-path (cons (car (file-expand-wildcards "/usr/local/lib/erlang/bin"))
+                                    exec-path)))))
+
+(cond ((string-equal system-type "darwin")
+       (progn (add-to-list 'load-path (car (file-expand-wildcards
+                                            "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs")))
+              (setq erlang-root-dir (car (file-expand-wildcards
+                                          "/usr/local/Cellar/erlang/*/lib/erlang")))
+              (setq exec-path (cons (car (file-expand-wildcards
+                                          "/usr/local/Cellar/erlang/*/lib/erlang/bin"))
+                                    exec-path)))))
+
 (require 'erlang-start)
 ;;(require 'erlang)
 
@@ -55,7 +66,7 @@
   (setq allout-auto-activation t)
   (setq erlang-indent-level 2 erlang-indent-parentesis 2)
   (local-set-key (kbd "RET") 'newline-and-indent))
-(add-hook 'erlang-mode-hook 'seriott-erlang-mode-hook)
+(add-hook 'erlang-mode-hook #'seriott-erlang-mode-hook)
 
 
 (defun seriott-erlang-mode-save-hook ()
@@ -63,8 +74,8 @@
   (add-hook 'before-save-hook (lambda()
                                 (erlang-indent-current-buffer)
                                 (whitespace-cleanup)
-                                (delete-trailing-whitespace))))
-(add-hook 'erlang-mode-hook 'seriott-erlang-mode-save-hook)
+                                (delete-trailing-whitespace)) t t))
+(add-hook 'erlang-mode-hook #'seriott-erlang-mode-save-hook)
 ;;(add-hook 'before-save-hook 'seriott-erlang-mode-save-hook t t)
 (add-hook 'erlang-mode-hook 'flyspell-prog-mode)
 

@@ -1,6 +1,15 @@
 ;;; package --- Summary:
 ;;; Customise `Spell' check
 ;; Package-Requires:
+;; Aspell checker installed on the underlying OS
+;; For a target language
+;; Check your LC_ALL, and LANG
+;; in FreeBSD: `.login_conf'
+;; Install
+;; FreeBSD:
+;; cd /usr/ports/textproc/aspell && make install clean && cd
+;; cd /usr/ports/textproc/en-aspell && make install clean && cd
+
 ;;; Commentary:
 ;;; Code:
 
@@ -13,7 +22,8 @@
 
 (set-face-attribute 'flyspell-incorrect nil
                     :underline t
-                    :foreground "green")
+                    :background "green"
+                    :foreground "black")
 
 ;; For all text-derived modes, checke the following reference:
 ;; [](https://github.com/emacs-mirror/emacs/tree/master/lisp/textmodes)

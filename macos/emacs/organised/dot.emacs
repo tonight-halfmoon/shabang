@@ -6,13 +6,13 @@
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t))
 (package-initialize)
 
 (unless package-archive-contents (package-refresh-contents))
 (add-to-list 'load-path "~/.emacs.d/mmccs")
 
+(require 'whitespaceccs)
 (require 'clipboardccs)
 (require 'colorthemeccs)
 (require 'projectileccs)
@@ -124,22 +124,10 @@
  '(highlight-changes-delete ((t
                               (:foreground "yellow"
                                            :underline nil))))
- '(mode-line-buffer-id ((t
-                         (:background "black"
-                                      :foreground "cyan"
-                                      :weight extra-bold
-                                      :height 0.9))))
  '(nlinum-current-line ((t
                          (:inherit linum
                                    :foreground "magenta"
-                                   :weight bold))))
- '(whitespace-big-indent ((t nil)))
- '(whitespace-space ((t
-                      (:bold t
-                             :foreground "green"))))
- '(whitespace-trailing ((t
-                         (:foreground "green"
-                                      :weight bold)))))
+                                   :weight bold)))))
 
 ;; -----------
 ;; `CamelCase'
@@ -167,14 +155,6 @@
 ;; `mode-require-final-newline' is defined above. Check
 ;; `custome-set-variables'
 (setq require-final-newline (quote mode-require-final-newline))
-
-;; ------------
-;; `Whitespace'
-;; ------------
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
-(require 'whitespace-cleanup-mode)
-(require 'whitespace)
 
 ;; ----------------
 ;; `Font-Lock' mode

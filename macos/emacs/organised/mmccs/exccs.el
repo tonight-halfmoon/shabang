@@ -42,7 +42,7 @@
 (require 'projectile)
 
 (global-flycheck-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode t t)
 
 (projectile-mode +1)
 
@@ -82,8 +82,8 @@
   "Hooks for Elixir mode."
   (setq company-idle-delay 0.1 company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2 company-tooltip-flip-when-above t)
-  (add-hook 'after-init-hook 'alchemist-mode)
-  (add-hook 'before-save-hook 'elixir-format nil t)
+  (add-hook 'after-init-hook #'alchemist-mode t t)
+  (add-hook 'before-save-hook #'elixir-format nil t)
   ;; Start Alchemist Server
   (unless (alchemist-server-process-p) "Connected" (alchemist-server-start "dev")))
 (add-hook 'elixir-mode-hook 'che-elixir-mode-hooks)
@@ -109,8 +109,8 @@
                                         (indent-according-to-mode)
                                         (indent-region (point-min)
                                                        (point-max) nil)
-                                        (delete-trailing-whitespace) nil))))
-(add-hook 'web-mode-hook 'seriott-web-mode-hooks)
+                                        (delete-trailing-whitespace) nil) t t)))
+(add-hook 'web-mode-hook #'seriott-web-mode-hooks)
 
 ;; Flycheck extension for Elixir support
 ;; Reference [](https://github.com/tomekowal/flycheck-mix)

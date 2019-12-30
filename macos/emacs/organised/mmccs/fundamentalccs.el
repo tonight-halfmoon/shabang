@@ -17,8 +17,8 @@
   (add-hook 'before-save-hook (lambda()
                                 (indent-region (point-min)
                                                (point-max))
-                                (whitespace-cleanup))))
-(add-hook 'fundamental-mode-hook 'what-fundamental-mode-hooks)
+                                (whitespace-cleanup)) t t))
+(add-hook 'fundamental-mode-hook #'what-fundamental-mode-hooks)
 
 ;; fundamentalccs!
 (provide 'fundamentalccs)

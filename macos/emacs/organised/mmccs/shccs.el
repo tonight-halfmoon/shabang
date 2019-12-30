@@ -26,8 +26,8 @@
                                 (indent-region (point-min)
                                                (point-max))
                                 (whitespace-cleanup)
-                                (delete-trailing-whitespace))))
-(add-hook 'sh-mode-hook 'ni-sh-mode-hooks)
+                                (delete-trailing-whitespace)) t t))
+(add-hook 'sh-mode-hook #'ni-sh-mode-hooks)
 
 ;; shccs!
 (provide 'shccs)

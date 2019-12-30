@@ -33,7 +33,7 @@
   (when (eq major-mode 'js-mode)
     (js-auto-format-mode)))
 (add-hook 'after-init-hook (lambda()
-                             (ser-js-af-hooks)))
+                             (ser-js-af-hooks)) t t)
 ;; Run upon Save
 (defun seriott-js-mode-save-hook ()
   "Save hooks for js mode."
@@ -41,7 +41,7 @@
     (whitespace-cleanup)
     (delete-trailing-whitespace)
     (js-auto-format-execute)))
-(add-hook 'before-save-hook #'seriott-js-mode-save-hook)
+(add-hook 'before-save-hook #'seriott-js-mode-save-hook t t)
 
 ;; Dependency on cl-lib
 ;; (add-to-list 'load-path "~/.emacs.d/cl-lib")

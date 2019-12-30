@@ -33,7 +33,7 @@
     (setq allout-auto-activation t)
     (setq company-idle-delay 0.1 company-tooltip-limit 10)
     (setq company-minimum-prefix-length 1 company-tooltip-flip-when-above t)))
-(add-hook 'after-init-hook 'ear-emacs-lisp-mode-hooks)
+(add-hook 'after-init-hook #'ear-emacs-lisp-mode-hooks t t)
 
 (defun ear-emacs-lisp-mode-save-hooks ()
   "Save hooks for emacs-lisp mode."
@@ -41,11 +41,11 @@
     (elisp-format-buffer)
     (whitespace-cleanup)
     (delete-trailing-whitespace)))
-(add-hook 'before-save-hook 'ear-emacs-lisp-mode-save-hooks)
+(add-hook 'before-save-hook #'ear-emacs-lisp-mode-save-hooks t t)
 
 (defun highlight-changes-remove-after-save-hook()
   "Remove recent change after save."
-  (add-hook 'after-save-hook (lambda())))
+  (add-hook 'after-save-hook (lambda()) t t))
 
 (defun ear-emacs-lisp-mode-after-save-hooks ()
   "After-Save hooks for emacs-lisp mode."
@@ -53,7 +53,7 @@
     (highlight-changes-remove-highlight (point-min)
                                         (point-max))))
 ;; Example on how to remove highlight-change after-save in emacs-lisp mode
-;;(add-hook 'after-save-hook 'ear-emacs-lisp-mode-after-save-hooks)
+;;(add-hook 'after-save-hook #'ear-emacs-lisp-mode-after-save-hooks t t)
 
 ;; emacslispccs!
 (provide 'emacslispccs)

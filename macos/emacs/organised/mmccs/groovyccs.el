@@ -27,8 +27,8 @@
   (add-hook 'before-save-hook (lambda()
                                 (indent-region (point-min)
                                                (point-max))
-                                (whitespace-cleanup))))
-(add-hook 'groovy-mode-hook 'jeng-groovy-mode-hooks)
+                                (whitespace-cleanup)) t t))
+(add-hook 'groovy-mode-hook #'jeng-groovy-mode-hooks)
 
 ;; groovyccs!
 (provide 'groovyccs)

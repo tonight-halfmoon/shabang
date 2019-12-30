@@ -21,8 +21,8 @@
   (setq company-idle-delay 0.1 company-tooltip-limit 10)
   (setq company-minimum-prefix-length 1 company-tooltip-flip-when-above t)
   (add-hook 'before-save-hook (lambda()
-                                (whitespace-cleanup))))
-(add-hook 'dockerfile-mode-hook 'jeng-dockerfile-mode-hooks)
+                                (whitespace-cleanup)) t t))
+(add-hook 'dockerfile-mode-hook #'jeng-dockerfile-mode-hooks)
 
 
 ;; dockerfileccs!

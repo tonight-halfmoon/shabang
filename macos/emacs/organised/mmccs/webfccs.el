@@ -44,8 +44,8 @@
                                         (indent-according-to-mode)
                                         (indent-region (point-min)
                                                        (point-max) nil)
-                                        (delete-trailing-whitespace) nil))))
-(add-hook 'web-mode-hook 'seriott-web-mode-hooks)
+                                        (delete-trailing-whitespace) nil) t t)))
+(add-hook 'web-mode-hook #'seriott-web-mode-hooks)
 
 ;; ====================================================================
 ;; `web-beautify' formatter  when web mode
@@ -77,8 +77,8 @@
   (setq indent-tabs-mode nil)
   (add-hook 'before-save-hook (lambda()
                                 (web-beautify-js-buffer)
-                                (whitespace-cleanup))))
-(add-hook 'json-mode-hook 'halloween-web-beautify-save-hook)
+                                (whitespace-cleanup)) t t))
+(add-hook 'json-mode-hook #'halloween-web-beautify-save-hook)
 
 ;; webfccs!
 (provide 'webfccs)

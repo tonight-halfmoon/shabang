@@ -13,9 +13,9 @@
   "Remove recent change after save."
   (add-hook 'after-save-hook (lambda()
                                (highlight-changes-remove-highlight (point-min)
-                                                                   (point-max)))))
+                                                                   (point-max))) t t))
 ;; Usage example:
-(add-hook 'groovy-mode-hook 'highlight-changes-remove-after-save-hook)
+(add-hook 'groovy-mode-hook #'highlight-changes-remove-after-save-hook)
 ;; Note: on emacs-lisp-mode you need to explicitly check current major mode is emacs-lisp
 ;; Check emacslispccs.el
 

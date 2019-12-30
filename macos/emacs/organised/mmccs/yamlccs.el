@@ -30,8 +30,8 @@
   (setq company-minimum-prefix-length 1 company-tooltip-flip-when-above t)
   (define-key yaml-mode-map "\C-m" 'newline-and-indent)
   (add-hook 'before-save-hook (lambda()
-                                (whitespace-cleanup))))
-(add-hook 'yaml-mode-hook 'mor-yaml-mode-hooks)
+                                (whitespace-cleanup)) t t))
+(add-hook 'yaml-mode-hook #'mor-yaml-mode-hooks)
 
 ;; yamlccs!
 (provide 'yamlccs)

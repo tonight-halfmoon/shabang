@@ -29,8 +29,8 @@
                                 (indent-region (point-min)
                                                (point-max))
                                 (whitespace-cleanup)
-                                (delete-trailing-whitespace))))
-(add-hook 'conf-unix-mode-hook 'ni-config-unix-mode-hooks)
+                                (delete-trailing-whitespace)) t t))
+(add-hook 'conf-unix-mode-hook #'ni-config-unix-mode-hooks)
 
 
 ;; confunixccs!

@@ -46,8 +46,8 @@
   (add-hook 'local-write-file-hooks (lambda()
                                       (indent-according-to-mode)
                                       (whitespace-cleanup)
-                                      (delete-trailing-whitespace) nil)))
-(add-hook 'markdown-mode-hook 'ser-markdown-mode-hooks)
+                                      (delete-trailing-whitespace) nil) t t))
+(add-hook 'markdown-mode-hook #'ser-markdown-mode-hooks)
 
 ;; mdccs!
 (provide 'mdccs)
