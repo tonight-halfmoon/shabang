@@ -8,8 +8,9 @@
 ;; highlight-indentation
 ;; Reference:
 ;; [](https://github.com/antonj/Highlight-Indentation-for-Emacs)
-(add-to-list 'load-path "~/.emacs.d/indent")
-(require 'highlight-indentation)
+(unless (package-installed-p 'highlight-indentation)
+  (package-install 'highlight-indentation))
+
 (add-hook 'text-mode-hook 'highlight-indentation-mode)
 (add-hook 'text-mode-hook 'highlight-indentation-current-column-mode)
 (add-hook 'prog-mode-hook 'highlight-indentation-mode)
