@@ -47,6 +47,7 @@
 (require 'javascriptccs)
 (require 'webfccs)
 (require 'latexextraccs)
+(require 'gitmodesccs)
 
 ;; ------
 ;; Nlinum
