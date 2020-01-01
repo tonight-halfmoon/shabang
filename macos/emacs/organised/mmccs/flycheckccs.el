@@ -12,13 +12,17 @@
   (package-install 'flycheck-pos-tip))
 (unless (package-installed-p 'flycheck-title)
   (package-install 'flycheck-title))
-(unless (package-installed-p 'flycheck-inline)
-  (package-install 'flycheck-inline))
 (unless (package-installed-p 'exec-path-from-shell)
   (package-install 'exec-path-from-shell))
 
 (global-flycheck-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(require 'flycheck)
+(require 'flycheck-color-mode-line)
+
+(setq flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
+(setq flycheck-highlighting-mode (quote symbols))
 
 (require 'exec-path-from-shell)
 (cond ((string-equal system-type "darwin")

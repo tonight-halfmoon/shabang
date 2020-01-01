@@ -4,7 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'auto-complete)
   (package-install 'auto-complete))
 (require 'auto-complete)

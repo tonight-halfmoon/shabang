@@ -7,6 +7,11 @@
 (add-hook 'text-mode-hook 'highlight-changes-mode)
 (add-hook 'prog-mode-hook 'highlight-changes-mode)
 
+(custom-set-faces '(highlight-changes ((t
+                                        (:foreground "yellow"))))
+                  '(highlight-changes-delete ((t
+                                               (:foreground "yellow"
+                                                            :underline nil)))))
 ;; Function to remove highlight-changes after-save
 ;; Usage: Add it to a target major-mode's hook
 (defun highlight-changes-remove-after-save-hook()

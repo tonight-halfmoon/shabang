@@ -20,10 +20,15 @@
 ;;             | prettier ;; npm install --global prettier
 ;; Reference [](https://github.com/ybiquitous/js-auto-format-mode)
 ;; Configure formatting engine (either eslint or prettier), as follows
-;; Configure with `prettier` (which already evaluated at the top - see above):
+;; Configure with `prettier` in custom-set-variables as follows:
 ;; (custom-set-variables
 ;;  '(js-auto-format-command "prettier")
 ;;  '(js-auto-format-command-args "--write --single-quote --no-semi"))
+;; For clarity, it is configured here as follows:
+
+(setq js-auto-format-command "prettier")
+(setq js-auto-format-command-args "--write --single-quote --no-semi")
+
 (setq-default js-indent-level 2)
 ;; The following line is conflicting with the save hook
 ;; (add-hook 'js-mood-hook #'js-auto-format-mode)

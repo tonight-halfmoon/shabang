@@ -67,12 +67,7 @@
  '(custom-safe-themes (quote ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
                               default)))
  '(fci-rule-color "#515151")
- '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
- '(flycheck-highlighting-mode (quote symbols))
  '(frame-background-mode (quote dark))
- '(global-flycheck-mode t)
- '(js-auto-format-command "prettier")
- '(js-auto-format-command-args "--write --single-quote --no-semi")
  '(mode-require-final-newline t)
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
@@ -120,11 +115,6 @@
  '(company-tooltip-selection ((t
                                (:background "cyan"
                                             :weight bold))))
- '(highlight-changes ((t
-                       (:foreground "yellow"))))
- '(highlight-changes-delete ((t
-                              (:foreground "yellow"
-                                           :underline nil))))
  '(nlinum-current-line ((t
                          (:inherit linum
                                    :foreground "magenta"

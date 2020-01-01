@@ -4,13 +4,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'auto-complete)
   (package-install 'auto-complete))
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
-(unless (package-installed-p 'flyspell)
-  (package-install 'flyspell))
 
 (require 'auto-complete)
 

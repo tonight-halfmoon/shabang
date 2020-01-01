@@ -4,14 +4,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'yaml-mode)
   (package-install 'yaml-mode))
 
 (require 'yaml-mode)
 (require 'company)
-(require 'whitespace-cleanup-mode)
-(require 'whitespace)
 
 (add-hook 'yaml-mode-hook 'company-mode t)
 ;; YAML mode is a text-derived mode, check reference

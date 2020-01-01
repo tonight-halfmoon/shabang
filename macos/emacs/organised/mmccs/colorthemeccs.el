@@ -5,8 +5,6 @@
 ;; Choose one of the options
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
-
 ;; --------------------------------
 ;; `Color-Theme-Sanityinc-Tomorrow'
 ;; ================================

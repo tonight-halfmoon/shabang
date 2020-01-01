@@ -5,48 +5,17 @@
 ;; Alchemist server will start on "dev" mode
 ;;; Code:
 
-(require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  ;; (add-to-list 'package-pinned-packages '(elixir-mode . "melpa") t)
-  ;; (add-to-list 'package-pinned-packages '(alchemist . "melpa") t)
-  )
-(package-initialize)
-
-(unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'elixir-mode)
   (package-install 'elixir-mode))
-(unless (package-installed-p 'company)
-  (package-install 'company))
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
 (unless (package-installed-p 'alchemist)
   (package-install 'alchemist))
-(unless (package-installed-p 'flycheck)
-  (package-install 'flycheck))
 (unless (package-installed-p 'flycheck-mix)
   (package-install 'flycheck-mix))
-(unless (package-installed-p 'projectile)
-  (package-install 'projectile))
 (cond ((string-equal system-type "darwin")
        (progn (unless (package-installed-p 'exec-path-from-shell)
                 (package-install 'exec-path-from-shell)
                 (exec-path-from-shell-initialize)))))
 
-(require 'company)
-(require 'whitespace-cleanup-mode)
-(require 'whitespace)
-(require 'projectile)
-
-(global-flycheck-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode t t)
-
-(projectile-mode +1)
-
-(define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 (require 'elixir-mode)
 (add-to-list 'load-path "~/.emacs.d/web-mode")
 (require 'web-mode)
@@ -91,26 +60,6 @@
 
 ;; More on Usage:
 ;; https://alchemist.readthedocs.io/en/latest/basic_usage/
-
-(defun seriott-web-mode-hooks ()
-  "Hooks for Web mode."
-  (when (eq major-mode 'web-mode)
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-attr-indent-offset 2)
-    (setq web-mode-css-indent-offset 2)
-    (setq web-mode-script-padding 2)
-    (setq web-mode-style-padding 2)
-    (setq web-mode-block-padding 4)
-    (setq web-mode-enable-current-element-highlight t)
-    (setq web-mode-enable-current-column-highlight t)
-    (add-hook 'local-write-file-hooks (lambda ()
-                                        (whitespace-cleanup)
-                                        (indent-according-to-mode)
-                                        (indent-region (point-min)
-                                                       (point-max) nil)
-                                        (delete-trailing-whitespace) nil) t t)))
-(add-hook 'web-mode-hook #'seriott-web-mode-hooks)
 
 ;; Flycheck extension for Elixir support
 ;; Reference [](https://github.com/tomekowal/flycheck-mix)

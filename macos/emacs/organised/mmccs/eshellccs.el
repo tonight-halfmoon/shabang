@@ -4,11 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
-(unless (package-installed-p 'company)
-  (package-install 'company))
-(require 'company)
-
 (defun beautiful-eshell-mode-hooks ()
   "Hooks for 'fundamental-mode'.")
 (add-hook 'eshell-mode-hook 'beautiful-eshell-mode-hooks)

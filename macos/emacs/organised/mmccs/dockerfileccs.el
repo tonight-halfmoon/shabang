@@ -4,16 +4,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'dockerfile-mode)
   (package-install 'dockerfile-mode))
-(unless (package-installed-p 'company)
-  (package-install 'company))
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
+
+(setq auto-mode-alist
+      (append
+       '(("\\dockerfileccs.el\\'" . emacs-lisp-mode))
+       auto-mode-alist))
 
 (require 'company)
-
 (add-hook 'dockerfile-mode-hook 'company-mode t)
 (defun jeng-dockerfile-mode-hooks ()
   "Hooks for Dockerfile mode."

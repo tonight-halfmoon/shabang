@@ -6,7 +6,6 @@
 ;; [Projectile](https://www.projectile.mx/en/latest/)
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
 ;; Reference [](https://github.com/bbatsov/projectile)
 (unless (package-installed-p 'projectile)
   (package-install 'projectile))

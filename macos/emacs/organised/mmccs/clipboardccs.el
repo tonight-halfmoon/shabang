@@ -7,9 +7,6 @@
 ;; Reference:
 ;; [](https:gist.github.com/the-kenny/267162)
 
-(unless (package-installed-p 'diredful)
-  (package-install 'diredful))
-
 (require 'diredful)
 
 (defun copy-from-osx ()

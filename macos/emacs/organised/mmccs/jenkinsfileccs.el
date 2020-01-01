@@ -4,15 +4,19 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq auto-mode-alist
+      (append
+       '(("\\jenkinsfileccs.el\\'" . emacs-lisp-mode))
+       auto-mode-alist))
+
 ;; ==============================
-;; `Jenkinsfile' mode (scriptive)
+;; `Jenkinsfile' mode (`scriptive')
 ;; ==============================
 ;; wget https://raw.githubusercontent.com/john2x/jenkinsfile-mode/master/jenkinsfile-mode.el
 (add-to-list 'load-path "~/.emacs.d/jenkinsfile-mode")
 (require 'jenkinsfile-mode)
 
-
-;; jenkinsfileccs!
+;; jenkinsfileccs.el!
 (provide 'jenkinsfileccs)
 
 ;; Local Variables:

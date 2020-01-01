@@ -8,6 +8,7 @@
 ;; highlight-indentation
 ;; Reference:
 ;; [](https://github.com/antonj/Highlight-Indentation-for-Emacs)
+
 (unless (package-installed-p 'highlight-indentation)
   (package-install 'highlight-indentation))
 

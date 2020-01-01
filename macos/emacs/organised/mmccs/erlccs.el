@@ -4,23 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
-(package-initialize)
-
-(unless package-archive-contents (package-refresh-contents))
-(unless (package-installed-p 'company)
-  (package-install 'company))
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
-(unless (package-installed-p 'flycheck)
-  (package-install 'flycheck))
-(unless (package-installed-p 'projectile)
-  (package-install 'projectile))
 (cond ((string-equal system-type "darwin")
        (progn (unless (package-installed-p 'exec-path-from-shell)
                 (package-install 'exec-path-from-shell)

@@ -4,13 +4,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'groovy-mode)
   (package-install 'groovy-mode))
-(unless (package-installed-p 'company)
-  (package-install 'company))
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
 
 (require 'company)
 

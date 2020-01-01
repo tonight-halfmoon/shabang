@@ -4,11 +4,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'auto-complete)
   (package-install 'auto-complete))
-(unless (package-installed-p 'whitespace-cleanup-mode)
-  (package-install 'whitespace-cleanup-mode))
 
 (require 'auto-complete)
 (add-hook 'sh-mode-hook 'auto-complete-mode t)

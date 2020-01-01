@@ -8,6 +8,7 @@
 ;; Refernce:
 ;; [](https://github.com/Malabarba/beacon)
 
+
 (unless (package-installed-p 'beacon)
   (package-install 'beacon))
 (require 'beacon)
