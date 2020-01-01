@@ -26,6 +26,7 @@
 (require 'aggressiveindentccs)
 (require 'swiperccs)
 (require 'smartmodelineccs)
+(require 'codingccs)
 
 ;; ------------------------------------
 ;; `Major-Mode-Specific-Configurations'
@@ -47,6 +48,7 @@
 (require 'webfccs)
 (require 'latexextraccs)
 (require 'gitmodesccs)
+(require 'pyccs)
 
 ;; ------
 ;; Nlinum
