@@ -9,6 +9,9 @@
 (unless (package-installed-p 'gitconfig-mode)
   (package-install 'gitconfig-mode))
 
+(unless (package-installed-p 'gitignore-mode)
+  (package-install 'gitignore-mode))
+
 ;; gitmodesccs!
 (provide 'gitmodesccs)
 

@@ -38,7 +38,6 @@
 (require 'mdccs)
 (require 'confunixccs)
 (require 'groovyccs)
-(require 'fundamentalccs)
 (require 'eshellccs)
 (require 'dockerfileccs)
 (require 'jenkinsfileccs)
