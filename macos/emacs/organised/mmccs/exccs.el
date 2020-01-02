@@ -52,6 +52,9 @@
   (setq company-idle-delay 0.1 company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2 company-tooltip-flip-when-above t)
   (add-hook 'after-init-hook #'alchemist-mode t t)
+  (add-hook 'before-save-hook (lambda()
+                                (whitespace-cleanup)
+                                (delete-trailing-whitespace)) t t)
   (add-hook 'before-save-hook #'elixir-format nil t)
   ;; Start Alchemist Server
   (unless (alchemist-server-process-p) "Connected" (alchemist-server-start "dev")))
