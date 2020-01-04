@@ -4,6 +4,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'auto-complete)
   (package-install 'auto-complete))
 
@@ -23,10 +25,9 @@
   (add-hook 'before-save-hook (lambda()
                                 (indent-region (point-min)
                                                (point-max))
-                                (whitespace-cleanup)
-                                (delete-trailing-whitespace)) t t))
-(add-hook 'conf-unix-mode-hook #'ni-config-unix-mode-hooks)
+                                (whitespace-cleanup)) t t))
 
+(add-hook 'conf-unix-mode-hook #'ni-config-unix-mode-hooks)
 
 ;; confunixccs!
 (provide 'confunixccs)

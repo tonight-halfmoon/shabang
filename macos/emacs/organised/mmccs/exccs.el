@@ -1,22 +1,38 @@
 ;;; package --- Summary:
 ;;; Customise `Elixir' mode
 ;; Package-Requires:
+;; `mix format'
+;;
 ;;; Commentary:
+;;
 ;; Alchemist server will start on "dev" mode
+;; More on `Usage' of `alchemist':
+;; https://alchemist.readthedocs.io/en/latest/basic_usage/
+;;
+;; Flycheck extension for Elixir support
+;; Reference [](https://github.com/tomekowal/flycheck-mix)
+;;
 ;;; Code:
+
+(require 'package)
+
+(add-to-list 'package-pinned-packages '(elixir-mode . "melpa") t)
+(add-to-list 'package-pinned-packages '(flycheck-mix . "melpa") t)
+(add-to-list 'package-pinned-packages '(alchemist . "melpa") t)
+
+(package-initialize)
+
+(unless package-archive-contents (package-refresh-contents))
 
 (unless (package-installed-p 'elixir-mode)
   (package-install 'elixir-mode))
+
 (unless (package-installed-p 'alchemist)
   (package-install 'alchemist))
+
 (unless (package-installed-p 'flycheck-mix)
   (package-install 'flycheck-mix))
-(cond ((string-equal system-type "darwin")
-       (progn (unless (package-installed-p 'exec-path-from-shell)
-                (package-install 'exec-path-from-shell)
-                (exec-path-from-shell-initialize)))))
 
-(require 'elixir-mode)
 (add-to-list 'load-path "~/.emacs.d/web-mode")
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
@@ -24,10 +40,6 @@
 ;; ======
 ;; Format
 ;; ======
-
-;; repo/file `elixir-format.el` Cloned into ...
-(add-to-list 'load-path "~/.emacs.d/elixir-format")
-(require 'elixir-format)
 ;; The following hook assumes `.formatter.exs' file exists in the directory
 ;; containing the target source code
 ;; References:
@@ -41,33 +53,38 @@
                                                                                        ".formatter.exs")))
                                 (setq elixir-format-arguments nil)))
 
-;; ===
-;; config completion with company on alchemist
-;; ===
-(require 'alchemist)
-;; TODO: Check status of alchemist-server and start it
-(add-hook 'elixir-mode-hook 'company-mode t)
 (defun che-elixir-mode-hooks ()
   "Hooks for Elixir mode."
+
+  ;; It looks strange -- `tab-width=5'!
+  ;; It is to enable developers write `doctest' in elixir
+  ;; Check [Elixir-Doctests](https://elixir-lang.org/getting-started/mix-otp/docs-tests-and-with.html)
+  ;; In order to specify an indentation of four spaces hit
+  ;; C-q TAB in your @moduledoc ~S"""
+  (setq tab-width 5)
+
+  ;; Provide a default indent upon a new line
+  (local-set-key (kbd "RET") 'newline-and-indent)
+
+  ;; A TAB is a couple of spaces
+  (setq indent-tabs-mode nil)
+  (company-mode)
   (setq company-idle-delay 0.1 company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2 company-tooltip-flip-when-above t)
-  (add-hook 'after-init-hook #'alchemist-mode t t)
+  (alchemist-mode)
+  (alchemist-phoenix-mode)
+  (flyspell-prog-mode)
+  (flycheck-mix-setup)
   (add-hook 'before-save-hook (lambda()
-                                (whitespace-cleanup)
-                                (delete-trailing-whitespace)) t t)
+                                (untabify (point-min)
+                                          (point-max))
+                                (whitespace-cleanup)) t t)
   (add-hook 'before-save-hook #'elixir-format nil t)
+
   ;; Start Alchemist Server
   (unless (alchemist-server-process-p) "Connected" (alchemist-server-start "dev")))
-(add-hook 'elixir-mode-hook 'che-elixir-mode-hooks)
-(add-hook 'elixir-mode-hook 'flyspell-prog-mode)
 
-;; More on Usage:
-;; https://alchemist.readthedocs.io/en/latest/basic_usage/
-
-;; Flycheck extension for Elixir support
-;; Reference [](https://github.com/tomekowal/flycheck-mix)
-(require 'flycheck-mix)
-(flycheck-mix-setup)
+(add-hook 'elixir-mode-hook #'che-elixir-mode-hooks)
 
 ;; exccs!
 (provide 'exccs)

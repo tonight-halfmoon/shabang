@@ -4,10 +4,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq auto-mode-alist
-      (append
-       '(("\\jenkinsfileccs.el\\'" . emacs-lisp-mode))
-       auto-mode-alist))
+(setq auto-mode-alist (append '(("\\jenkinsfileccs.el\\'" . emacs-lisp-mode)) auto-mode-alist))
 
 ;; ==============================
 ;; `Jenkinsfile' mode (`scriptive')

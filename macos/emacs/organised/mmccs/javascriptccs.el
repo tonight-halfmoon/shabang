@@ -4,6 +4,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'js-auto-format-mode)
   (package-install 'js-auto-format-mode))
 
@@ -26,32 +28,23 @@
 ;;  '(js-auto-format-command-args "--write --single-quote --no-semi"))
 ;; For clarity, it is configured here as follows:
 
-(setq js-auto-format-command "prettier")
-(setq js-auto-format-command-args "--write --single-quote --no-semi")
-
-(setq-default js-indent-level 2)
-;; The following line is conflicting with the save hook
-;; (add-hook 'js-mood-hook #'js-auto-format-mode)
-
-(defun ser-js-af-hooks ()
-  "Hooks for js mode with js auto-format."
-  (when (eq major-mode 'js-mode)
-    (js-auto-format-mode)))
-(add-hook 'after-init-hook (lambda()
-                             (ser-js-af-hooks)) t t)
 ;; Run upon Save
-(defun seriott-js-mode-save-hook ()
+(defun seriott-js-save-hooks ()
   "Save hooks for js mode."
-  (when (eq major-mode 'js-mode)
-    (whitespace-cleanup)
-    (delete-trailing-whitespace)
-    (js-auto-format-execute)))
-(add-hook 'before-save-hook #'seriott-js-mode-save-hook t t)
+  (setq js-auto-format-command "prettier")
+  (setq js-auto-format-command-args "--write --single-quote --no-semi")
+  (setq-default js-indent-level 2)
+  (add-hook 'after-init-hook (lambda()
+                               (js-auto-format-mode)) t t)
+  (add-hook 'before-save-hook (lambda()
+                                (js-auto-format-execute)
+                                (whitespace-cleanup)) t t))
+
+(add-hook 'js-mode-hook #'seriott-js-save-hooks)
 
 ;; Dependency on cl-lib
 ;; (add-to-list 'load-path "~/.emacs.d/cl-lib")
 ;; (require 'cl-lib)
-
 
 ;; javascriptccs!
 (provide 'javascriptccs)

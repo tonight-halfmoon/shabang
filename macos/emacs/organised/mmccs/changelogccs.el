@@ -17,8 +17,8 @@
   (setq indent-line-function 'indent-relative)
   (add-hook 'before-save-hook (lambda()
                                 (indent-region 1 73 0)
-                                (whitespace-cleanup)
-                                (delete-trailing-whitespace)) t t))
+                                (whitespace-cleanup)) t t))
+
 (add-hook 'change-log-mode-hook #'glaz-change-log-mode-hooks)
 
 ;; changelogccs!

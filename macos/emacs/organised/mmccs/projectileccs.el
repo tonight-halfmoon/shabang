@@ -2,17 +2,23 @@
 ;;; Customise `Projectile' mode
 ;; Package-Requires:
 ;;; Commentary:
+;;
 ;; Reference:
 ;; [Projectile](https://www.projectile.mx/en/latest/)
+;; [](https://github.com/bbatsov/projectile)
+;;
 ;;; Code:
 
-;; Reference [](https://github.com/bbatsov/projectile)
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'projectile)
   (package-install 'projectile))
-(require 'projectile)
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 
+(require 'projectile)
+
+(projectile-mode +1)
+
+(define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 
 ;; projectileccs!
 (provide 'projectileccs)

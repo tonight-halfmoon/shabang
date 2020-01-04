@@ -9,8 +9,8 @@
 
 (setq auto-mode-alist (append '(("\\dockerfileccs.el\\'" . emacs-lisp-mode)) auto-mode-alist))
 
-(require 'company)
 (add-hook 'dockerfile-mode-hook 'company-mode t)
+
 (defun dockerfile-indent-line-function ()
   "Indent lines in a Dockerfile.
 Lines beginning with a keyword are ignored, and any others are
@@ -25,6 +25,9 @@ indented by one `tab-width'."
                       (delete-char (- (point-at-bol)
                                       (point)))
                       (indent-to tab-width)))))
+
+(require 'company)
+
 (defun jeng-dockerfile-mode-hooks ()
   "Hooks for Dockerfile mode."
   (setq indent-tabs-mode nil tab-width 2)
@@ -34,6 +37,7 @@ indented by one `tab-width'."
   (set (make-local-variable 'indent-line-function) #'dockerfile-indent-line-function)
   (add-hook 'before-save-hook (lambda()
                                 (whitespace-cleanup)) t t))
+
 (add-hook 'dockerfile-mode-hook #'jeng-dockerfile-mode-hooks)
 
 ;; dockerfileccs!

@@ -3,10 +3,11 @@
 ;; Package-Requires:
 ;;; Commentary:
 ;;; Code:
-
+;;
 ;; Reference [](http://web-mode.org/)
 ;; Download it as follows
 ;; $ wget https://raw.githubusercontent.com/fxbois/web-mode/master/web-mode.el
+
 (add-to-list 'load-path "~/.emacs.d/web-mode")
 (require 'web-mode)
 
@@ -43,8 +44,8 @@
                                         (whitespace-cleanup)
                                         (indent-according-to-mode)
                                         (indent-region (point-min)
-                                                       (point-max) nil)
-                                        (delete-trailing-whitespace) nil) t t)))
+                                                       (point-max) nil)) t t)))
+
 (add-hook 'web-mode-hook #'seriott-web-mode-hooks)
 
 ;; ====================================================================
@@ -78,6 +79,7 @@
   (add-hook 'before-save-hook (lambda()
                                 (web-beautify-js-buffer)
                                 (whitespace-cleanup)) t t))
+
 (add-hook 'json-mode-hook #'halloween-web-beautify-save-hook)
 
 ;; webfccs!

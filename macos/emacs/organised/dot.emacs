@@ -3,52 +3,18 @@
 ;;; Code:
 
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t))
+
+(setq package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+
 (package-initialize)
 
 (unless package-archive-contents (package-refresh-contents))
-(add-to-list 'load-path "~/.emacs.d/mmccs")
 
-(require 'whitespaceccs)
-(require 'clipboardccs)
-(require 'colorthemeccs)
-(require 'projectileccs)
-(require 'keybindingsccs)
-(require 'flycheckccs)
-(require 'flyspellccs)
-(require 'highlightchangesccs)
-(require 'indentationccs)
-(require 'highlightparenthesesccs)
-(require 'cursorccs)
-(require 'aggressiveindentccs)
-(require 'swiperccs)
-(require 'smartmodelineccs)
-(require 'codingccs)
-
-;; ------------------------------------
-;; `Major-Mode-Specific-Configurations'
-;; ------------------------------------
-
-(require 'emacslispccs)
-(require 'exccs)
-(require 'erlccs)
-(require 'shccs)
-(require 'mdccs)
-(require 'confunixccs)
-(require 'groovyccs)
-(require 'eshellccs)
-(require 'dockerfileccs)
-(require 'jenkinsfileccs)
-(require 'yamlccs)
-(require 'changelogccs)
-(require 'javascriptccs)
-(require 'webfccs)
-(require 'latexextraccs)
-(require 'gitmodesccs)
-(require 'pyccs)
+(load-file "~/.emacs.d/mmccs/features.el")
+(load "features"
+      (require 'features))
 
 ;; ------
 ;; Nlinum
@@ -73,12 +39,15 @@
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (highlight-parentheses beacon diredful auto-complete nlinum
-                                                           exec-path-from-shell flycheck-inline
-                                                           flycheck-title flycheck-pos-tip
-                                                           flycheck-color-mode-line flycheck
-                                                           whitespace-cleanup-mode company
-                                                           projectile color-theme-modern load-dir)))
+ '(package-selected-packages (quote (diredful nlinum yaml-mode whitespace-cleanup-mode swiper
+                                              smart-mode-line projectile markdown-mode
+                                              js-auto-format-mode highlight-parentheses
+                                              highlight-indentation groovy-mode gitignore-mode
+                                              gitconfig-mode flyspell-correct-popup flycheck-title
+                                              flycheck-pos-tip flycheck-mix flycheck-color-mode-line
+                                              exec-path-from-shell dockerfile-mode
+                                              color-theme-modern beacon auto-complete alchemist
+                                              aggressive-indent)))
  '(safe-local-variable-values (quote ((sh-indent-comment . t)
                                       (allout-layout . t))))
  '(vc-annotate-background nil)
@@ -116,10 +85,22 @@
  '(company-tooltip-selection ((t
                                (:background "cyan"
                                             :weight bold))))
+ '(highlight-changes ((t
+                       (:foreground "yellow"))))
+ '(highlight-changes-delete ((t
+                              (:foreground "yellow"
+                                           :underline nil))))
  '(nlinum-current-line ((t
                          (:inherit linum
                                    :foreground "magenta"
-                                   :weight bold)))))
+                                   :weight bold))))
+ '(whitespace-big-indent ((t nil)))
+ '(whitespace-space ((t
+                      (:bold t
+                             :foreground "green"))))
+ '(whitespace-trailing ((t
+                         (:foreground "green"
+                                      :weight bold)))))
 
 ;; -----------
 ;; `CamelCase'
@@ -139,7 +120,6 @@
 ;; """ To turn on for a particular major-mode, check major modes """
 (unless (package-installed-p 'company)
   (package-install 'company))
-(require 'company)
 
 ;; ----------------------------------
 ;; `final-newline' Final New Line EOF

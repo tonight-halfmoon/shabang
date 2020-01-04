@@ -4,21 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(cond ((string-equal system-type "darwin")
-       (progn (unless (package-installed-p 'exec-path-from-shell)
-                (package-install 'exec-path-from-shell)
-                (exec-path-from-shell-initialize)))))
-
-(require 'company)
-(require 'whitespace-cleanup-mode)
-(require 'whitespace)
-(global-flycheck-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-(projectile-mode +1)
-(defvar projectile-mode-map)
-(define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
-
 (cond ((string-equal system-type "berkeley-unix")
        (progn (add-to-list 'load-path (car (file-expand-wildcards
                                             "/usr/local/lib/erlang/lib/tools-*/emacs")))
@@ -49,19 +34,19 @@
   (setq allout-auto-activation t)
   (setq erlang-indent-level 2 erlang-indent-parentesis 2)
   (local-set-key (kbd "RET") 'newline-and-indent))
-(add-hook 'erlang-mode-hook #'seriott-erlang-mode-hook)
 
+(add-hook 'erlang-mode-hook #'seriott-erlang-mode-hook)
 
 (defun seriott-erlang-mode-save-hook ()
   "Save hooks for Erlang mode."
   (add-hook 'before-save-hook (lambda()
                                 (erlang-indent-current-buffer)
-                                (whitespace-cleanup)
-                                (delete-trailing-whitespace)) t t))
+                                (whitespace-cleanup)) t t))
+
 (add-hook 'erlang-mode-hook #'seriott-erlang-mode-save-hook)
+
 ;;(add-hook 'before-save-hook 'seriott-erlang-mode-save-hook t t)
 (add-hook 'erlang-mode-hook 'flyspell-prog-mode)
-
 
 (provide 'erlccs)
 

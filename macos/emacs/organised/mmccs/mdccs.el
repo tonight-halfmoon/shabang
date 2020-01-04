@@ -26,6 +26,8 @@
 ;; [](http://endwan.com/blog/2013/10/06/about-emacs-calling-shell-command/)
 ;; [](https://ronn-bundgaard.dk/blog/convert-docx-to-markdown-with-pandoc/)
 
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'markdown-mode)
   (package-install 'markdown-mode))
 
@@ -35,18 +37,17 @@
 ;;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-(add-hook 'markdown-mode-hook 'company-mode t)
-
 (defun ser-markdown-mode-hooks ()
   "Hooks for Markdown mode."
+  (company-mode)
   (setq markdown-command "pandoc --from markdown --to html --ascii")
   (setq markdown-indent-on-enter t)
   (setq indent-tabs-mode nil tab-width 2)
   (setq allout-auto-activation t)
   (add-hook 'local-write-file-hooks (lambda()
                                       (indent-according-to-mode)
-                                      (whitespace-cleanup)
-                                      (delete-trailing-whitespace) nil) t t))
+                                      (whitespace-cleanup)) t t))
+
 (add-hook 'markdown-mode-hook #'ser-markdown-mode-hooks)
 
 ;; mdccs!

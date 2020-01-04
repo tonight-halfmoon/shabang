@@ -2,12 +2,21 @@
 ;;; configure `Whitespace' mode
 ;; Package-Requires:
 ;;; Commentary:
+;;
+;; check and customise variable `whitespace-style'
+;;
 ;;; Code:
+
+(require 'package)
+
+(add-to-list 'package-pinned-packages '(whitespace-cleanup-mode . "melpa") t)
+
+(package-initialize)
+
+(unless package-archive-contents (package-refresh-contents))
 
 (unless (package-installed-p 'whitespace-cleanup-mode)
   (package-install 'whitespace-cleanup-mode))
-(require 'whitespace-cleanup-mode)
-(require 'whitespace)
 
 (cond ((string-equal system-type "berkeley-unix")
        (progn (custom-set-variables
@@ -27,7 +36,6 @@
                   '(whitespace-trailing ((t
                                           (:foreground "green"
                                                        :weight bold)))))
-
 
 ;; whitespaceccs!
 (provide 'whitespaceccs)

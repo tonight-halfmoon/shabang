@@ -4,10 +4,13 @@
 ;;; Commentary:
 ;;; Code:
 
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'auto-complete)
   (package-install 'auto-complete))
 
 (require 'auto-complete)
+
 (add-hook 'sh-mode-hook 'auto-complete-mode t)
 
 (defvar sh-basic-offset)
@@ -22,8 +25,8 @@
   (add-hook 'before-save-hook (lambda()
                                 (indent-region (point-min)
                                                (point-max))
-                                (whitespace-cleanup)
-                                (delete-trailing-whitespace)) t t))
+                                (whitespace-cleanup)) t t))
+
 (add-hook 'sh-mode-hook #'ni-sh-mode-hooks)
 
 ;; shccs!

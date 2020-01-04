@@ -4,32 +4,37 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'package)
+
+(add-to-list 'package-pinned-packages '(flycheck . "melpa") t)
+(add-to-list 'package-pinned-packages '(flycheck-color-mode-line . "melpa") t)
+(add-to-list 'package-pinned-packages '(flycheck-inline . "melpa") t)
+
+(package-initialize)
+
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'flycheck)
   (package-install 'flycheck))
+
 (unless (package-installed-p 'flycheck-color-mode-line)
   (package-install 'flycheck-color-mode-line))
-(unless (package-installed-p 'flycheck-pos-tip)
-  (package-install 'flycheck-pos-tip))
-(unless (package-installed-p 'flycheck-title)
-  (package-install 'flycheck-title))
-(unless (package-installed-p 'exec-path-from-shell)
-  (package-install 'exec-path-from-shell))
 
-(global-flycheck-mode)
+(unless (package-installed-p 'flycheck-inline)
+  (package-install 'flycheck-inline))
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(require 'flycheck)
+(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+
+(with-eval-after-load 'flycheck (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+
+;; TODO - what does the following line do?
+;; (setq flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
+
 (require 'flycheck-color-mode-line)
 
-(setq flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
 (setq flycheck-highlighting-mode (quote symbols))
-
-(require 'exec-path-from-shell)
-(cond ((string-equal system-type "darwin")
-       (progn (unless (package-installed-p 'exec-path-from-shell)
-                (package-install 'exec-path-from-shell)
-                (exec-path-from-shell-initialize)
-                (setq exec-path-from-shell-check-startup-files nil)))))
 
 ;; flycheckccs!
 (provide 'flycheckccs)

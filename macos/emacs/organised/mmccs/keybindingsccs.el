@@ -5,10 +5,11 @@
 ;;; Code:
 
 (global-set-key (kbd "M-9") 'kill-whole-line)
+
 (global-set-key (kbd "C-x p")
-		(lambda()
-		  (interactive)
-		  (other-window -1)))
+                (lambda()
+                  (interactive)
+                  (other-window -1)))
 
 ;; (when window-system ...)
 ;; Macos bind Meta with key 'cmd'

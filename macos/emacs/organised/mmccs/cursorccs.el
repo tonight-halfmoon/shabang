@@ -3,14 +3,17 @@
 ;; Package-Requires:
 ;;; Commentary:
 ;; The `beacon-mode' is really amazing!
-;;; Code:
-
+;;
 ;; Refernce:
 ;; [](https://github.com/Malabarba/beacon)
+;;
+;;; Code:
 
+(unless package-archive-contents (package-refresh-contents))
 
 (unless (package-installed-p 'beacon)
   (package-install 'beacon))
+
 (require 'beacon)
 
 (setq-default cursor-type 'hbar)

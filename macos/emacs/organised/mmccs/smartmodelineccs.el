@@ -2,9 +2,13 @@
 ;;; Use `Smart-mode-line'
 ;; Package-Requires:
 ;;; Commentary:
+;;
 ;; Reference:
 ;; [](https://github.com/Malabarba/smart-mode-line)
+;;
 ;;; Code:
+
+(unless package-archive-contents (package-refresh-contents))
 
 (unless (package-installed-p 'smart-mode-line)
   (package-install 'smart-mode-line))

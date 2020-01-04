@@ -12,12 +12,21 @@
 ;; For more detail, have a look at the reference above.
 ;;; Code:
 
+(require 'package)
+
+(add-to-list 'package-pinned-packages '(auctex . "gnu") t)
+
+(package-initialize)
+
+(unless package-archive-contents (package-refresh-contents))
+
+(unless (package-installed-p 'auctex)
+  (package-install 'auctex))
+
 (unless (package-installed-p 'latex-extra)
   (package-install 'latex-extra))
 
-
 (add-hook 'LaTeX-mode-hook 'latex-extra-mode)
-
 
 ;; latexextraccs!
 (provide 'latexextraccs)

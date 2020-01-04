@@ -6,7 +6,8 @@
 
 (defun beautiful-eshell-mode-hooks ()
   "Hooks for 'fundamental-mode'.")
-(add-hook 'eshell-mode-hook 'beautiful-eshell-mode-hooks)
+
+(add-hook 'eshell-mode-hook #'beautiful-eshell-mode-hooks)
 
 ;; eshellccs!
 (provide 'eshellccs)

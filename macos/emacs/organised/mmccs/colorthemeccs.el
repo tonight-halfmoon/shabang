@@ -2,7 +2,9 @@
 ;;; Customise `Colors'
 ;; Package-Requires:
 ;;; Commentary:
-;; Choose one of the options
+;;
+;; Choose a library
+;;
 ;;; Code:
 
 ;; --------------------------------
@@ -16,7 +18,8 @@
 ;; Reference: [](https://github.com/emacs-jp/replace-colorthemes)
 
 (cond ((string-equal system-type "darwin")
-       (progn (unless (package-installed-p 'color-theme-modern)
+       (progn (unless package-archive-contents (package-refresh-contents))
+              (unless (package-installed-p 'color-theme-modern)
                 (package-install 'color-theme-modern))
               (load-theme 'julie t t) ;; hober ;; ld-dark ;; oswald ;; matrix ;; 'railscast 'dark-font-lock
               (enable-theme 'julie)
@@ -34,8 +37,8 @@
        (progn (add-to-list 'load-path "~/.emacs.d/color-theme")
               (require 'color-theme)
               ;; customised theme source "~/.emacs.d/color-theme/themes/color-theme-amado.el"
-              (eval-after-load "color-theme" '(progn (color-theme-initialize)
-                                                     (color-theme-amado)))
+              (with-eval-after-load "color-theme" '(progn (color-theme-initialize)
+                                                          (color-theme-amado)))
               (custom-set-faces '(mode-line-buffer-id ((t
                                                         (:background "black"
                                                                      :foreground "magenta"
@@ -48,13 +51,8 @@
 (defun customise-mode-line-erlang-mode-hook ()
   "Customise Mode Line hook."
   (set-face-background 'mode-line "yellow"))
+
 (add-hook 'erlang-mode-hook #'customise-mode-line-erlang-mode-hook)
-
-(defun customise-mode-line-prog-mode-hook ()
-  "Customise Mode Line hook."
-  (set-face-background 'mode-line "blue"))
-(add-hook 'prog-mode-hook #'customise-mode-line-prog-mode-hook)
-
 
 ;; colorthemeccs!
 (provide 'colorthemeccs)

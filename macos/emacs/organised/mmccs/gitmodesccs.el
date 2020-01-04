@@ -6,6 +6,8 @@
 ;; [git-modes](https://github.com/magit/git-modes/)
 ;;; Code:
 
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'gitconfig-mode)
   (package-install 'gitconfig-mode))
 
