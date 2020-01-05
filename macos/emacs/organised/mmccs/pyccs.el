@@ -15,7 +15,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'package)
 
 (add-to-list 'package-pinned-packages '(python-mode . "melpa") t)
@@ -38,9 +37,8 @@
   (setq python-indent-offset 2)
   (setq python-indent-guess-indent-offset 2)
   (add-hook 'before-save-hook (lambda()
-                                (whitespace-cleanup)
                                 (indent-according-to-mode)
-                                (delete-trailing-whitespace)) t t))
+                                (whitespace-cleanup)) t t))
 
 (add-hook 'python-mode-hook #'ser-python-mode-hooks)
 
