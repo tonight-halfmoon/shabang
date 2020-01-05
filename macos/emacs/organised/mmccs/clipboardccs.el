@@ -6,8 +6,6 @@
 ;; [](https:gist.github.com/the-kenny/267162)
 ;;; Code:
 
-(require 'diredful)
-
 (defun copy-from-osx ()
   "Copy from osx."
   (shell-command-to-string "pbpaste"))
@@ -30,6 +28,7 @@
               ;; ====================================
               ;; solve `ls does not support --dired;'
               ;; ====================================
+              (defvar dired-use-ls-dired)
               (setq dired-use-ls-dired nil)
 
               ;; ======

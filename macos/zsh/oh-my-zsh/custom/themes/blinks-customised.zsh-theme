@@ -4,7 +4,7 @@ function _prompt_char() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     echo "%{%F{cyan}%}± %{%f%k%b%}"
   else
-    echo "%{%F{green}\u30A2\u30DE\u30C9%}%{%F{cyan}%}"
+    echo ' '
   fi
 }
 
@@ -14,8 +14,8 @@ function _prompt_char() {
 # using the "dark" variant.
 
 case ${SOLARIZED_THEME:-dark} in
-    light) bkg=white;;
-    *)     bkg=black;;
+  light) bkg=white;;
+  *)     bkg=black;;
 esac
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{blue}%}"
@@ -23,7 +23,21 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%k%b%K{${bkg}}%B%F{green}%}]"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{%F{red}%}*%{%f%k%b%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
+function amado() {
+  amado_str=\\u30A2\\u30DE\\u30C9
+  echo "%{%F{green}%}${amado_str}"
+}
+
 PROMPT='%{%f%k%b%}%{%K{${bkg}}%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%}$(git_prompt_info)%E %{%f%k%b%}
-%{%K{${bkg}}%}$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%}%{$reset_color%} '
+%{%K{${bkg}}%}$(amado)$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%}%{$reset_color%} '
 
 #RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%}'
+
+# Local Variables:
+# mode: shell-script
+# coding: utf-8
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# sh-indent-comment: t
+# tabs-width: 2
+# End:

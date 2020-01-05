@@ -38,9 +38,9 @@
 ;; Enable flyspell-prog-mode for all programming-derived modes
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-;;(require 'flyspell-correct-popup)
+(require 'flyspell-correct-popup)
 
-;;(define-key flyspell-mode-map (kbd "C-c l") 'flyspell-correct-next)
+(define-key flyspell-mode-map (kbd "C-c l") 'flyspell-correct-next)
 
 ;; flyspellccs!
 (provide 'flyspellccs)

@@ -8,14 +8,28 @@
 ;; `cd /usr/ports/devel/pylint && make install clean && cd`
 ;; `cd /usr/ports/devel/py-mypy && make install clean && cd`
 ;;
+;; On MacOS
+;; `brew cleanup && brew update && brew upgrade && brew cleanup && brew doctor`
+;; `brew install pylint`
+;; `brew install mypy`
 ;;; Commentary:
 ;;; Code:
 
+
+(require 'package)
+
+(add-to-list 'package-pinned-packages '(python-mode . "melpa") t)
+(add-to-list 'package-pinned-packages '(flycheck-pycheckers . "melpa") t)
+
+(package-initialize)
+
+(unless package-archive-contents (package-refresh-contents))
+
 (unless (package-installed-p 'python-mode)
   (package-install 'python-mode))
+
 (unless (package-installed-p 'flycheck-pycheckers)
   (package-install 'flycheck-pycheckers))
-
 
 (require 'python)
 
@@ -23,10 +37,11 @@
   "Hooks for python mode."
   (setq python-indent-offset 2)
   (setq python-indent-guess-indent-offset 2)
-  (add-hook 'local-write-file-hooks (lambda()
-                                      (whitespace-cleanup)
-                                      (indent-according-to-mode)
-                                      (delete-trailing-whitespace)) t t))
+  (add-hook 'before-save-hook (lambda()
+                                (whitespace-cleanup)
+                                (indent-according-to-mode)
+                                (delete-trailing-whitespace)) t t))
+
 (add-hook 'python-mode-hook #'ser-python-mode-hooks)
 
 (with-eval-after-load 'flycheck (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))

@@ -15,7 +15,6 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/sunrise/.oh-my-zsh"
 
@@ -23,7 +22,7 @@ export ZSH="/Users/sunrise/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="gentoo_cyan" #"blinks-customised" #"aussiegeek" #"kphoen" #"robbyrussell"
+ZSH_THEME="gentoo_cyan" #"blinks-customised" # #"aussiegeek" #"kphoen" #"robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -83,6 +82,9 @@ ZSH_THEME="gentoo_cyan" #"blinks-customised" #"aussiegeek" #"kphoen" #"robbyruss
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+#
+# After adding a plugin to the list, evaluate
+# autoload -U compinit && compinit
 plugins=(git docker docker-compose asdf kubectl mix)
 
 source $ZSH/oh-my-zsh.sh
@@ -132,6 +134,39 @@ alias ff="find . -print | grep -i ${1}"
 alias bu="cd && amado/ && ./mybrew && cd"
 alias fw="grep -rHn ${1} ."
 
+# completion for kubectl
+# TODO check first if kubectl exists
+source <(kubectl completion zsh)
+
+# azure cli
+# requirements
+# `brew install az`
+# az completion
+# reference [azure clie dev](https://raw.githubusercontent.com/Azure/azure-cli/dev/az.completion)
+#
+_python_argcomplete() {
+  local IFS=$'\013'
+  local SUPPRESS_SPACE=0
+  if compopt +o nospace 2> /dev/null; then
+    SUPPRESS_SPACE=1
+  fi
+  COMPREPLY=( $(IFS="$IFS" \
+                   COMP_LINE="$COMP_LINE" \
+                   COMP_POINT="$COMP_POINT" \
+                   COMP_TYPE="$COMP_TYPE" \
+                   _ARGCOMPLETE_COMP_WORDBREAKS="$COMP_WORDBREAKS" \
+                   _ARGCOMPLETE=1 \
+                   _ARGCOMPLETE_SUPPRESS_SPACE=$SUPPRESS_SPACE \
+                   "$1" 8>&1 9>&2 1>/dev/null 2>/dev/null) )
+  if [[ $? != 0 ]]; then
+    unset COMPREPLY
+  elif [[ $SUPPRESS_SPACE == 1 ]] && [[ "$COMPREPLY" =~ [=/:]$ ]]; then
+    compopt -o nospace
+  fi
+}
+complete -o nospace -F _python_argcomplete "az"
+
+
 ## Key bindings and auto-completion
 ## after evaluting `/usr/local/opt/fzf/install` the following
 ## is automatically generated
@@ -144,3 +179,12 @@ eval $(gdircolors ~/.dircolors-solarized/dircolors.256dark)
 source <(kubectl completion zsh)
 
 . /usr/local/opt/asdf/asdf.sh
+
+# Local Variables:
+# coding: utf-8
+# mode: shell-script
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# sh-indent-comment: t
+# tabs-width: 2
+# End:

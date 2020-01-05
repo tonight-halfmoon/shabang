@@ -18,6 +18,7 @@
 
 (add-to-list 'package-pinned-packages '(elixir-mode . "melpa") t)
 (add-to-list 'package-pinned-packages '(flycheck-mix . "melpa") t)
+(add-to-list 'package-pinned-packages '(flycheck-elixir . "melpa") t)
 (add-to-list 'package-pinned-packages '(alchemist . "melpa") t)
 
 (package-initialize)
@@ -33,8 +34,9 @@
 (unless (package-installed-p 'flycheck-mix)
   (package-install 'flycheck-mix))
 
-(add-to-list 'load-path "~/.emacs.d/web-mode")
-(require 'web-mode)
+(unless (package-installed-p 'flycheck-elixir)
+  (package-install 'flycheck-elixir))
+
 (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
 
 ;; ======
@@ -45,6 +47,8 @@
 ;; References:
 ;; [](https://github.com/elixir-editors/emacs-elixir#add-elixir-mode-hook-to-run-elixir-format-on-file-save)
 ;; [mix format](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
+(require 'elixir-mode)
+
 (add-hook 'elixir-format-hook (lambda()
                                 (setq elixir-format-arguments (list "--dot-formatter" (concat
                                                                                        (locate-dominating-file
@@ -52,6 +56,10 @@
                                                                                         ".formatter.exs")
                                                                                        ".formatter.exs")))
                                 (setq elixir-format-arguments nil)))
+
+(require 'flycheck-elixir)
+(require 'company)
+(require 'alchemist)
 
 (defun che-elixir-mode-hooks ()
   "Hooks for Elixir mode."
@@ -74,7 +82,8 @@
   (alchemist-mode)
   (alchemist-phoenix-mode)
   (flyspell-prog-mode)
-  (flycheck-mix-setup)
+  ;;(flycheck-mix-setup)
+  ;;(flycheck-elixir)
   (add-hook 'before-save-hook (lambda()
                                 (untabify (point-min)
                                           (point-max))
