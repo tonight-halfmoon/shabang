@@ -7,6 +7,14 @@
 ;;
 ;;; Code:
 
+;;
+(cond ((string-equal system-type "darwin")
+       (progn (unless package-archive-contents (package-refresh-contents))
+              (unless (package-installed-p 'nord-theme)
+                (package-install 'nord-theme))
+              (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+              (load-theme 'nord t))))
+
 ;; --------------------------------
 ;; `Color-Theme-Sanityinc-Tomorrow'
 ;; ================================
@@ -21,8 +29,8 @@
        (progn (unless package-archive-contents (package-refresh-contents))
               (unless (package-installed-p 'color-theme-modern)
                 (package-install 'color-theme-modern))
-              (load-theme 'julie t t) ;; hober ;; ld-dark ;; oswald ;; matrix ;; 'railscast 'dark-font-lock
-              (enable-theme 'julie)
+              ;; (load-theme 'julie t t) ;; hober ;; ld-dark ;; oswald ;; matrix ;; 'railscast 'dark-font-lock
+              ;; (enable-theme 'julie)
               ;; (load-theme 'dark-font-lock t t)
               ;; (enable-theme 'dark-font-lock)
               )))
