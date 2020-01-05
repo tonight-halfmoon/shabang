@@ -1,14 +1,13 @@
 -module(wrapefs).
 
--export([run/0, run/1]).
+-export([run/1]).
 
-run() ->
-  Dir ="~/.emacs.d/mmccs",
+run(Dir) ->
   FileList = filelib:wildcard("*.el", Dir),
-  R = run(FileList),
+  R = wrap(FileList),
   write("features_load.el", R).
 
-run(L) ->
+wrap(L) ->
   wrap(L, [load, require], []).
 
 wrap([], _Terms, R) ->
