@@ -17,7 +17,6 @@
 
 (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
 
-;; highlightparenthesesccs!
 (provide 'highlightparenthesesccs)
 
 ;; Local Variables:

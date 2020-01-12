@@ -44,7 +44,6 @@
 
 (add-hook 'web-mode-hook #'seriott-web-mode-hooks)
 
-;; webfccs!
 (provide 'webfccs)
 
 ;; Local Variables:

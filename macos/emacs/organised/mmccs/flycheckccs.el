@@ -36,7 +36,6 @@
 
 (setq flycheck-highlighting-mode (quote symbols))
 
-;; flycheckccs!
 (provide 'flycheckccs)
 
 ;; Local Variables:

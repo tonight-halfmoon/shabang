@@ -22,10 +22,9 @@
 ;;             | prettier ;; npm install --global prettier
 ;; Reference [](https://github.com/ybiquitous/js-auto-format-mode)
 ;; Configure formatting engine (either eslint or prettier), as follows
-;; Configure with `prettier` in custom-set-variables as follows:
-;; (custom-set-variables
-;;  '(js-auto-format-command "prettier")
-;;  '(js-auto-format-command-args "--write --single-quote --no-semi"))
+;; Configure with `prettier` as follows:
+;; (setq js-auto-format-command "prettier")
+;; (setq js-auto-format-command-args "--write --single-quote --no-semi")
 ;; For clarity, it is configured here as follows:
 
 ;; Run upon Save
@@ -46,7 +45,6 @@
 ;; (add-to-list 'load-path "~/.emacs.d/cl-lib")
 ;; (require 'cl-lib)
 
-;; javascriptccs!
 (provide 'javascriptccs)
 
 ;; Local Variables:

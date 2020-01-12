@@ -18,7 +18,6 @@
       (process-send-eof proc))))
 
 
-;; check OS type
 (cond ((string-equal system-type "berkeley-unix")
        (progn (message "FreeBSD")))
       ((string-equal system-type "gnu/linux") ; linux
@@ -37,7 +36,6 @@
               (setq interprogram-cut-function 'paste-to-osx)
               (setq interprogram-paste-function 'copy-from-osx))))
 
-;; clipboardccs!
 (provide 'clipboardccs)
 
 ;; Local Variables:

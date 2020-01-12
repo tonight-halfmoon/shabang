@@ -13,6 +13,7 @@
 ;; [](https://github.com/yoshiki/yaml-mode)
 ;; But anyway, I want flyspell to work on prog mode
 ;;(remove-hook 'text-mode-hook 'flyspell-mode)
+
 (add-hook 'yaml-mode-hook 'flyspell-prog-mode)
 
 (require 'yaml-mode)
@@ -31,7 +32,6 @@
 
 (add-hook 'yaml-mode-hook #'mor-yaml-mode-hooks)
 
-;; yamlccs!
 (provide 'yamlccs)
 
 ;; Local Variables:

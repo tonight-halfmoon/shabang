@@ -94,7 +94,6 @@
 
 (add-hook 'elixir-mode-hook #'che-elixir-mode-hooks)
 
-;; exccs!
 (provide 'exccs)
 
 ;; Local Variables:

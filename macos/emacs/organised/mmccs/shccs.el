@@ -29,7 +29,6 @@
 
 (add-hook 'sh-mode-hook #'ni-sh-mode-hooks)
 
-;; shccs!
 (provide 'shccs)
 
 ;; Local Variables:

@@ -14,7 +14,6 @@
 (unless (package-installed-p 'gitignore-mode)
   (package-install 'gitignore-mode))
 
-;; gitmodesccs!
 (provide 'gitmodesccs)
 
 ;; Local Variables:

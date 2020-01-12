@@ -13,7 +13,6 @@
 
 (add-hook 'prog-mode-hook #'aggressive-indent-mode)
 
-;;aggressiveindentccs!
 (provide 'aggressiveindentccs)
 
 ;; Local Variables:

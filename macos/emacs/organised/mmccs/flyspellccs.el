@@ -42,7 +42,6 @@
 
 (define-key flyspell-mode-map (kbd "C-c l") 'flyspell-correct-next)
 
-;; flyspellccs!
 (provide 'flyspellccs)
 
 ;; Local Variables:

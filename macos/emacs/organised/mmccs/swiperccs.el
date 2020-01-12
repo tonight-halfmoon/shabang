@@ -21,7 +21,6 @@
 
 (global-set-key "\C-s" 'swiper)
 
-;; swiperccs!
 (provide 'swiperccs)
 
 ;; Local Variables:

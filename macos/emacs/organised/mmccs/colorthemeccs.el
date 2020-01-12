@@ -13,15 +13,13 @@
 ;; Setting Environment Variable:
 ;;
 ;; Option (1)
-;; `export theme=amado`
+;; `export emacs_theme=modern`
 ;;
 ;; Option (2)
 ;;
-;; `env theme=amado Emacs`
+;; `env emacs_theme=modern Emacs`
 ;;
 ;;; Code:
-
-(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes"))
 
 (when (string-equal (getenv "emacs_theme") nil)
   (setenv "emacs_theme" "tomorrow"))
@@ -39,6 +37,7 @@
          (unless (package-installed-p 'color-theme-sanityinc-tomorrow)
            (package-install 'color-theme-sanityinc-tomorrow))
          (load-theme 'sanityinc-tomorrow-night t)
+         (add-to-list 'default-frame-alist '(background-color . black))
          (when (string-equal (getenv "emacs_background") "bright")
            (add-to-list 'default-frame-alist '(background-color . "brightblack")))))
 
@@ -86,31 +85,17 @@
   (progn (unless package-archive-contents (package-refresh-contents))
          (unless (package-installed-p 'color-theme-modern)
            (package-install 'color-theme-modern))
-         ;;julie ;; hober ;; ld-dark ;; oswald ;; matrix ;; 'railscast 'dark-font-lock
-         (load-theme 'railscast t t)
-         (enable-theme 'railscast)))
+         (cond ((string-equal (getenv "emacs_theme_mode") "tonight")
+                (load-theme 'midnight t t)
+                (enable-theme 'midnight))
+               (t (load-theme 'taming-mr-arneson t t)
+                  (enable-theme 'taming-mr-arneson)))
+         ;; background mode
+         (setq frame-background-mode 'light)
+         ;;(set-background-color "color-16")
+         ;; background colour
+         (add-to-list 'default-frame-alist '(background-color . black))))
 
-;; -------
-;; `amado'
-;; =======
-;;
-;; Reference:
-;; [](http://nongnu.org/color-theme)
-;;
-;; wget http://download.savannah.nongnu.org/releases/color-theme/color-theme-6.6.0.tar.gz
-;; `7z x color-theme-6.6.0.tar.gz` into the `color-theme' directory
-
-(when (string-equal (getenv "emacs_theme") "amado")
-  (progn (add-to-list 'load-path "~/.emacs.d/color-theme")
-         (require 'color-theme)
-         (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/color-theme/themes"))
-         (with-eval-after-load "color-theme" '(progn (color-theme-initialize)
-                                                     (color-theme-amado)))
-         (custom-set-faces '(mode-line-buffer-id ((t
-                                                   (:background "black"
-                                                                :foreground "magenta"
-                                                                :weight extra-bold
-                                                                :height 0.9)))))))
 ;; -----------
 ;; `Mode-line'
 ;; -----------
@@ -121,7 +106,6 @@
 
 (add-hook 'erlang-mode-hook #'customise-mode-line-erlang-mode-hook)
 
-;; colorthemeccs!
 (provide 'colorthemeccs)
 
 ;; Local Variables:

@@ -18,26 +18,28 @@
 (unless (package-installed-p 'whitespace-cleanup-mode)
   (package-install 'whitespace-cleanup-mode))
 
-(cond ((string-equal system-type "berkeley-unix")
-       (progn (custom-set-variables
-               ;; FreeBSD
-               ;; Check .login_conf
-               '(whitespace-display-mappings (quote ((space-mark 32 []
-                                                                 [46]
-                                                                 [0]
-                                                                 [32]
-                                                                 [42]
-                                                                 [46]))))))))
+(require 'whitespace)
 
-(custom-set-faces '(whitespace-big-indent ((t nil)))
-                  '(whitespace-space ((t
-                                       (:bold t
-                                              :foreground "green"))))
-                  '(whitespace-trailing ((t
-                                          (:foreground "green"
-                                                       :weight bold)))))
+(when (string-equal system-type "berkeley-unix")
+  ;; FreeBSD
+  ;; Check `.login_conf'
+  (setq whitespace-display-mappings '((space-mark 32 []
+                                                  [46]
+                                                  [0]
+                                                  [32]
+                                                  [42]
+                                                  [46]))))
 
-;; whitespaceccs!
+(set-face-attribute 'whitespace-big-indent nil)
+
+(set-face-attribute 'whitespace-space nil
+                    :foreground "green"
+                    :weight 'bold)
+
+(set-face-attribute 'whitespace-trailing nil
+                    :foreground "green"
+                    :weight 'bold)
+
 (provide 'whitespaceccs)
 
 ;; Local Variables:

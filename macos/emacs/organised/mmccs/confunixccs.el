@@ -29,7 +29,6 @@
 
 (add-hook 'conf-unix-mode-hook #'ni-config-unix-mode-hooks)
 
-;; confunixccs!
 (provide 'confunixccs)
 
 ;; Local Variables:

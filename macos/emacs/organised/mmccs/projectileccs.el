@@ -20,7 +20,6 @@
 
 (define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 
-;; projectileccs!
 (provide 'projectileccs)
 
 ;; Local Variables:

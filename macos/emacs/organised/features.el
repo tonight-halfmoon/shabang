@@ -60,6 +60,8 @@
       (require 'latexextraccs))
 (load "mdccs.el"
       (require 'mdccs))
+(load "nlinumccs.el"
+      (require 'nlinumccs))
 (load "projectileccs.el"
       (require 'projectileccs))
 (load "pyccs.el"
@@ -76,6 +78,7 @@
       (require 'whitespaceccs))
 (load "yamlccs.el"
       (require 'yamlccs))
+
 (provide 'features)
 
 ;; Local Variables:

@@ -7,11 +7,16 @@
 (add-hook 'text-mode-hook 'highlight-changes-mode)
 (add-hook 'prog-mode-hook 'highlight-changes-mode)
 
-(custom-set-faces '(highlight-changes ((t
-                                        (:foreground "yellow"))))
-                  '(highlight-changes-delete ((t
-                                               (:foreground "yellow"
-                                                            :underline nil)))))
+(with-eval-after-load 'highlight-changes-mode
+  ;; Customise foreground colour
+  (set-face-attribute 'highlight-changes nil
+                      :foreground "yellow")
+
+  ;; Customise foreground colour delete
+  (set-face-attribute 'highlight-changes-delete nil
+                      :foreground "yellow"
+                      :underline nil))
+
 ;; Function to remove highlight-changes after-save
 ;; Usage: Add it to a target major-mode's hook
 (defun highlight-changes-remove-after-save-hook()
@@ -24,7 +29,6 @@
 ;; Note: on emacs-lisp-mode you need to explicitly check current major mode is emacs-lisp
 ;; Check emacslispccs.el
 
-;; highlightchangesccs!
 (provide 'highlightchangesccs)
 
 ;; Local Variables:

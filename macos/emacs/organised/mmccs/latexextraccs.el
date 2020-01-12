@@ -28,7 +28,6 @@
 
 (add-hook 'LaTeX-mode-hook 'latex-extra-mode)
 
-;; latexextraccs!
 (provide 'latexextraccs)
 
 ;; Local Variables:

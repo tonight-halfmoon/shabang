@@ -21,7 +21,6 @@
 
 (add-hook 'change-log-mode-hook #'glaz-change-log-mode-hooks)
 
-;; changelogccs!
 (provide 'changelogccs)
 
 ;; Local Variables:

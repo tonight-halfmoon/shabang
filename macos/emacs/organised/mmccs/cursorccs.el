@@ -16,15 +16,17 @@
 
 (require 'beacon)
 
+(beacon-mode 1)
+
+(when (not (string-equal (getenv "emacs_beacon_colour") nil))
+  (setq beacon-color (getenv "emacs_beacon_colour")))
+
 (setq-default cursor-type 'hbar)
-;; (set-cursor-color "#7F00FF")
-(set-cursor-color "#6f75ff")
 (setq-default x-stretch-cursor t)
 
-(beacon-mode 1)
-(setq beacon-color "#f2777a")
+(when (not (string-equal (getenv "emacs_cursor_colour") nil))
+  (set-cursor-color (getenv "emacs_cursor_colour")))
 
-;; cursorccs!
 (provide 'cursorccs)
 
 ;; Local Variables:

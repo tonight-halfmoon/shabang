@@ -4,11 +4,16 @@
 ;;; Commentary:
 ;;; Code:
 
-;;(setq load-path (append (list nil "~/.emacs.d/mmccs") load-path))
+(eval-when-compile
+  ;; Make it available at compile-time
+  'elisp-format (add-to-list
+                 ;;
+                 'load-path (expand-file-name "~/.emacs.d/elisp-format"))
+  (require 'elisp-format))
 
-(load-file "~/.emacs.d/elisp-format/elisp-format.el")
-(load "elisp-format"
-      (require 'elisp-format))
+;; Make it available and mute error
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp-format"))
+(require 'elisp-format nil 'noerror)
 
 (require 'company)
 
@@ -39,7 +44,6 @@
 ;; Example on how to remove highlight-change after-save in emacs-lisp mode
 ;;(add-hook 'emacs-lisp-mode-hook #'ear-emacs-lisp-mode-after-save-hooks)
 
-;; emacslispccs!
 (provide 'emacslispccs)
 
 ;; Local Variables:

@@ -26,7 +26,6 @@
 
 (add-hook 'groovy-mode-hook #'jeng-groovy-mode-hooks)
 
-;; groovyccs!
 (provide 'groovyccs)
 
 ;; Local Variables:

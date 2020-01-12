@@ -19,7 +19,6 @@
 (setq sml/theme 'respectful)
 (sml/setup)
 
-;; smartmodelineccs!
 (provide 'smartmodelineccs)
 
 ;; Local Variables:

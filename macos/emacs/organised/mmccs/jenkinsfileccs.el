@@ -10,10 +10,11 @@
 ;; `Jenkinsfile' mode (`scriptive')
 ;; ==============================
 ;; wget https://raw.githubusercontent.com/john2x/jenkinsfile-mode/master/jenkinsfile-mode.el
+
 (add-to-list 'load-path "~/.emacs.d/jenkinsfile-mode")
+
 (require 'jenkinsfile-mode)
 
-;; jenkinsfileccs.el!
 (provide 'jenkinsfileccs)
 
 ;; Local Variables:

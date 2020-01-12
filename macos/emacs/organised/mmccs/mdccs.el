@@ -56,7 +56,6 @@
 
 (add-hook 'markdown-mode-hook #'ser-markdown-mode-hooks)
 
-;; mdccs!
 (provide 'mdccs)
 
 ;; Local Variables:

@@ -17,7 +17,6 @@
 ;; (setq-default mac-command-modifier 'meta)
 ;; (setq select-enable-clipboard t)
 
-;; keybindingsccs!
 (provide 'keybindingsccs)
 
 ;; Local Variables:

@@ -40,7 +40,6 @@ indented by one `tab-width'."
 
 (add-hook 'dockerfile-mode-hook #'jeng-dockerfile-mode-hooks)
 
-;; dockerfileccs!
 (provide 'dockerfileccs)
 
 ;; Local Variables:

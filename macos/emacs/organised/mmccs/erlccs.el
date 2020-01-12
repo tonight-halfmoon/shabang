@@ -4,35 +4,41 @@
 ;;; Commentary:
 ;;; Code:
 
-(cond ((string-equal system-type "berkeley-unix")
-       (progn (add-to-list 'load-path (car (file-expand-wildcards
-                                            "/usr/local/lib/erlang/lib/tools-*/emacs")))
-              (setq erlang-root-dir (car (file-expand-wildcards "/usr/local/lib/erlang")))
-              (setq exec-path (cons (car (file-expand-wildcards "/usr/local/lib/erlang/bin"))
-                                    exec-path)))))
+(when (string-equal system-type "berkeley-unix")
+  (progn (add-to-list 'load-path (car (file-expand-wildcards
+                                       "/usr/local/lib/erlang/lib/tools-*/emacs")))
+         (setq erlang-root-dir (car (file-expand-wildcards "/usr/local/lib/erlang")))
+         (setq exec-path (cons (car (file-expand-wildcards "/usr/local/lib/erlang/bin"))
+                               exec-path))))
 
-(cond ((string-equal system-type "darwin")
-       (progn (add-to-list 'load-path (car (file-expand-wildcards
-                                            "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs")))
-              (setq erlang-root-dir (car (file-expand-wildcards
-                                          "/usr/local/Cellar/erlang/*/lib/erlang")))
-              (setq exec-path (cons (car (file-expand-wildcards
-                                          "/usr/local/Cellar/erlang/*/lib/erlang/bin"))
-                                    exec-path)))))
+(when (string-equal system-type "darwin")
+  (progn
+    ;;
+    ;;
+    (eval-when-compile 'erlang-start
+                       ;;
+                       ;;
+                       (add-to-list 'load-path (car (file-expand-wildcards
+                                                     "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs"))))
+    (setq erlang-root-dir (car (file-expand-wildcards "/usr/local/Cellar/erlang/*/lib/erlang")))
+    (setq exec-path (cons (car (file-expand-wildcards "/usr/local/Cellar/erlang/*/lib/erlang/bin"))
+                          exec-path))))
 
 (require 'erlang-start)
-;;(require 'erlang)
+(require 'erlang)
 
 (add-to-list 'auto-mode-alist '("\\.config?$" . erlang-mode))
 
 (add-hook 'erlang-mode-hook 'company-mode t)
+
+(require 'company)
 
 (defun seriott-erlang-mode-hook ()
   "Hooks for Erlang mode."
   (setq company-idle-delay 0.1 company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2 company-tooltip-flip-when-above t)
   (setq allout-auto-activation t)
-  (setq erlang-indent-level 2 erlang-indent-parentesis 2)
+  (setq erlang-indent-level 2)
   (local-set-key (kbd "RET") 'newline-and-indent))
 
 (add-hook 'erlang-mode-hook #'seriott-erlang-mode-hook)
@@ -45,7 +51,6 @@
 
 (add-hook 'erlang-mode-hook #'seriott-erlang-mode-save-hook)
 
-;;(add-hook 'before-save-hook 'seriott-erlang-mode-save-hook t t)
 (add-hook 'erlang-mode-hook 'flyspell-prog-mode)
 
 (provide 'erlccs)
