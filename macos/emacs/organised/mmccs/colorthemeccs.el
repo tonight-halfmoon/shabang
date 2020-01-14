@@ -32,7 +32,9 @@
 ;; [](https://github.com/purcell/color-theme-sanityinc-tomorrow)
 
 (when (string-equal (getenv "emacs_theme") "tomorrow")
-  (progn (add-to-list 'package-pinned-packages '(color-theme-sanityinc-tomorrow . "melpa") t)
+  (progn (eval-when-compile
+           (require 'package))
+         (add-to-list 'package-pinned-packages '(color-theme-sanityinc-tomorrow . "melpa") t)
          (unless package-archive-contents (package-refresh-contents))
          (unless (package-installed-p 'color-theme-sanityinc-tomorrow)
            (package-install 'color-theme-sanityinc-tomorrow))
@@ -101,8 +103,9 @@
                 (load-theme 'charcoal-black t t)
                 (enable-theme 'charcoal-black))
                (t (load-theme 'taming-mr-arneson t t)
-                  (enable-theme 'taming-mr-arneson)))
-         ;; background mode
+                  (enable-theme 'taming-mr-arneson)
+                  (set-face-attribute 'minibuffer-prompt t
+                                      :foreground "color-87")))
          (cond ((string-equal (getenv "frame_background_mode") "light")
                 (setq frame-background-mode 'light))
                (t

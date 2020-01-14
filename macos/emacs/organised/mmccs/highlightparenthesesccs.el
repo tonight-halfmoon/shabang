@@ -2,13 +2,14 @@
 ;;; Customise `Highlight-parentheses' mode
 ;; Package-Requires:
 ;;; Commentary:
+;;
+;; Reference:
+;; [](https://github.com/tsdh/highlight-parentheses.el)
+;;
 ;;; Code:
 
 ;;(show-paren-mode 1)
 ;; (global-set-key "%" 'match-paren)
-
-;; Reference:
-;; [](https://github.com/tsdh/highlight-parentheses.el)
 
 (unless package-archive-contents (package-refresh-contents))
 
