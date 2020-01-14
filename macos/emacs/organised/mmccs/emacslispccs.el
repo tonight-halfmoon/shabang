@@ -2,6 +2,10 @@
 ;;; Customise `Emacs-Lisp' /`elisp' mode
 ;; Package-Requires:
 ;;; Commentary:
+;;
+;; Reference:
+;; [](https://github.com/Yuki-Inoue/elisp-format)
+;;
 ;;; Code:
 
 (eval-when-compile
@@ -41,8 +45,7 @@
                                (highlight-changes-remove-highlight (point-min)
                                                                    (point-max))) t t))
 
-;; Example on how to remove highlight-change after-save in emacs-lisp mode
-;;(add-hook 'emacs-lisp-mode-hook #'ear-emacs-lisp-mode-after-save-hooks)
+(add-hook 'emacs-lisp-mode-hook #'ear-emacs-lisp-mode-after-save-hooks)
 
 (provide 'emacslispccs)
 

@@ -89,11 +89,10 @@
                 (load-theme 'midnight t t)
                 (enable-theme 'midnight))
                (t (load-theme 'taming-mr-arneson t t)
-                  (enable-theme 'taming-mr-arneson)))
-         ;; background mode
+                  (enable-theme 'taming-mr-arneson)
+                  (set-face-attribute 'minibuffer-prompt t
+                                      :foreground "color-87")))
          (setq frame-background-mode 'light)
-         ;;(set-background-color "color-16")
-         ;; background colour
          (add-to-list 'default-frame-alist '(background-color . black))))
 
 ;; -----------
