@@ -41,7 +41,7 @@
                                (highlight-changes-remove-highlight (point-min)
                                                                    (point-max))) t t))
 
-(add-hook 'emacs-lisp-mode-hook #'ear-emacs-lisp-mode-after-save-hooks)
+;; (add-hook 'emacs-lisp-mode-hook #'ear-emacs-lisp-mode-after-save-hooks)
 
 (provide 'emacslispccs)
 
