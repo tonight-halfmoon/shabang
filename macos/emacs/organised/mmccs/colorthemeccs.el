@@ -88,13 +88,33 @@
          (cond ((string-equal (getenv "emacs_theme_mode") "tonight")
                 (load-theme 'midnight t t)
                 (enable-theme 'midnight))
+               ((string-equal (getenv "emacs_theme_mode") "dark")
+                (load-theme 'tty-dark t t)
+                (enable-theme 'tty-dark))
+               ((string-equal (getenv "emacs_theme_mode") "lethe")
+                (load-theme 'lethe t t)
+                (enable-theme 'lethe))
+               ((string-equal (getenv "emacs_theme_mode") "hober")
+                (load-theme 'hober t t)
+                (enable-theme 'hober))
+               ((string-equal (getenv "emacs_theme_mode") "charcoal")
+                (load-theme 'charcoal-black t t)
+                (enable-theme 'charcoal-black))
                (t (load-theme 'taming-mr-arneson t t)
                   (enable-theme 'taming-mr-arneson)))
          ;; background mode
-         (setq frame-background-mode 'light)
-         ;;(set-background-color "color-16")
+         (cond ((string-equal (getenv "frame_background_mode") "light")
+                (setq frame-background-mode 'light))
+               (t
+                (setq frame-background-mode 'dark)))
+         (cond ((string-equal system-type "berkeley-unix")
+                (set-face-attribute 'minibuffer-prompt nil
+                                    :foreground "cyan"))
+               (t ()))
          ;; background colour
-         (add-to-list 'default-frame-alist '(background-color . black))))
+         (cond ((string-equal (getenv "emacs_background" ) "bright")
+                (add-to-list 'default-frame-alist '(background-color . "brightblack")))
+               (t (add-to-list 'default-frame-alist '(background-color . black))))))
 
 ;; -----------
 ;; `Mode-line'
