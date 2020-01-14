@@ -25,9 +25,7 @@
                                (highlight-changes-remove-highlight (point-min)
                                                                    (point-max))) t t))
 ;; Usage example:
-(add-hook 'groovy-mode-hook #'highlight-changes-remove-after-save-hook)
-;; Note: on emacs-lisp-mode you need to explicitly check current major mode is emacs-lisp
-;; Check emacslispccs.el
+;;(add-hook 'groovy-mode-hook #'highlight-changes-remove-after-save-hook)
 
 (provide 'highlightchangesccs)
 

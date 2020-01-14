@@ -35,10 +35,6 @@
 
 (add-hook 'emacs-lisp-mode-hook #'ear-emacs-lisp-mode-hooks)
 
-(defun highlight-changes-remove-after-save-hook ()
-  "Remove recent change after save."
-  (add-hook 'after-save-hook (lambda()) t t))
-
 (defun ear-emacs-lisp-mode-after-save-hooks()
   "After-Save hooks for emacs-lisp mode."
   (add-hook 'after-save-hook (lambda()
