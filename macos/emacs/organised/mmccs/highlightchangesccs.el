@@ -7,13 +7,16 @@
 (add-hook 'text-mode-hook 'highlight-changes-mode)
 (add-hook 'prog-mode-hook 'highlight-changes-mode)
 
-(with-eval-after-load 'highlight-changes-mode
+(require 'hilit-chg)
+
+(with-eval-after-load 'hilit-chg
+  ;;
+  (setq highlight-changes-face-list nil)
   ;;
   (set-face-attribute 'highlight-changes nil
-                      :foreground "yellow")
+                      :foreground "brightyellow")
   ;;
   (set-face-attribute 'highlight-changes-delete nil
-                      :foreground "yellow"
                       :underline nil))
 
 (defun highlight-changes-remove-after-save-hook()
