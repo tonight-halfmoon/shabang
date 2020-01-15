@@ -2,12 +2,17 @@
 ;;; Customise `Indentation'
 ;; Package-Requires:
 ;;; Commentary:
-;;; Code:
-
-;; Major-mode-specific configurations
-;; highlight-indentation
-;; Reference:
+;;
+;; Add two modes
+;;
+;; (1) 'highlight-indentation'
+;; (2) 'aggressive-indent'
+;;
+;; References:
 ;; [](https://github.com/antonj/Highlight-Indentation-for-Emacs)
+;; [](https://github.com/Malabarba/aggressive-indent-mode)
+;;
+;;; Code:
 
 (unless package-archive-contents (package-refresh-contents))
 
@@ -18,6 +23,17 @@
 (add-hook 'text-mode-hook 'highlight-indentation-current-column-mode)
 ;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
 (add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
+
+;;-----------------------------------
+;; Customise `aggressive-indent' mode
+;;===================================
+
+(unless (package-installed-p 'aggressive-indent)
+  (package-install 'aggressive-indent))
+
+(require 'aggressive-indent)
+
+(add-hook 'prog-mode-hook #'aggressive-indent-mode)
 
 (provide 'indentationccs)
 

@@ -4,8 +4,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/mmccs")
 
-(load "aggressiveindentccs.el"
-      (require 'aggressiveindentccs))
 (load "changelogccs.el"
       (require 'changelogccs))
 (load "clipboardccs.el"
