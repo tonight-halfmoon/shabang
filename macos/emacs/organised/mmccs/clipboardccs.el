@@ -17,7 +17,6 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 
-
 (cond ((string-equal system-type "berkeley-unix")
        (progn (message "FreeBSD")))
       ((string-equal system-type "gnu/linux") ; linux

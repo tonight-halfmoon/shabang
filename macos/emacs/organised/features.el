@@ -2,79 +2,92 @@
 ;;; Commentary:
 ;;; Code:
 
-(add-to-list 'load-path "~/.emacs.d/mmccs")
+(unless (package-installed-p 'async)
+  (package-install 'async))
 
-(load "changelogccs.el"
+(async-bytecomp-package-mode 1)
+
+(require 'async-bytecomp)
+
+(setq async-bytecomp-allowed-packages '(all))
+
+(byte-recompile-directory "~/.emacs.d/mmccs/" 0)
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/mmccs"))
+
+(load "changelogccs"
       (require 'changelogccs))
-(load "clipboardccs.el"
+(load "clipboardccs"
       (require 'clipboardccs))
-(load "codingccs.el"
+(load "codingccs"
       (require 'codingccs))
-(load "colorthemeccs.el"
+(load "colorthemeccs"
       (require 'colorthemeccs))
-(load "companyccs.el"
-      (require 'companyccs))
-(load "confunixccs.el"
+(load "confunixccs"
       (require 'confunixccs))
-(load "cursorccs.el"
+(load "cursorccs"
       (require 'cursorccs))
-(load "diredccs.el"
+(load "diredccs"
       (require 'diredccs))
-(load "dockerfileccs.el"
+(load "dockerfileccs"
       (require 'dockerfileccs))
-(load "emacslispccs.el"
+(load "doomodelineccs"
+      (require 'doomodelineccs))
+(load "emacslispccs"
       (require 'emacslispccs))
-(load "erlccs.el"
+(load "erlccs"
       (require 'erlccs))
-(load "eshellccs.el"
+(load "eshellccs"
       (require 'eshellccs))
-(load "exccs.el"
+(load "exccs"
       (require 'exccs))
-(load "execpathccs.el"
+(load "execpathccs"
       (require 'execpathccs))
-(load "flycheckccs.el"
+(load "flycheckccs"
       (require 'flycheckccs))
-(load "flyspellccs.el"
+(load "flyspellccs"
       (require 'flyspellccs))
-(load "gitmodesccs.el"
+(load "gitmodesccs"
       (require 'gitmodesccs))
-(load "groovyccs.el"
+(load "groovyccs"
       (require 'groovyccs))
-(load "highlightchangesccs.el"
+(load "helmccs"
+      (require 'helmccs))
+(load "highlightchangesccs"
       (require 'highlightchangesccs))
-(load "highlightparenthesesccs.el"
+(load "highlightparenthesesccs"
       (require 'highlightparenthesesccs))
-(load "indentationccs.el"
+(load "indentationccs"
       (require 'indentationccs))
-(load "javascriptccs.el"
+(load "javascriptccs"
       (require 'javascriptccs))
-(load "jenkinsfileccs.el"
+(load "jenkinsfileccs"
       (require 'jenkinsfileccs))
-(load "jsonccs.el"
+(load "jsonccs"
       (require 'jsonccs))
-(load "keybindingsccs.el"
+(load "keybindingsccs"
       (require 'keybindingsccs))
-(load "latexextraccs.el"
+(load "latexextraccs"
       (require 'latexextraccs))
-(load "mdccs.el"
+(load "mdccs"
       (require 'mdccs))
-(load "nlinumccs.el"
+(load "nlinumccs"
       (require 'nlinumccs))
-(load "projectileccs.el"
+(load "projectileccs"
       (require 'projectileccs))
-(load "pyccs.el"
+(load "pyccs"
       (require 'pyccs))
-(load "shccs.el"
+(load "shccs"
       (require 'shccs))
-(load "smartmodelineccs.el"
-      (require 'smartmodelineccs))
-(load "swiperccs.el"
+(load "swiperccs"
       (require 'swiperccs))
-(load "webfccs.el"
+(load "thememinimumccs"
+      (require 'thememinimumccs))
+(load "webfccs"
       (require 'webfccs))
-(load "whitespaceccs.el"
+(load "whitespaceccs"
       (require 'whitespaceccs))
-(load "yamlccs.el"
+(load "yamlccs"
       (require 'yamlccs))
 
 (provide 'features)

@@ -1,5 +1,8 @@
 ;;; package --- Summary:
-;; `company-mode' `COMP'lete `ANY'thing!
+;;
+;; Use `company-mode' `COMP'lete `ANY'thing!
+;; Customise colour theme of company preview
+;;
 ;; Package-Requires:
 ;;; Commentary:
 ;;
