@@ -87,7 +87,7 @@
                                 (untabify (point-min)
                                           (point-max))
                                 (whitespace-cleanup)) t t)
-  (add-hook 'before-save-hook #'elixir-format nil t)
+  (add-hook 'before-save-hook #'elixir-format t t)
 
   ;; Start Alchemist Server
   (unless (alchemist-server-process-p) "Connected" (alchemist-server-start "dev")))

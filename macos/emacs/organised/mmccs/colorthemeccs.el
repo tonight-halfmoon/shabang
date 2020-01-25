@@ -41,7 +41,7 @@
          (load-theme 'sanityinc-tomorrow-night t)
          (add-to-list 'default-frame-alist '(background-color . black))
          (when (string-equal (getenv "emacs_background") "bright")
-           (add-to-list 'default-frame-alist '(background-color . "brightblack")))))
+           (add-to-list 'default-frame-alist '(background-color . "#4d4d4d")))))
 
 ;; ------------
 ;; `Nord'
@@ -111,7 +111,7 @@
                ((string-equal (getenv "emacs_theme_modern_mode") "desert")
                 (load-theme 'desert t t)
                 (enable-theme 'desert))
-               ((string-equal (getenv "emacs_theme_modern_mode") "gray")
+               ((string-equal (getenv "emacs_theme_modern_mode") "gray30")
                 (load-theme 'gray30 t t)
                 (enable-theme 'gray30))
                ((string-equal (getenv "emacs_theme_modern_mode") "late-night")
@@ -126,7 +126,7 @@
                (t (load-theme 'taming-mr-arneson t t)
                   (enable-theme 'taming-mr-arneson)
                   (set-face-attribute 'minibuffer-prompt t
-                                      :foreground "color-87")))
+                                      :foreground "#5fffff")))
          (cond ((string-equal (getenv "frame_background_mode") "light")
                 (setq frame-background-mode 'light))
                (t
@@ -137,18 +137,18 @@
                (t ()))
          ;; background colour
          (cond ((string-equal (getenv "emacs_background" ) "bright")
-                (add-to-list 'default-frame-alist '(background-color . "brightblack")))
+                (add-to-list 'default-frame-alist '(background-color . "#4d4d4d")))
                (t (add-to-list 'default-frame-alist '(background-color . black))))))
 
 ;; -----------
 ;; `Mode-line'
 ;; -----------
 
-(defun customise-mode-line-erlang-mode-hook ()
-  "Customise Mode Line hook."
-  (set-face-background 'mode-line "yellow"))
+(set-face-background 'mode-line "#00ff00")
 
-(add-hook 'erlang-mode-hook #'customise-mode-line-erlang-mode-hook)
+(set-face-attribute 'mode-line-buffer-id nil
+                    :background "#ff00ff"
+                    :foreground "#444444")
 
 (provide 'colorthemeccs)
 
