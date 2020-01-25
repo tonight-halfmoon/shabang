@@ -1,0 +1,23 @@
+#!/bin/sh
+
+d_solarized="${HOME}/.emacs.d/emacs-color-theme-solarized"
+
+[ -d ${d_solarized} ] && {>&2 echo "Solarized Colour Scheme for Emacs exists."; exit 0;}
+
+[ ! -d ${d_solarized} ] && mkdir -p ${d_solarized}
+
+>&2 echo "Evaluating git clone against solarized repository..."
+
+git clone --verbose --progress https://github.com/sellout/emacs-color-theme-solarized.git "${HOME}/.emacs.d/emacs-color-theme-solarized" 2>&1
+
+>&2 echo "Done with git clone solarized repository."
+
+# Local variables:
+# coding: utf-8
+# buffer-file-coding-system: utf-8
+# mode: shell-script
+# sh-basic-offset: 2
+# tab-width: 2
+# indent-tabs-mode: nil
+# End
+# ex: ts=2 sw=2 et ft=sh

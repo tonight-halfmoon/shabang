@@ -45,18 +45,17 @@
 ;; -----------------------
 ;; `Solarized'
 ;; =======================
-;;
-;; git clone https://github.com/sellout/emacs-color-theme-solarized.git
 
 (when (string-equal (getenv "emacs_theme") "solarized")
+  (call-process "~/.emacs.d/mmccs/git-clone-solarized" nil "git-clone-solarized")
   (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/emacs-color-theme-solarized"))
   (load-theme 'solarized t)
   (set-variable 'solarized-termcolors 256)
   (enable-theme 'solarized))
 
-;; --------------------
+;; --------
 ;; `Modern'
-;; ====================
+;; ========
 ;;
 ;; Reference:
 ;; [](https://github.com/emacs-jp/replace-colorthemes)
