@@ -8,18 +8,31 @@
                          ("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
+(setq load-prefer-newer t)
+
 (package-initialize)
 
 (unless package-archive-contents (package-refresh-contents))
 
-(with-eval-after-load (load-file "~/.emacs.d/features.el"))
+(unless (package-installed-p 'auto-compile)
+  (package-install 'auto-compile))
+
+(require 'auto-compile)
+
+(auto-compile-on-load-mode)
+
+(when (not (file-exists-p "~/.emacs.d/features.elc") )
+  (byte-compile-file "~/.emacs.d/features.el"))
+
+(load "~/.emacs.d/features")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8))))
+ '(safe-local-variable-values (quote ((tabs-width . 2)
+                                      (buffer-file-coding-system . utf-8))))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map (quote ((20 . "#f2777a")
                                  (40 . "#f99157")

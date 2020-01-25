@@ -5,26 +5,28 @@
 ;;; Code:
 
 (when (string-equal system-type "berkeley-unix")
-  (progn (add-to-list 'load-path (car (file-expand-wildcards
-                                       "/usr/local/lib/erlang/lib/tools-*/emacs")))
-         (setq erlang-root-dir (car (file-expand-wildcards "/usr/local/lib/erlang")))
-         (setq exec-path (cons (car (file-expand-wildcards "/usr/local/lib/erlang/bin"))
-                               exec-path))))
+  (progn
+    (defvar erlang-root-dir)
+    (add-to-list 'load-path (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
+    (setq erlang-root-dir (car (file-expand-wildcards "/usr/local/lib/erlang")))
+    (setq exec-path (cons (car (file-expand-wildcards "/usr/local/lib/erlang/bin")) exec-path))))
 
 (when (string-equal system-type "darwin")
-  (progn
-    ;;
-    ;;
-    (eval-when-compile 'erlang-start
-                       ;;
-                       ;;
-                       (add-to-list 'load-path (car (file-expand-wildcards
-                                                     "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs"))))
-    (setq erlang-root-dir (car (file-expand-wildcards "/usr/local/Cellar/erlang/*/lib/erlang")))
-    (setq exec-path (cons (car (file-expand-wildcards "/usr/local/Cellar/erlang/*/lib/erlang/bin"))
-                          exec-path))))
+  (progn (add-to-list 'load-path (car (file-expand-wildcards
+                                       "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs")))
+         (defvar erlang-root-dir)
+         (setq erlang-root-dir (car (file-expand-wildcards
+                                     "/usr/local/Cellar/erlang/*/lib/erlang")))
+         (setq exec-path (cons (car (file-expand-wildcards
+                                     "/usr/local/Cellar/erlang/*/lib/erlang/bin")) exec-path))))
 
-(require 'erlang-start)
+;;(require 'erlang-start)
+(eval-when-compile 'elang-mode (add-to-list 'load-path (car (file-expand-wildcards
+                                                             "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs")))
+                   (require 'erlang))
+
+(add-to-list 'load-path (car (file-expand-wildcards
+                              "/usr/local/Cellar/erlang/*/lib/erlang/lib/tools-*/emacs")))
 (require 'erlang)
 
 (add-to-list 'auto-mode-alist '("\\.config?$" . erlang-mode))
