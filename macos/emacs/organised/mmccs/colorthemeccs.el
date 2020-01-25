@@ -140,6 +140,27 @@
                 (add-to-list 'default-frame-alist '(background-color . "#4d4d4d")))
                (t (add-to-list 'default-frame-alist '(background-color . black))))))
 
+(when (string-equal (getenv "emacs_theme") "nimbus")
+  (progn (eval-when-compile
+           (require 'package))
+         (add-to-list 'package-pinned-packages '(nimbus-theme . "melpa") t)
+         (unless package-archive-contents (package-refresh-contents))
+         (unless (package-installed-p 'nimbus-theme)
+           (package-install 'nimbus-theme))
+         (load-theme 'nimbus t)))
+
+(when (string-equal (getenv "emacs_theme") "ample")
+  (progn (eval-when-compile
+           (require 'package))
+         (add-to-list 'package-pinned-packages '(ample-theme . "melpa") t)
+         (unless package-archive-contents (package-refresh-contents))
+         (unless (package-installed-p 'ample-theme)
+           (package-install 'ample-theme))
+         (load-theme 'ample-flat t t)
+         (set-face-attribute 'region t
+                             :background "#808080")
+         (enable-theme 'ample-flat)))
+
 ;; -----------
 ;; `Mode-line'
 ;; -----------

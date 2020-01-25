@@ -28,8 +28,8 @@
 (with-eval-after-load 'highlight-indentation
   ;;
   (when (string-equal system-type "berkeley-unix")
-    (set-face-background 'highlight-indentation-face "brightgreen")
-    (set-face-background 'highlight-indentation-current-column-face "brightgreen")))
+    (set-face-background 'highlight-indentation-current-column-face "#00ff00")
+    (set-face-background 'highlight-indentation-face "#00ff00")))
 
 ;;-----------------------------------
 ;; Customise `aggressive-indent' mode
