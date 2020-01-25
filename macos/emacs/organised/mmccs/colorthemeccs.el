@@ -47,6 +47,8 @@
 ;; =======================
 
 (when (string-equal (getenv "emacs_theme") "solarized")
+  (call-process (getenv "SHELL") nil "git-clone-solarized" nil "-c"
+                "chmod -v u+x $HOME/.emacs.d/mmccs/git-clone-solarized")
   (call-process "~/.emacs.d/mmccs/git-clone-solarized" nil "git-clone-solarized")
   (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/emacs-color-theme-solarized"))
   (load-theme 'solarized t)
