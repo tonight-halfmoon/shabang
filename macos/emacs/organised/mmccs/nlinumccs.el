@@ -9,11 +9,11 @@
 
 (global-nlinum-mode t)
 
-(set-face-attribute 'nlinum-current-line  nil
-                    :inherit 'linum
-                    :foreground "magenta")
-
 (require 'nlinum)
+
+(set-face-attribute 'nlinum-current-line nil
+                    :inherit 'linum
+                    :foreground "#ff00ff")
 
 (setq nlinum-format " %3i ")
 (setq nlinum-highlight-current-line t)

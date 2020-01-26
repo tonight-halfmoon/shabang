@@ -33,11 +33,11 @@
 (set-face-attribute 'whitespace-big-indent nil)
 
 (set-face-attribute 'whitespace-space nil
-                    :foreground "green"
+                    :foreground "#00cd00"
                     :weight 'bold)
 
 (set-face-attribute 'whitespace-trailing nil
-                    :foreground "green"
+                    :foreground "#00cd00"
                     :weight 'bold)
 
 (provide 'whitespaceccs)

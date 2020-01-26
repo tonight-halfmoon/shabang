@@ -66,10 +66,18 @@
       (require 'pyccs))
 (load "shccs.el"
       (require 'shccs))
-(load "smartmodelineccs.el"
-      (require 'smartmodelineccs))
 (load "swiperccs.el"
       (require 'swiperccs))
+(load "thememidnightccs.el"
+      (require 'thememidnightccs))
+(load "thememodernccs.el"
+      (require 'thememodernccs))
+(load "themesolarizedccs.el"
+      (require 'themesolarizedccs))
+(load "themetomorrowccs.el"
+      (require 'themetomorrowccs))
+(load "themezerodarkccs.el"
+      (require 'themezerodarkccs))
 (load "webfccs.el"
       (require 'webfccs))
 (load "whitespaceccs.el"

@@ -26,14 +26,24 @@
 
 (autoload 'flyspell-mode "flyspell" "on-the-fly check spelling." t)
 
-(with-eval-after-load 'flyspell (set-face-attribute 'flyspell-incorrect nil
-                                                    :underline t
-                                                    :background "green"
-                                                    :foreground "black"))
+(with-eval-after-load 'flyspell
+  ;;
+  (set-face-attribute 'flyspell-incorrect nil
+                      :underline t
+                      :background "#5fffaf"
+                      :foreground "#1c1c1c"
+                      :weight 'bold
+                      :inverse-video t))
 
 ;; For all text-derived modes, checke the following reference:
 ;; [](https://github.com/emacs-mirror/emacs/tree/master/lisp/textmodes)
-(add-hook 'text-mode-hook 'flyspell-mode)
+;; However, YAML is a text-derived mode and not preferred.
+;; (add-hook 'text-mode-hook 'flyspell-mode)
+;; Therefore, add to specific text-derived modes, as follows:
+
+(add-hook 'markdown-mode-hook 'flyspell-mode)
+(add-hook 'change-log-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ;; Enable flyspell-prog-mode for all programming-derived modes
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)

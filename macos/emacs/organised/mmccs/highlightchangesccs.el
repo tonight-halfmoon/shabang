@@ -14,7 +14,7 @@
   (setq highlight-changes-face-list nil)
   ;;
   (set-face-attribute 'highlight-changes nil
-                      :foreground "brightyellow")
+                      :foreground "#ffff00")
   ;;
   (set-face-attribute 'highlight-changes-delete nil
                       :underline nil))
