@@ -14,6 +14,8 @@
       (require 'colorthemeccs))
 (load "companyccs.el"
       (require 'companyccs))
+(load "companypreviewccs.el"
+      (require 'companypreviewccs))
 (load "confunixccs.el"
       (require 'confunixccs))
 (load "cursorccs.el"
@@ -28,10 +30,14 @@
       (require 'erlccs))
 (load "eshellccs.el"
       (require 'eshellccs))
+(load "eyebrowseccs.el"
+      (require 'eyebrowseccs))
 (load "exccs.el"
       (require 'exccs))
 (load "execpathccs.el"
       (require 'execpathccs))
+(load "expandregionccs.el"
+      (require 'expandregionccs))
 (load "flycheckccs.el"
       (require 'flycheckccs))
 (load "flyspellccs.el"
@@ -68,18 +74,28 @@
       (require 'shccs))
 (load "swiperccs.el"
       (require 'swiperccs))
+(load "themedoomdraculaccs.el"
+      (require 'themedoomdraculaccs))
+(load "themedraculaccs.el"
+      (require 'themedraculaccs))
 (load "thememidnightccs.el"
       (require 'thememidnightccs))
 (load "thememodernccs.el"
       (require 'thememodernccs))
+(load "thememoonlightccs.el"
+      (require 'thememoonlightccs))
 (load "themesolarizedccs.el"
       (require 'themesolarizedccs))
 (load "themetomorrowccs.el"
       (require 'themetomorrowccs))
+(load "themetwilightccs.el"
+      (require 'themetwilightccs))
 (load "themezerodarkccs.el"
       (require 'themezerodarkccs))
 (load "webfccs.el"
       (require 'webfccs))
+(load "whichkeyccs.el"
+      (require 'whichkeyccs))
 (load "whitespaceccs.el"
       (require 'whitespaceccs))
 (load "yamlccs.el"

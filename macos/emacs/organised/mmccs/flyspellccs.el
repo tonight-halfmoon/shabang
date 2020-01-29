@@ -26,15 +26,6 @@
 
 (autoload 'flyspell-mode "flyspell" "on-the-fly check spelling." t)
 
-(with-eval-after-load 'flyspell
-  ;;
-  (set-face-attribute 'flyspell-incorrect nil
-                      :underline t
-                      :background "#5fffaf"
-                      :foreground "#1c1c1c"
-                      :weight 'bold
-                      :inverse-video t))
-
 ;; For all text-derived modes, checke the following reference:
 ;; [](https://github.com/emacs-mirror/emacs/tree/master/lisp/textmodes)
 ;; However, YAML is a text-derived mode and not preferred.

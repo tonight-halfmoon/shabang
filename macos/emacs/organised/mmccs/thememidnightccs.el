@@ -23,15 +23,14 @@
 
 (defun ccs-the-theme()
   "Configure the theme."
-  (when (string-equal (getenv "emacs_background") "black")
-    (setq initial-frame-alist '((background-color . "#080808")))
-    (setq default-frame-alist '((background-color . "#080808"))))
   (unless package-archive-contents (package-refresh-contents))
   (unless (package-installed-p 'color-theme-modern)
     (package-install 'color-theme-modern))
   (load-theme 'midnight t t)
-  (setq sml/theme 'dark)
-  (sml/setup)
+  ;;(setq sml/theme 'dark)
+  ;;(sml/setup)
+  (setq initial-frame-alist '((background-color . "#080808")))
+  (setq default-frame-alist '((background-color . "#080808")))
   (enable-theme 'midnight))
 
 (defun ccs-mode-line()
@@ -70,6 +69,12 @@
                       :background "#808080"
                       :foreground "#8787af"))
 
+(defun ccs-swiper()
+  "Configure swiper."
+  (require 'swiper)
+  (set-face-attribute 'swiper-line-face t
+                      :background "#5f5f00"))
+
 (defun ccs-company-preview()
   "Configure company."
   (with-eval-after-load 'company
@@ -95,19 +100,22 @@
                         :foreground "#00ff00"
                         :weight 'bold)))
 
-(defun ccs-swiper()
-  "Configure swiper."
-  (require 'swiper)
-  (set-face-attribute 'swiper-line-face t
-                      :background "#5f5f00"))
+(defun ccs-ivy()
+  "Configure Ivy-mode."
+  (with-eval-after-load 'ivy
+    ;;
+    (set-face-attribute 'ivy-current-match t
+                        :background "#444444")))
 
-(when (string-equal (getenv "emacs_theme") "midnight")
+(when (string-match "midnight" (getenv "emacs_theme"))
   (message "loading theme midnight...")
   (ccs-the-theme)
   (ccs-company-preview)
   (ccs-highlight-indentation)
   (ccs-flyspell)
-  (ccs-mode-line)
+  ;;(ccs-mode-line)
+  (ccs-swiper)
+  (ccs-ivy)
   (ccs-region))
 
 (provide 'thememidnightccs)

@@ -8,15 +8,14 @@
 ;;
 ;;; Code:
 
-;;(show-paren-mode 1)
-;; (global-set-key "%" 'match-paren)
+(show-paren-mode 1)
 
 (unless package-archive-contents (package-refresh-contents))
 
 (unless (package-installed-p 'highlight-parentheses)
   (package-install 'highlight-parentheses))
 
-(add-hook 'prog-mode-hook 'highlight-parentheses-mode)
+;;(add-hook 'prog-mode-hook 'highlight-parentheses-mode)
 
 (provide 'highlightparenthesesccs)
 

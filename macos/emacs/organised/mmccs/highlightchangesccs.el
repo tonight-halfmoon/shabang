@@ -13,9 +13,6 @@
   ;;
   (setq highlight-changes-face-list nil)
   ;;
-  (set-face-attribute 'highlight-changes nil
-                      :foreground "#ffff00")
-  ;;
   (set-face-attribute 'highlight-changes-delete nil
                       :underline nil))
 

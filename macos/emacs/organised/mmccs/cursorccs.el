@@ -22,7 +22,13 @@
   (setq beacon-color (getenv "emacs_beacon_colour")))
 
 (setq-default cursor-type 'hbar)
+
 (setq-default x-stretch-cursor t)
+
+;; -------------------------------------
+;; `Cursor guide' - Show-Horizontal-line
+;; -------------------------------------
+(global-hl-line-mode t)
 
 (when (not (string-equal (getenv "emacs_cursor_colour") nil))
   (set-cursor-color (getenv "emacs_cursor_colour")))

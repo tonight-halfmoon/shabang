@@ -22,6 +22,7 @@
 (defun mor-yaml-mode-hooks()
   "Hooks for yaml-mode."
   (setq indent-tabs-mode nil)
+  (setq tab-width 2)
   (setq yaml-indent-offset 2)
   (company-mode)
   (setq company-idle-delay 0.1 company-tooltip-limit 10)

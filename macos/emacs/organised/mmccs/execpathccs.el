@@ -12,11 +12,10 @@
 
 (require 'exec-path-from-shell)
 
-(cond ((string-equal system-type "darwin")
-       (progn (unless (package-installed-p 'exec-path-from-shell)
-                (package-install 'exec-path-from-shell)
-                (exec-path-from-shell-initialize)
-                (setq exec-path-from-shell-check-startup-files nil)))))
+(unless (package-installed-p 'exec-path-from-shell)
+  (package-install 'exec-path-from-shell)
+  (exec-path-from-shell-initialize)
+  (setq exec-path-from-shell-check-startup-files nil))
 
 (provide 'execpathccs)
 

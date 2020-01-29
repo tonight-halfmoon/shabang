@@ -68,7 +68,7 @@
   ;; Check [Elixir-Doctests](https://elixir-lang.org/getting-started/mix-otp/docs-tests-and-with.html)
   ;; In order to specify an indentation of four spaces hit
   ;; C-q TAB in your @moduledoc ~S"""
-  (setq tab-width 6)
+  (setq tab-width 2)
 
   ;; Provide a default indent upon a new line
   (local-set-key (kbd "RET") 'newline-and-indent)

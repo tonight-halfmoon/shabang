@@ -13,6 +13,25 @@
 ;;
 ;;; Code:
 
+(defvar ccs-gray "#1c1c1c")
+(when (string-equal system-type "berkeley-unix")
+  (setq ccs-gray "#444444"))
+
+(defun ccs-linum()
+  "Configure linum."
+  (with-eval-after-load 'linum
+    ;;
+    (set-face-attribute 'linum t
+                        :background "#080808"
+                        :foreground "#444444")))
+
+(defun ccs-ivy()
+  "Configre ivy."
+  (with-eval-after-load 'ivy
+    ;;
+    (set-face-attribute 'ivy-current-match t
+                        :background "#444444")))
+
 (when (string-equal (getenv "emacs_theme") "zerodark")
   (add-to-list 'package-pinned-packages '(async . "melpa") t)
   (add-to-list 'package-pinned-packages '(magit . "melpa") t)
@@ -24,15 +43,16 @@
     (package-install 'magit))
   (unless (package-installed-p 'zerodark-theme)
     (package-install 'zerodark-theme))
-  ;; (eval-and-compile 'zerodark-theme (when (not (file-directory-p "~/.emacs.d/all-the-icons"))
-  ;;                                     (mkdir "~/.emacs.d/all-the-icons" "-p"))
-  ;;                   (when (not (file-exists-p "~/.emacs.d/all-the-icons/all-the-icons.ttf"))
-  ;;                     (all-the-icons-install-fonts))
-  ;;                   (load-theme 'zerodark t)
-  ;;                   (setq inhibit-compacting-font-caches t)
-  ;;                   (zerodark-setup-modeline-format)
-  ;;                   (enable-theme 'zerodark))
+  (when (not (file-directory-p "~/.emacs.d/all-the-icons"))
+    (mkdir "~/.emacs.d/all-the-icons" "-p"))
+  (when (not (file-exists-p "~/.emacs.d/all-the-icons/all-the-icons.ttf"))
+    (all-the-icons-install-fonts))
   (load-theme 'zerodark t)
+  (setq inhibit-compacting-font-caches t)
+  (zerodark-setup-modeline-format)
+  (add-to-list 'default-frame-alist '((background-color . ccs-gray)))
+  (ccs-linum)
+  (ccs-ivy)
   (enable-theme 'zerodark))
 
 (provide 'themezerodarkccs)
