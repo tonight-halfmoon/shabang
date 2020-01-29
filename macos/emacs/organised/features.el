@@ -78,6 +78,8 @@
       (require 'themedoomdraculaccs))
 (load "themedraculaccs.el"
       (require 'themedraculaccs))
+(load "themelessccs.el"
+      (require 'themelessccs))
 (load "thememidnightccs.el"
       (require 'thememidnightccs))
 (load "thememodernccs.el"
