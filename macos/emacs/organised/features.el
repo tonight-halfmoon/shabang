@@ -36,6 +36,7 @@
   (require 'shccs)
   (require 'swiperccs)
   (require 'themelessccs)
+  (require 'themetwilightccs)
   (require 'webfccs)
   (require 'whitespaceccs)
   (require 'yamlccs))
