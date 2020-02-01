@@ -2,106 +2,43 @@
 ;;; Commentary:
 ;;; Code:
 
-(add-to-list 'load-path "~/.emacs.d/mmccs")
-
-(load "changelogccs.el"
-      (require 'changelogccs))
-(load "clipboardccs.el"
-      (require 'clipboardccs))
-(load "codingccs.el"
-      (require 'codingccs))
-(load "colorthemeccs.el"
-      (require 'colorthemeccs))
-(load "companyccs.el"
-      (require 'companyccs))
-(load "companypreviewccs.el"
-      (require 'companypreviewccs))
-(load "confunixccs.el"
-      (require 'confunixccs))
-(load "cursorccs.el"
-      (require 'cursorccs))
-(load "diredccs.el"
-      (require 'diredccs))
-(load "dockerfileccs.el"
-      (require 'dockerfileccs))
-(load "emacslispccs.el"
-      (require 'emacslispccs))
-(load "erlccs.el"
-      (require 'erlccs))
-(load "eshellccs.el"
-      (require 'eshellccs))
-(load "eyebrowseccs.el"
-      (require 'eyebrowseccs))
-(load "exccs.el"
-      (require 'exccs))
-(load "execpathccs.el"
-      (require 'execpathccs))
-(load "expandregionccs.el"
-      (require 'expandregionccs))
-(load "flycheckccs.el"
-      (require 'flycheckccs))
-(load "flyspellccs.el"
-      (require 'flyspellccs))
-(load "gitmodesccs.el"
-      (require 'gitmodesccs))
-(load "groovyccs.el"
-      (require 'groovyccs))
-(load "highlightchangesccs.el"
-      (require 'highlightchangesccs))
-(load "highlightparenthesesccs.el"
-      (require 'highlightparenthesesccs))
-(load "indentationccs.el"
-      (require 'indentationccs))
-(load "javascriptccs.el"
-      (require 'javascriptccs))
-(load "jenkinsfileccs.el"
-      (require 'jenkinsfileccs))
-(load "jsonccs.el"
-      (require 'jsonccs))
-(load "keybindingsccs.el"
-      (require 'keybindingsccs))
-(load "latexextraccs.el"
-      (require 'latexextraccs))
-(load "mdccs.el"
-      (require 'mdccs))
-(load "nlinumccs.el"
-      (require 'nlinumccs))
-(load "projectileccs.el"
-      (require 'projectileccs))
-(load "pyccs.el"
-      (require 'pyccs))
-(load "shccs.el"
-      (require 'shccs))
-(load "swiperccs.el"
-      (require 'swiperccs))
-(load "themedoomdraculaccs.el"
-      (require 'themedoomdraculaccs))
-(load "themedraculaccs.el"
-      (require 'themedraculaccs))
-(load "themelessccs.el"
-      (require 'themelessccs))
-(load "thememidnightccs.el"
-      (require 'thememidnightccs))
-(load "thememodernccs.el"
-      (require 'thememodernccs))
-(load "thememoonlightccs.el"
-      (require 'thememoonlightccs))
-(load "themesolarizedccs.el"
-      (require 'themesolarizedccs))
-(load "themetomorrowccs.el"
-      (require 'themetomorrowccs))
-(load "themetwilightccs.el"
-      (require 'themetwilightccs))
-(load "themezerodarkccs.el"
-      (require 'themezerodarkccs))
-(load "webfccs.el"
-      (require 'webfccs))
-(load "whichkeyccs.el"
-      (require 'whichkeyccs))
-(load "whitespaceccs.el"
-      (require 'whitespaceccs))
-(load "yamlccs.el"
-      (require 'yamlccs))
+(eval-and-compile
+  ;;
+  (add-to-list 'load-path "~/.emacs.d/mmccs")
+  (require 'changelogccs)
+  (require 'clipboardccs)
+  (require 'codingccs)
+  (require 'confunixccs)
+  (require 'cursorccs)
+  (require 'diredccs)
+  (require 'dockerfileccs)
+  (require 'emacslispccs)
+  (require 'erlccs)
+  (require 'eshellccs)
+  (require 'exccs)
+  (require 'execpathccs)
+  (require 'flycheckccs)
+  (require 'flyspellccs)
+  (require 'gitmodesccs)
+  (require 'groovyccs)
+  (require 'highlightchangesccs)
+  (require 'highlightparenthesesccs)
+  (require 'indentationccs)
+  (require 'javascriptccs)
+  (require 'jenkinsfileccs)
+  (require 'jsonccs)
+  (require 'keybindingsccs)
+  (require 'latexextraccs)
+  (require 'mdccs)
+  (require 'nlinumccs)
+  (require 'projectileccs)
+  (require 'pyccs)
+  (require 'shccs)
+  (require 'swiperccs)
+  (require 'themelessccs)
+  (require 'webfccs)
+  (require 'whitespaceccs)
+  (require 'yamlccs))
 
 (provide 'features)
 
